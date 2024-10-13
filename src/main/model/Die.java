@@ -1,4 +1,4 @@
-package test.model;
+package main.model;
 
 public class Die {
 }
