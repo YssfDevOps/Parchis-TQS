@@ -1,0 +1,102 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Main {
+- {static} PLAYER_NAMES : String[]
+- {static} main(String[] args)
+}
+
+class Game {
+    + Game(playerNames: String[])
+    + play()
+    - makeBoard()
+    - makePlayers(names : String[])
+    - initializeGame()
+    - placePlayersAtFirstSquare()
+    - notOver() : boolean
+    - movePlayer(roll : int)
+    - currentPlayer() : Player
+}
+
+class Board {
+    + Board()
+    + firstSquare(color : String) : FirstSquare
+    + lastSquare(color : String) : FinalSquares
+    + findSquare(color : String) : Square
+}
+
+class Die {
+    - {static} MIN_VALUE : int = 1
+    - {static} MAX_VALUE : int = 6
+    + roll() : int
+}
+
+class Square {
+    # position : int
+    # isBarrier : boolean
+    + Square(pos : int, board : Board)
+    + isLastSquare() : boolean
+    + enter(p : Player)
+    + leave(p : Player)
+    + isOccupied() : boolean
+    + getPosition() : int
+    + moveAndLand(moves : int)
+    + isBarrier() : boolean
+    # landHereOrSendHome() : Square
+    # findRelativeSquare(shift : int) : Square
+}
+
+class FirstSquare extends Square {
+    + color : String
+    + FirstSquare(color : String, board : Board)
+    + isOccupied() : boolean
+    + isBarrier() : boolean
+    + enter(p : Player)
+    + leave(p : Player)
+}
+
+class ShieldSquare extends Square {
+    + enter(p : Player)
+    + isBarrier() : boolean
+    + canLeave(p : Player) : boolean
+    ' Checks if the player can leave the barrier
+}
+
+class FinalSquare extends Square {
+    + squares : Square[]
+    + FinalSquare(squares: Square[])
+    + addSquare(square: Square)
+}
+
+class Piece {
+    - color : String
+    - square : Square
+    + Piece(color : String, square : Square)
+    + moveForward(moves : int)
+    + getPosition() : int
+}
+
+class Player {
+- name : String
+- pieces : Piece[]
+- playing : boolean
++ Player(name : String, pieces : Piece[])
++ movePiece(piece : Piece, moves : int)
++ wins() : boolean
++ isPlaying() : boolean
++ setPlaying(d : boolean)
+}
+
+Main -[hidden]down-> Game
+Game -[hidden]down-> Die
+
+Game x--right--> "1" Board : board
+Board "1\nboard" *-down-> "10...*" Square : squares
+Game *-down-> "1..*" Player : players
+Game x-down-> "0,1" Player : winner
+Square -left-> "0,1" Player : player
+Player -right-> "1-4" Piece : pieces
+Piece -right-> "1" Square : square
+FirstSquare -left-> "*" Player : players
+Player -left-> "1-4" Piece : pieces
+@enduml
