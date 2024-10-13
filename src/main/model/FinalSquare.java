@@ -1,4 +1,4 @@
 package main.model;
 
-public class FinalSquare {
+public class FinalSquare extends Square {
 }
