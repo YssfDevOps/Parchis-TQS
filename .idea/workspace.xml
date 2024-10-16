@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LudoDiagramClass.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/FinalSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/FirstSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/ShieldSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/BoardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/DieTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/GameTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/PieceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/PlayerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parchis-TQS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Parchis-TQS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Die.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Die.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,12 +28,25 @@
       <list>
         <option value="UML Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;luciasg14&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/YssfDevOps/Parchis-TQS.git&quot;,
+    &quot;accountId&quot;: &quot;7c1b32bd-c3b1-45bf-ba02-9faeabf98583&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -45,31 +62,46 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "DefaultPlantUmlFileTemplate": "UML Class",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers": "true",
     "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Test__Logic",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
+    "last_opened_file_path": "C:/Users/lucia/Desktop/UNI/4rt/TQS/Practiques/Parchis-TQS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="main.model" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.model" />
       <recent name="main.model" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
       </set>
     </attachedChunks>
   </component>
@@ -84,10 +116,24 @@
       <workItem from="1728829844696" duration="1194000" />
       <workItem from="1728831985078" duration="415000" />
       <workItem from="1728836384830" duration="3812000" />
+      <workItem from="1728840608559" duration="61000" />
+      <workItem from="1728984120380" duration="4492000" />
+      <workItem from="1729067909332" duration="3796000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
