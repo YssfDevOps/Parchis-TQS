@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LudoDiagramClass.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/FinalSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/FirstSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/ShieldSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/SquareTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parchis-TQS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Parchis-TQS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LudoDiagramClass.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LudoDiagramClass.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/FinalSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/FinalSquare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Square.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,7 @@
       <list>
         <option value="UML Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -45,10 +44,17 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "DefaultPlantUmlFileTemplate": "UML Class",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.SquareTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Test__Squares",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
     "node.js.detected.package.eslint": "true",
@@ -57,13 +63,32 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="main.model" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="SquareTest" type="JUnit" factoryName="JUnit">
+      <module name="Parchis-TQS" />
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.SquareTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -83,7 +108,8 @@
       <updated>1728829843610</updated>
       <workItem from="1728829844696" duration="1194000" />
       <workItem from="1728831985078" duration="415000" />
-      <workItem from="1728836384830" duration="3812000" />
+      <workItem from="1728836384830" duration="4121000" />
+      <workItem from="1729067584814" duration="4461000" />
     </task>
     <servers />
   </component>

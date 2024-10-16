@@ -70,7 +70,6 @@ class FinalSquare extends Square {
 
 class Piece {
     - color : String
-    - square : Square
     + Piece(color : String, square : Square)
     + moveForward(moves : int)
     + getPosition() : int
