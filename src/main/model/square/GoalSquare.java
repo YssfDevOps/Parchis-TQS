@@ -15,12 +15,17 @@ public class GoalSquare extends Square {
 
   @Override
   public Square landHereSendHome() {
-    // To be implemented later
-    return null;
+    if (!isEmpty()) {
+      sendPieceHome(piece);
+    }
+    return this;
   }
 
   @Override
   public void enter(Piece piece) {
-    // To be implemented later
+    if (piece == null) {
+      throw new IllegalArgumentException("Piece cannot be null");
+    }
+    this.piece = piece;
   }
 }

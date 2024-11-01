@@ -16,11 +16,17 @@ public abstract class Square {
   }
 
   public void enter(Piece piece) {
-
+    if (piece == null) {
+      throw new IllegalArgumentException("Piece cannot be null");
+    }
+    this.piece = piece;
   }
 
   public void leave(Piece piece) {
-
+    if (piece == null || this.piece != piece) {
+      throw new IllegalArgumentException("Invalid piece");
+    }
+    this.piece = null;
   }
 
   public boolean isHomeSquare() {
@@ -40,11 +46,19 @@ public abstract class Square {
   }
 
   public Square moveAndLand(Piece piece, int moves) {
-
+    if (piece == null || moves < 0) {
+      throw new IllegalArgumentException("Invalid piece or moves");
+    }
+    // Logic to move piece across the board
     return null;
   }
 
   public Square landHereSendHome() {
+    if (!isEmpty()) {
+      Piece currentPiece = this.piece;
+      sendPieceHome(currentPiece);
+      return this;
+    }
     return null;
   }
 
@@ -53,7 +67,10 @@ public abstract class Square {
   }
 
   public void sendPieceHome(Piece piece) {
-
+    if (piece == null) {
+      throw new IllegalArgumentException("Piece cannot be null");
+    }
+    piece.sendHome(); // Assuming Piece has a sendHome() method
   }
 
   public boolean isPlayerStartSquare() {

@@ -20,7 +20,9 @@ public class HomeSquare extends Square {
 
   @Override
   public Square moveAndLand(Piece piece, int moves) {
-    // To be implemented later
-    return null;
+    if (piece == null || moves != 1) {
+      throw new IllegalArgumentException("Invalid piece or moves");
+    }
+    return findShieldSquare();
   }
 }

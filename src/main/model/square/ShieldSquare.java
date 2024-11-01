@@ -15,23 +15,30 @@ public class ShieldSquare extends Square {
 
   @Override
   public boolean isPlayerStartSquare() {
-    // To be implemented later
-    return false;
+    return position == board.getPlayerStartPosition(player);
   }
 
   @Override
   public void enter(Piece piece) {
-    // To be implemented later
+    if (piece == null) {
+      throw new IllegalArgumentException("Piece cannot be null");
+    }
+    this.piece = piece;
   }
 
   @Override
   public void leave(Piece piece) {
-    // To be implemented later
+    if (piece == null || this.piece != piece) {
+      throw new IllegalArgumentException("Invalid piece");
+    }
+    this.piece = null;
   }
 
   @Override
   public Square landHereSendHome() {
-    // To be implemented later
-    return null;
+    if (!isEmpty()) {
+      sendPieceHome(piece);
+    }
+    return this;
   }
 }
