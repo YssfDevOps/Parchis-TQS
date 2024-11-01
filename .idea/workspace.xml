@@ -5,8 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/model/square/FinalPathSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/square/GoalSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/square/HomeSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/square/ISquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/square/LastGlobalSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/square/RegularSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/model/square/Square.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/square/FinalPathSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/square/GoalSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/square/HomeSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/square/LastGlobalSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/square/RegularSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/square/ShieldSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/square/SquareTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LudoDiagramClass.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LudoDiagramClass.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/FinalSquare.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/FirstSquare.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/ShieldSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/ShieldSquare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Square.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/SquareTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="UML Class" />
+        <option value="Interface" />
         <option value="Class" />
         <option value="JUnit5 Test Class" />
       </list>
@@ -71,20 +91,10 @@
       <recent name="main.model" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.model.square" />
+      <recent name="main.model.square" />
       <recent name="test.model" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="SquareTest" type="JUnit" factoryName="JUnit">
-      <module name="Parchis-TQS" />
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.SquareTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -106,7 +116,9 @@
       <workItem from="1728831985078" duration="415000" />
       <workItem from="1728836384830" duration="4121000" />
       <workItem from="1729067584814" duration="4461000" />
-      <workItem from="1730398185039" duration="2079000" />
+      <workItem from="1730398185039" duration="2379000" />
+      <workItem from="1730402053971" duration="170000" />
+      <workItem from="1730445052529" duration="4424000" />
     </task>
     <servers />
   </component>

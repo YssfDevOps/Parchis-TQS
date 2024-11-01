@@ -113,11 +113,5 @@ Game "1" --> "1" Board
 Player "1" --> "4" Piece
 Piece --> Square : occupies
 Board --> "0..*" Square
-Square <|-- HomeSquare
-Square <|-- ShieldSquare
-Square <|-- RegularSquare
-Square <|-- GoalSquare
-Square <|-- FinalPathSquare
-Square <|-- LastGlobalSquare
 
 @enduml
