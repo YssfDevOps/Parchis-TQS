@@ -12,11 +12,13 @@ public class Player {
 
     public Player(String name, String color) {} //constructor
     public void movePiece(Piece piece, int moves) {}
-    public void setPlaying(boolean d) {}
     public boolean haveAnyPiecePlaying() { return false; } //no sabem si necesari o no
 
     public boolean isWinner() {return winner;}
     public boolean isPlaying() {return playing;}
+
+    public void setPlaying(boolean d) {}
+    public void setWinner(boolean d) {winner = d;}
 
     public String getName() {return name;}
     public List<Piece> getPieces() {return pieces;}

@@ -5,6 +5,8 @@ import main.model.square.Square;
 
 public class Piece {
     private Square square;
+    private int id;
+    private String color;
     private boolean playing;
 
     public Piece(String color, Square square) {}
@@ -15,4 +17,6 @@ public class Piece {
     public void sendHome() { playing = false; }
     public void enterFinalPath() {}
     public void setSquare(Square square) {this.square = square;}
+    public int getId() {return id;}
+    public String getColor() {return color;}
 }
