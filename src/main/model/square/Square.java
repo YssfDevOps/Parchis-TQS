@@ -76,4 +76,6 @@ public abstract class Square {
   public boolean isPlayerStartSquare() {
     return false;
   }
+
+  public int getPosition() {return position;}
 }

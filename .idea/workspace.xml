@@ -5,27 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/FinalPathSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/GoalSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/HomeSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/ISquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/LastGlobalSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/RegularSquare.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/Square.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/square/FinalPathSquareTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/square/GoalSquareTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/square/HomeSquareTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/square/LastGlobalSquareTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/square/RegularSquareTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/square/ShieldSquareTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/square/SquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/model/BoardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LudoDiagramClass.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/LudoDiagramClass.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/FinalSquare.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/FirstSquare.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/ShieldSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/ShieldSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Square.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/model/SquareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/GoalSquare.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/HomeSquare.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/LastGlobalSquare.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/square/GoalSquareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/square/HomeSquareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/square/LastGlobalSquareTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +35,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Test_Logic" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "luciasg14"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/YssfDevOps/Parchis-TQS.git",
+    "accountId": "7c1b32bd-c3b1-45bf-ba02-9faeabf98583"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -70,7 +79,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Test__Squares&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Test__LogicWithSquares&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -91,16 +100,16 @@
       <recent name="main.model" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.model" />
       <recent name="test.model.square" />
       <recent name="main.model.square" />
-      <recent name="test.model" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
       </set>
     </attachedChunks>
   </component>
@@ -119,10 +128,22 @@
       <workItem from="1730398185039" duration="2379000" />
       <workItem from="1730402053971" duration="170000" />
       <workItem from="1730445052529" duration="4424000" />
+      <workItem from="1730543374117" duration="3122000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
