@@ -14,4 +14,5 @@ public class Piece {
     public void setPlaying(boolean playing) {this.playing = playing;}
     public void sendHome() { playing = false; }
     public void enterFinalPath() {}
+    public void setSquare(Square square) {this.square = square;}
 }

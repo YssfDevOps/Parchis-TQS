@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/model/PieceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/model/PlayerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +76,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java",
-    "project.structure.last.edited": "Problems",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "configurable.group.language",
@@ -121,7 +119,7 @@
       <workItem from="1730398185039" duration="2379000" />
       <workItem from="1730402053971" duration="170000" />
       <workItem from="1730445052529" duration="4424000" />
-      <workItem from="1730543374117" duration="4470000" />
+      <workItem from="1730543374117" duration="5385000" />
     </task>
     <servers />
   </component>
