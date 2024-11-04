@@ -23,4 +23,18 @@ public class Player {
     public String getName() {return name;}
     public List<Piece> getPieces() {return pieces;}
     public String getColor() {return color;}
+    public int getColorIndex() {
+        int index = 0;
+        switch (color) {
+            case "yellow": index = 0;
+                break;
+            case "blue": index = 1;
+                break;
+            case "red": index = 2;
+                break;
+            case "green": index = 3;
+                break;
+        }
+        return index;
+    }
 }

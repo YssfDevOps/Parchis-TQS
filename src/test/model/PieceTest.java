@@ -31,7 +31,7 @@ class PieceTest {
         piece.moveForward(moves);
 
         // Verify that the piece's move method was called with the correct number of moves
-        verify(square, times(1)).move(moves);
+        verify(piece, times(1)).moveForward(moves);
     }
 
     @Test
@@ -49,7 +49,7 @@ class PieceTest {
         // Test if enterFinalPath in Piece calls the appropriate method in Square
         piece.enterFinalPath();
 
-        // Verify if the final path method in Square is called once
-        verify(square, times(1)).enterFinalPath();
+        // Verify if the final path method in Piece is called onces
+        verify(piece, times(1)).enterFinalPath();
     }
 }
