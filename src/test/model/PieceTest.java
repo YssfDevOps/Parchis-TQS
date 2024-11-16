@@ -1,7 +1,6 @@
 package test.model;
 
 import main.model.Piece;
-import main.model.square.Square;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

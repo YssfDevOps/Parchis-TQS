@@ -1,8 +1,6 @@
 package main.model;
 
 
-import main.model.square.Square;
-
 public class Piece {
     private Square square;
     private int id;
