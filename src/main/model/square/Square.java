@@ -9,8 +9,26 @@ public abstract class Square {
   protected List<Piece> pieces;
 
   public Square(int position) {
+    // Precondition
+    assert position >= 0 : "Position must positive";
+
     this.position = position;
     this.pieces = new ArrayList<>();
+
+    // Postcondition
+    assert this.position == position : "Position was not set correctly";
+    assert this.pieces != null : "Piece not initialized";
+
+    //Invariant check
+    invariant();
+  }
+
+  protected void invariant() {
+    assert position >= 0 : "Position must be positive";
+    assert pieces != null : "Pieces list must not be null";
+    for (Piece p : pieces) {
+      assert p != null : "Pieces list must not contain null elements";
+    }
   }
 
   public int getPosition() {
@@ -18,6 +36,10 @@ public abstract class Square {
   }
 
   public void landHere(Piece piece) {
+    // Precondition: piece is not null
+    assert piece != null : "Piece cannot be null";
+    assert pieces.contains(piece) : "Pieces list contains a duplicate element";
+
     if (isOccupied()) {
       if (isShieldSquare()) {
         handleLandingOnShieldSquare(piece);
@@ -28,6 +50,9 @@ public abstract class Square {
       // Square is empty
       pieces.add(piece);
     }
+
+    // Invariant check
+    invariant();
   }
 
   protected abstract void handleLandingOnShieldSquare(Piece piece);
@@ -35,10 +60,23 @@ public abstract class Square {
   protected abstract void handleLandingOnRegularSquare(Piece piece);
 
   public void leave(Piece piece) {
+    // Precondition
+    assert piece != null : "Piece cannot be null";
+    if (!pieces.contains(piece)) {
+      throw new IllegalStateException("Piece is not on this square");
+    }
+
     pieces.remove(piece);
+
+    // Post condition
+    assert !pieces.contains(piece) : "Piece was not removed from the square";
+    // Invariant check
+    invariant();
   }
 
   public boolean isOccupied() {
+    // Invariant check
+    invariant();
     return !pieces.isEmpty();
   }
 
