@@ -1,10 +1,11 @@
 package test.model;
 
 import main.model.Board;
-import main.model.Player;
+import main.model.Color;
 import main.model.Piece;
-import main.model.square.*;
-import org.junit.jupiter.api.BeforeEach;
+import main.model.square.FinalPathSquare;
+import main.model.square.ShieldSquare;
+import main.model.square.Square;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,133 +13,96 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
-    private Board board;
-    private Player yellowPlayer;
-    private Player redPlayer;
-    private Player bluePlayer;
-    private Player greenPlayer;
 
-    @BeforeEach
-    void setUp() {
-        board = new Board();
-        yellowPlayer = new Player("Yellow Player", "Yellow");
-        redPlayer = new Player("Red Player", "Red");
-        bluePlayer = new Player("Blue Player", "Blue");
-        greenPlayer = new Player("Green Player", "Green");
+  @Test
+  void getGlobalSquare() {
+    Board board = new Board();
+    // 1. Get square at position within bounds
+    Square square10 = board.getGlobalSquare(10);
+    assertNotNull(square10);
+    assertEquals(10, square10.getPosition());
+
+    // 2. Get square at negative position, not error position, it just wrap around
+    Square squareNegative1 = board.getGlobalSquare(-1);
+    assertNotNull(squareNegative1);
+    assertEquals(67, squareNegative1.getPosition());
+
+    // 3. Position exceeding board size, not error position, it just wrap around
+    Square square68 = board.getGlobalSquare(68);
+    assertNotNull(square68);
+    assertEquals(0, square68.getPosition());
+  }
+
+  @Test
+  void getPlayerStartSquare() {
+    Board board = new Board();
+    // 1. Get start square for RED player
+    ShieldSquare redStartSquare = board.getPlayerStartSquare(Color.RED);
+    assertNotNull(redStartSquare);
+    assertEquals(38, redStartSquare.getPosition());
+    assertTrue(redStartSquare.isShieldSquare());
+
+    // 2. Get start square for BLUE player
+    ShieldSquare blueStartSquare = board.getPlayerStartSquare(Color.BLUE);
+    assertNotNull(blueStartSquare);
+    assertEquals(21, blueStartSquare.getPosition());
+    assertTrue(blueStartSquare.isShieldSquare());
+
+    // 3. Get start square for YELLOW player
+    ShieldSquare yellowStartSquare = board.getPlayerStartSquare(Color.YELLOW);
+    assertNotNull(yellowStartSquare);
+    assertEquals(4, yellowStartSquare.getPosition());
+    assertTrue(yellowStartSquare.isShieldSquare());
+
+    // 3. Get start square for GREEN player
+    ShieldSquare greenStartSquare = board.getPlayerStartSquare(Color.GREEN);
+    assertNotNull(greenStartSquare);
+    assertEquals(55, greenStartSquare.getPosition());
+    assertTrue(greenStartSquare.isShieldSquare());
+  }
+
+  @Test
+  void getPlayerFinalPath() {
+    Board board = new Board();
+
+    // Case 1: Get final path for GREEN player
+    List<FinalPathSquare> greenFinalPath = board.getPlayerFinalPath(Color.GREEN);
+    assertNotNull(greenFinalPath);
+    assertEquals(8, greenFinalPath.size());
+
+    // Case 2: Check that all squares in the final path have the correct color
+    for (FinalPathSquare square : greenFinalPath) {
+      assertEquals(Color.GREEN, square.getColor());
     }
+  }
 
-    @Test
-    void findSquare() {
-        Square square = board.findSquare(5);
-        assertNotNull(square);
-        assertEquals(5, square.getPosition());
-        assertTrue(square instanceof ShieldSquare);
-    }
+  @Test
+  void getNextSquare() {
+    Board board = new Board();
 
-    @Test
-    void getPlayerStartSquare() {
-        ShieldSquare startSquare = board.getPlayerStartSquare(yellowPlayer);
-        assertNotNull(startSquare);
-        assertEquals(5, startSquare.getPosition());
-        assertTrue(startSquare instanceof ShieldSquare);
+    // Case 1: Get next square on global path
+    Square currentSquare = board.getGlobalSquare(10);
+    Piece redPiece = new Piece(Color.RED);
+    Square nextSquare = board.getNextSquare(currentSquare, redPiece);
+    assertNotNull(nextSquare);
+    assertEquals(11, nextSquare.getPosition());
 
-        startSquare = board.getPlayerStartSquare(redPlayer);
-        assertNotNull(startSquare);
-        assertEquals(39, startSquare.getPosition());
-        assertTrue(startSquare instanceof ShieldSquare);
+    // Case 2: Get next square when transitioning to final path
+    // For RED player, final entry position is at (38 - 5 + 68) % 68 = 33
+    Square square33 = board.getGlobalSquare(32);
+    currentSquare = square33;
+    nextSquare = board.getNextSquare(currentSquare, redPiece);
+    assertTrue(nextSquare instanceof FinalPathSquare);
 
-        startSquare = board.getPlayerStartSquare(bluePlayer);
-        assertNotNull(startSquare);
-        assertEquals(22, startSquare.getPosition());
-        assertTrue(startSquare instanceof ShieldSquare);
+    // Case 3: Move within final path
+    currentSquare = nextSquare; // Now on first square of final path
+    nextSquare = board.getNextSquare(currentSquare, redPiece);
+    assertTrue(nextSquare instanceof FinalPathSquare);
+    assertEquals(1, ((FinalPathSquare) nextSquare).getIndex());
 
-        startSquare = board.getPlayerStartSquare(greenPlayer);
-        assertNotNull(startSquare);
-        assertEquals(56, startSquare.getPosition());
-        assertTrue(startSquare instanceof ShieldSquare);
-    }
-
-    @Test
-    void getSquare() {
-        Square square = board.getSquare(34);
-        assertNotNull(square);
-        assertEquals(34, square.getPosition());
-        assertTrue(square instanceof ShieldSquare);
-
-        square = board.getSquare(1);
-        assertNotNull(square);
-        assertEquals(1, square.getPosition());
-        assertTrue(square instanceof RegularSquare);
-    }
-
-    @Test
-    void testInvalidSquarePosition() {
-        assertThrows(IllegalArgumentException.class, () -> board.findSquare(0));
-        assertThrows(IllegalArgumentException.class, () -> board.findSquare(69));
-    }
-
-    @Test
-    void testSetUpPlayerFinalPaths() {
-        List<Square> finalPath = board.getPlayerFinalPath(yellowPlayer);
-        assertNotNull(finalPath);
-        assertEquals(8, finalPath.size());
-        assertTrue(finalPath.get(0) instanceof FinalPathSquare);
-
-        finalPath = board.getPlayerFinalPath(redPlayer);
-        assertNotNull(finalPath);
-        assertEquals(8, finalPath.size());
-        assertTrue(finalPath.get(0) instanceof FinalPathSquare);
-
-        finalPath = board.getPlayerFinalPath(bluePlayer);
-        assertNotNull(finalPath);
-        assertEquals(8, finalPath.size());
-        assertTrue(finalPath.get(0) instanceof FinalPathSquare);
-
-        finalPath = board.getPlayerFinalPath(greenPlayer);
-        assertNotNull(finalPath);
-        assertEquals(8, finalPath.size());
-        assertTrue(finalPath.get(0) instanceof FinalPathSquare);
-    }
-
-    @Test
-    void testShieldSquares() {
-        int[] shieldPositions = {5, 12, 17, 22, 29, 34, 39, 46, 51, 56, 63, 68};
-        for (int position : shieldPositions) {
-            Square square = board.findSquare(position);
-            assertTrue(square instanceof ShieldSquare, "Position " + position + " should be a ShieldSquare");
-        }
-    }
-
-    @Test
-    void testPlayerStartPositions() {
-        assertEquals(5, board.getPlayerStartPosition(yellowPlayer));
-        assertEquals(39, board.getPlayerStartPosition(redPlayer));
-        assertEquals(22, board.getPlayerStartPosition(bluePlayer));
-        assertEquals(56, board.getPlayerStartPosition(greenPlayer));
-    }
-
-    @Test
-    void testMoveAcrossBoard() {
-        Square startSquare = board.getPlayerStartSquare(yellowPlayer);
-        assertNotNull(startSquare);
-        List<Piece> pieces = yellowPlayer.getPieces();
-        Piece piece = pieces.getFirst();
-
-        piece.setPlaying(true);
-
-        piece.moveForward(3);
-        assertEquals(8, piece.getPosition());
-
-        piece.moveForward(60);
-        assertEquals(4, piece.getPosition());
-    }
-
-    @Test
-    void testEnterFinalPath() {
-        List<Piece> pieces = yellowPlayer.getPieces();
-        Piece piece = pieces.getFirst();
-
-        piece.enterFinalPath();
-        assertEquals(68, piece.getPosition());
-    }
+    // Case 4: Reaching the end of the final path
+    currentSquare = board.getPlayerFinalPath(Color.RED).get(7); // Last square in final path
+    nextSquare = board.getNextSquare(currentSquare, redPiece);
+    assertNull(nextSquare);
+  }
 }

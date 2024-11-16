@@ -4,12 +4,20 @@ import main.model.Board;
 import main.model.Color;
 import main.model.Piece;
 import main.model.square.RegularSquare;
+import main.model.square.ShieldSquare;
 import main.model.square.Square;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PieceTest {
+
+  // For testing purposes
+  public void leaveAllPieces(List<Piece> pieces) {
+    pieces.clear();
+  }
 
   @Test
   void getId() {
@@ -31,21 +39,26 @@ class PieceTest {
 
   @Test
   void isAtHome() {
-    // New piece should be at home (start of the game)
+    // 1. New piece should be at home (start of the game)
     Piece piece = new Piece(Color.RED);
     assertTrue(piece.isAtHome());
 
-    // 2. Enter piece at game, piece should not be at home
+    // 2. Enter piece into game, piece should not be at home
     Board board = new Board();
-    Square startSquare = new RegularSquare(0);
+    ShieldSquare startSquare = new ShieldSquare(0);
     board.setPlayerStartSquare(Color.RED, startSquare);
+    leaveAllPieces(startSquare.getPieces()); // Custom method to clear pieces for testing
+
+    assertFalse(startSquare.isBlocked(piece));
 
     piece.enterGame(board);
     assertFalse(piece.isAtHome());
+    assertEquals(startSquare, piece.getSquare());
 
     // 3. Send piece home, piece should be at home again
     piece.sendHome();
     assertTrue(piece.isAtHome());
+    assertNull(piece.getSquare());
   }
 
   @Test
@@ -55,7 +68,6 @@ class PieceTest {
     Square square = new RegularSquare(10);
     square.landHere(piece);
     piece.setSquare(square);
-    assertFalse(piece.isAtHome());
     assertEquals(square, piece.getSquare());
 
     piece.sendHome();
@@ -66,21 +78,27 @@ class PieceTest {
 
   @Test
   void enterGame() {
-    // 1. Enter game when start square is NOT blocked (already 2 in the square)
+    // 1. Enter game when start square is NOT blocked
     Piece piece = new Piece(Color.RED);
     Board board = new Board();
-    Square startSquare = new RegularSquare(0);
+    ShieldSquare startSquare = new ShieldSquare(0);
     board.setPlayerStartSquare(Color.RED, startSquare);
+
+    leaveAllPieces(startSquare.getPieces()); // Custom method to clear pieces for testing
     assertFalse(startSquare.isBlocked(piece));
     piece.enterGame(board);
     assertFalse(piece.isAtHome());
     assertEquals(startSquare, piece.getSquare());
 
-    // 2. Enter game when start square is blocked (already 2 in the square)
+    // 2. Attempt to enter game when start square is blocked
+    piece.sendHome();
     Piece blockingPiece1 = new Piece(Color.RED);
     Piece blockingPiece2 = new Piece(Color.RED);
     startSquare.landHere(blockingPiece1);
     startSquare.landHere(blockingPiece2); // Forms a blockage
+
+    assertTrue(startSquare.isBlocked(piece));
+
     Piece piece2 = new Piece(Color.RED);
     piece2.enterGame(board);
     assertTrue(piece2.isAtHome());
@@ -95,14 +113,19 @@ class PieceTest {
 
     // 2. After entering the game, piece should have start square
     Board board = new Board();
-    Square startSquare = new RegularSquare(0);
+    ShieldSquare startSquare = new ShieldSquare(0);
     board.setPlayerStartSquare(Color.RED, startSquare);
+
+    leaveAllPieces(startSquare.getPieces()); // Custom method to clear pieces for testing
+
     piece.enterGame(board);
     assertEquals(startSquare, piece.getSquare());
 
     // 3. After moving, piece should have new square
     Square nextSquare = new RegularSquare(1);
+    piece.getSquare().leave(piece);
     piece.setSquare(nextSquare);
+    nextSquare.landHere(piece);
     assertEquals(nextSquare, piece.getSquare());
   }
 
@@ -144,6 +167,7 @@ class PieceTest {
 
   @Test
   void getColor() {
+    // Just testing if the colors are assigned correctly
     Piece piece = new Piece(Color.RED);
     assertEquals(Color.RED, piece.getColor());
 

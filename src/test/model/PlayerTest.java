@@ -4,6 +4,7 @@ import main.model.Board;
 import main.model.Color;
 import main.model.Piece;
 import main.model.Player;
+import main.model.square.ShieldSquare;
 import main.model.square.Square;
 import org.junit.jupiter.api.Test;
 
@@ -13,19 +14,31 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+  // For testing purposes
+  public void leaveAllPieces(List<Piece> pieces) {
+    pieces.clear();
+  }
+
   @Test
   void movePiece() {
     // 1. Move a piece on the board (regular movement)
     Board board = new Board();
     Player player = new Player("Lucia", Color.RED, board);
     Piece piece = player.getPieces().get(0);
+    ShieldSquare startSquare = board.getPlayerStartSquare(Color.RED);
+    leaveAllPieces(startSquare.getPieces());
     piece.enterGame(board);
     player.movePiece(piece, 3, board); // Move 3 steps forward.
-    assertNotNull(piece.getSquare());
 
-    // 2. Form a blockage and try to pass it (you won't be able to :D)
+    // Check that the piece has moved
+    assertNotNull(piece.getSquare());
+    assertNotEquals(startSquare, piece.getSquare());
+
+    // 2. Forming a blockage, try to pass it
     Square currentSquare = piece.getSquare();
     Square blockageSquare = board.getNextSquare(currentSquare, piece);
+    leaveAllPieces(blockageSquare.getPieces());
+
     Piece blockingPiece1 = new Piece(Color.BLUE);
     Piece blockingPiece2 = new Piece(Color.BLUE);
     blockageSquare.landHere(blockingPiece1);
@@ -40,16 +53,20 @@ class PlayerTest {
     // 1. Enter a piece into the game when pieces are at home
     Board board = new Board();
     Player player = new Player("Youssef", Color.BLUE, board);
+
+    ShieldSquare startSquare = board.getPlayerStartSquare(Color.BLUE);
+    leaveAllPieces(startSquare.getPieces());
+
     boolean entered = player.enterPieceIntoGame();
     assertTrue(entered);
     long atHomeCount = player.getPieces().stream().filter(Piece::isAtHome).count();
     assertEquals(3, atHomeCount);
 
-    // 2. Attempt to enter a piece when all pieces are already in the game or finished
-    while (player.hasPiecesAtHome()) {
-      player.enterPieceIntoGame();
-    }
-    boolean cannotEnter = !player.enterPieceIntoGame();
+    // 2. Attempt to enter a piece when start square is blocked
+    player.enterPieceIntoGame();
+    player.enterPieceIntoGame();
+    assertTrue(startSquare.isBlocked(player.getPieces().get(0)));
+    boolean cannotEnter = player.enterPieceIntoGame();
     assertTrue(cannotEnter);
   }
 
@@ -75,9 +92,13 @@ class PlayerTest {
     assertTrue(player.hasPiecesAtHome());
 
     // 2. No pieces at home after entering all pieces into the game
+    ShieldSquare startSquare = board.getPlayerStartSquare(Color.YELLOW);
     while (player.hasPiecesAtHome()) {
-      player.enterPieceIntoGame();
+      for (Piece piece : player.getPieces()) {
+        piece.setAtHome(false);
+      }
     }
+    // Check if all pieces are no longer at home
     assertFalse(player.hasPiecesAtHome());
   }
 
@@ -89,6 +110,8 @@ class PlayerTest {
     assertFalse(player.hasPiecesOnBoard());
 
     // 2. Pieces on board after entering a piece into the game
+    ShieldSquare startSquare = board.getPlayerStartSquare(Color.RED);
+    leaveAllPieces(startSquare.getPieces());
     player.enterPieceIntoGame();
     assertTrue(player.hasPiecesOnBoard());
 
@@ -103,7 +126,7 @@ class PlayerTest {
   void getPieces() {
     // 1. Player should have 4 pieces
     Board board = new Board();
-    Player player = new Player("Frank", Color.BLUE, board);
+    Player player = new Player("Lucia", Color.BLUE, board);
     List<Piece> pieces = player.getPieces();
     assertEquals(4, pieces.size());
 

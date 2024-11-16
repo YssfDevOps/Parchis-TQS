@@ -35,6 +35,10 @@ public abstract class Square {
     return position;
   }
 
+  public List<Piece> getPieces() {
+    return pieces;
+  }
+
   public void landHere(Piece piece) {
     // Precondition: piece is not null
     assert piece != null : "Piece cannot be null";

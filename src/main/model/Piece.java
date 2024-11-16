@@ -23,6 +23,10 @@ public class Piece {
         return id;
     }
 
+    public void setAtHome(boolean atHome) {
+        this.atHome = atHome;
+    }
+
     public boolean isAtHome() {
         return atHome;
     }
