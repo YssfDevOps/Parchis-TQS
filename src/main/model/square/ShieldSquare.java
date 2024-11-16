@@ -1,44 +1,34 @@
 package main.model.square;
 
-import main.model.Board;
 import main.model.Piece;
 
 public class ShieldSquare extends Square {
-  public ShieldSquare(int position, Board board) {
-    super(position, board);
+  public ShieldSquare(int position) {
+    super(position);
+  }
+
+  @Override
+  protected void handleLandingOnShieldSquare(Piece piece) {
+    if (pieces.size() < 2) { // Can land if less than two pieces
+      pieces.add(piece);
+    }
+  }
+
+  @Override
+  protected void handleLandingOnRegularSquare(Piece piece) {
+    throw new UnsupportedOperationException("Shouldn't be called");
+  }
+
+  @Override
+  public boolean isBlocked(Piece piece) {
+    if (pieces.size() == 2) {
+      return true;
+    }
+    return false;
   }
 
   @Override
   public boolean isShieldSquare() {
     return true;
-  }
-
-  @Override
-  public boolean isPlayerStartSquare() {
-    return position == board.getPlayerStartPosition(player);
-  }
-
-  @Override
-  public void enter(Piece piece) {
-    if (piece == null) {
-      throw new IllegalArgumentException("Piece cannot be null");
-    }
-    this.piece = piece;
-  }
-
-  @Override
-  public void leave(Piece piece) {
-    if (piece == null || this.piece != piece) {
-      throw new IllegalArgumentException("Invalid piece");
-    }
-    this.piece = null;
-  }
-
-  @Override
-  public Square landHereSendHome() {
-    if (!isEmpty()) {
-      sendPieceHome(piece);
-    }
-    return this;
   }
 }
