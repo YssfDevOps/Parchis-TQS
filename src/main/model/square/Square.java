@@ -1,79 +1,48 @@
 package main.model.square;
 
-import main.model.Board;
 import main.model.Piece;
-import main.model.Player;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Square {
   protected int position;
-  protected Board board;
-  protected Player player;
-  protected Piece piece;
+  protected List<Piece> pieces;
 
-  public Square(int position, Board board) {
+  public Square(int position) {
     this.position = position;
-    this.board = board;
+    this.pieces = new ArrayList<>();
   }
 
-  public void enter(Piece piece) {
-    if (piece == null) {
-      throw new IllegalArgumentException("Piece cannot be null");
-    }
-    this.piece = piece;
+  public int getPosition() {
+    return position;
   }
+
+  public void landHere(Piece piece) {
+    if (isOccupied()) {
+      if (isShieldSquare()) {
+        handleLandingOnShieldSquare(piece);
+      } else {
+        handleLandingOnRegularSquare(piece);
+      }
+    } else {
+      // Square is empty
+      pieces.add(piece);
+    }
+  }
+
+  protected abstract void handleLandingOnShieldSquare(Piece piece);
+
+  protected abstract void handleLandingOnRegularSquare(Piece piece);
 
   public void leave(Piece piece) {
-    if (piece == null || this.piece != piece) {
-      throw new IllegalArgumentException("Invalid piece");
-    }
-    this.piece = null;
+    pieces.remove(piece);
   }
 
-  public boolean isHomeSquare() {
-    return false;
+  public boolean isOccupied() {
+    return !pieces.isEmpty();
   }
 
-  public boolean isGoalSquare() {
-    return false;
-  }
+  public abstract boolean isBlocked(Piece piece);
 
-  public boolean isShieldSquare() {
-    return false;
-  }
-
-  public boolean isLastGlobalSquare() {
-    return false;
-  }
-
-  public Square moveAndLand(Piece piece, int moves) {
-    if (piece == null || moves < 0) {
-      throw new IllegalArgumentException("Invalid piece or moves");
-    }
-    // Logic to move piece across the board
-    return null;
-  }
-
-  public Square landHereSendHome() {
-    if (!isEmpty()) {
-      Piece currentPiece = this.piece;
-      sendPieceHome(currentPiece);
-      return this;
-    }
-    return null;
-  }
-
-  public boolean isEmpty() {
-    return piece == null;
-  }
-
-  public void sendPieceHome(Piece piece) {
-    if (piece == null) {
-      throw new IllegalArgumentException("Piece cannot be null");
-    }
-    piece.sendHome(); // Assuming Piece has a sendHome() method
-  }
-
-  public boolean isPlayerStartSquare() {
-    return false;
-  }
+  public abstract boolean isShieldSquare();
 }
