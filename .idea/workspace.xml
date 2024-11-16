@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mockito_all.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/controller/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/view/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parchis-TQS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Parchis-TQS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/controller/Prueba.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/view/Prueba.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/PieceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/model/PieceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/model/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,48 +41,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Class&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.BoardTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FinalPathSquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GoalSquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LastGlobalSquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegularSquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.isBlocked.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.isShieldSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Test__Squares&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "DefaultPlantUmlFileTemplate": "UML Class",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.BoardTest.executor": "Run",
+    "JUnit.FinalPathSquareTest.executor": "Run",
+    "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
+    "JUnit.GoalSquareTest.executor": "Run",
+    "JUnit.LastGlobalSquareTest.executor": "Run",
+    "JUnit.RegularSquareTest.executor": "Run",
+    "JUnit.ShieldSquareTest.executor": "Run",
+    "JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor": "Run",
+    "JUnit.ShieldSquareTest.isBlocked.executor": "Run",
+    "JUnit.ShieldSquareTest.isShieldSquare.executor": "Run",
+    "JUnit.SquareTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "Test__LogicWithSquares",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -99,8 +91,8 @@
       <recent name="main.model" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="test.model.square" />
       <recent name="test.model" />
+      <recent name="test.model.square" />
       <recent name="main.model.square" />
     </key>
   </component>

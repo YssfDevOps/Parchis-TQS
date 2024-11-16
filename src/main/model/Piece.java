@@ -1,20 +1,69 @@
 package main.model;
 
+import main.model.square.FinalPathSquare;
+import main.model.square.Square;
 
 public class Piece {
     private Square square;
+    private Color color;
+    private boolean atHome;
+    private boolean hasFinished;
     private int id;
-    private String color;
-    private boolean playing;
+    private static int idCounter = 0;
 
-    public Piece(String color, Square square) {}
-    public void moveForward(int moves) {}
-    public int getPosition() {return 0;}
-    public boolean isPlaying() {return playing;}
-    public void setPlaying(boolean playing) {this.playing = playing;}
-    public void sendHome() { playing = false; }
-    public void enterFinalPath() {}
-    public void setSquare(Square square) {this.square = square;}
-    public int getId() {return id;}
-    public String getColor() {return color;}
+    public Piece(Color color) {
+        this.id = ++idCounter;
+        this.color = color;
+        this.atHome = true;
+        this.hasFinished = false;
+        this.square = null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean isAtHome() {
+        return atHome;
+    }
+
+    public void sendHome() {
+        if (square != null) {
+            square.leave(this);
+        }
+        square = null;
+        atHome = true;
+    }
+
+    public void enterGame(Board board) {
+        if (atHome) {
+            Square startSquare = board.getPlayerStartSquare(color);
+            // Check if the start square is unblocked for this piece
+            if (!startSquare.isBlocked(this)) {
+                startSquare.landHere(this);
+                square = startSquare;
+                atHome = false;
+            }
+        }
+    }
+
+    public Square getSquare() {
+        return square;
+    }
+
+    public void setSquare(Square square) {
+        this.square = square;
+    }
+
+    public boolean hasFinished() {
+        return hasFinished;
+    }
+
+    public void setHasFinished(boolean hasFinished) {
+        this.hasFinished = hasFinished;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 }
