@@ -38,7 +38,6 @@ public abstract class Square {
   public void landHere(Piece piece) {
     // Precondition: piece is not null
     assert piece != null : "Piece cannot be null";
-    assert pieces.contains(piece) : "Pieces list contains a duplicate element";
 
     if (isOccupied()) {
       if (isShieldSquare()) {

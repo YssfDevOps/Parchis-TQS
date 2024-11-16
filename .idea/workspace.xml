@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/model/PieceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/model/PieceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/model/BoardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/model/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +51,7 @@
     "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
     "JUnit.GoalSquareTest.executor": "Run",
     "JUnit.LastGlobalSquareTest.executor": "Run",
+    "JUnit.PieceTest.executor": "Run",
     "JUnit.RegularSquareTest.executor": "Run",
     "JUnit.ShieldSquareTest.executor": "Run",
     "JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor": "Run",
@@ -96,10 +97,41 @@
       <recent name="main.model.square" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.PlayerTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.getGlobalSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="METHOD_NAME" value="getGlobalSquare" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -119,75 +151,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FinalPathSquareTest.handleLandingOnFinalPathSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PieceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Parchis-TQS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.model.square.*" />
+          <option name="PATTERN" value="test.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.model.square" />
-      <option name="MAIN_CLASS_NAME" value="test.model.square.FinalPathSquareTest" />
-      <option name="METHOD_NAME" value="handleLandingOnFinalPathSquare" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RegularSquareTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.square.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model.square" />
-      <option name="MAIN_CLASS_NAME" value="test.model.square.RegularSquareTest" />
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.PieceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShieldSquareTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Parchis-TQS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.model.square.*" />
+          <option name="PATTERN" value="test.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.model.square" />
-      <option name="MAIN_CLASS_NAME" value="test.model.square.ShieldSquareTest" />
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShieldSquareTest.isShieldSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.square.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model.square" />
-      <option name="MAIN_CLASS_NAME" value="test.model.square.ShieldSquareTest" />
-      <option name="METHOD_NAME" value="isShieldSquare" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlayerTest" />
+        <item itemvalue="JUnit.BoardTest.getGlobalSquare" />
+        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="JUnit.PieceTest" />
         <item itemvalue="JUnit.FinalPathSquareTest" />
-        <item itemvalue="JUnit.FinalPathSquareTest.handleLandingOnFinalPathSquare" />
-        <item itemvalue="JUnit.RegularSquareTest" />
-        <item itemvalue="JUnit.ShieldSquareTest" />
-        <item itemvalue="JUnit.ShieldSquareTest.isShieldSquare" />
       </list>
     </recent_temporary>
   </component>
