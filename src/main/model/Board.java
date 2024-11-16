@@ -2,127 +2,95 @@ package main.model;
 
 import main.model.square.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Board {
-    private List<Square> globalPath; // cycle board
-    private List<List<Square>> playerFinalPath; // final squares of each player
-    private static final int NUM_SQUARES = 68; // number of squares on the board
-    private static final int NUM_FINAL_SQUARES = 8; // number of final squares
+    private List<Square> globalPath; // Cyclic board positions 0 to 67
+    private Map<Color, List<FinalPathSquare>> playerFinalPaths; // Final paths for each player
+    private static final int NUM_SQUARES = 68; // Number of squares on the board
+    private static final int NUM_FINAL_SQUARES = 8; // Number of final path squares per player
 
-    private List<Integer> firstSquares; // start positions by color
-    private List<Integer> shieldSquares; // shield positions
+    private Map<Color, Integer> startPositions; // Start positions for each color
+    private Set<Integer> shieldPositions; // Positions of shield squares
 
-    // Single instance of Board
-    private static Board instance;
-
-    // Private constructor to prevent external instantiation
-    private Board() {
-        globalPath = new LinkedList<>();
-        playerFinalPath = new ArrayList<>();
-
-        // Initialize firstSquares with start positions
-        firstSquares = new ArrayList<>();
-        firstSquares.add(5);
-        firstSquares.add(22);
-        firstSquares.add(39);
-        firstSquares.add(56);
-
-        // Initialize shieldSquares with shield positions
-        shieldSquares = new ArrayList<>();
-        shieldSquares.add(5);
-        shieldSquares.add(12);
-        shieldSquares.add(17);
-        shieldSquares.add(22);
-        shieldSquares.add(29);
-        shieldSquares.add(34);
-        shieldSquares.add(39);
-        shieldSquares.add(46);
-        shieldSquares.add(51);
-        shieldSquares.add(56);
-        shieldSquares.add(63);
-        shieldSquares.add(68);
-
+    public Board() {
+        globalPath = new ArrayList<>(NUM_SQUARES);
+        playerFinalPaths = new HashMap<>();
+        initializeStartPositions();
+        initializeShieldPositions();
         setUpGlobalPath();
         setUpPlayerFinalPaths();
     }
 
-    // Static method to get the single instance of Board
-    public static Board getInstance() {
-        if (instance == null) {
-            instance = new Board();
-        }
-        return instance;
+    // Initialize start positions based on colors
+    private void initializeStartPositions() {
+        startPositions = new HashMap<>();
+        startPositions.put(Color.YELLOW, 4);
+        startPositions.put(Color.BLUE, 21);
+        startPositions.put(Color.RED, 38);
+        startPositions.put(Color.GREEN, 55);
     }
 
-    // Set up the global path from 1 to 68 with corresponding squares
+    // Initialize shield positions
+    private void initializeShieldPositions() {
+        shieldPositions = new HashSet<>(Arrays.asList(
+            4, 11, 16, 21, 28, 33, 38, 45, 50, 55, 62, 67
+        ));
+    }
+
+    // Set up the global path with squares
     private void setUpGlobalPath() {
-        for (int i = 1; i <= NUM_SQUARES; i++) {
+        for (int i = 0; i < NUM_SQUARES; i++) {
             Square square;
-            if (isShieldSquarePosition(i)) {
-                square = new ShieldSquare(i, this);
+            if (shieldPositions.contains(i)) {
+                square = new ShieldSquare(i);
             } else {
-                square = new RegularSquare(i, this);
+                square = new RegularSquare(i);
             }
             globalPath.add(square);
         }
     }
 
-    // Set up the final paths for each player (each 8 positions long)
+    // Set up final paths for each player
     private void setUpPlayerFinalPaths() {
-        for (int i = 0; i < 4; i++) {
-            List<Square> finalPath = new ArrayList<>();
-            for (int j = 1; j <= NUM_FINAL_SQUARES; j++) {
-                finalPath.add(new FinalPathSquare(j, this));
+        for (Color color : Color.values()) {
+            List<FinalPathSquare> finalPath = new ArrayList<>(NUM_FINAL_SQUARES);
+            for (int i = 0; i < NUM_FINAL_SQUARES; i++) {
+                finalPath.add(new FinalPathSquare(i, color));
             }
-            playerFinalPath.add(finalPath);
+            playerFinalPaths.put(color, finalPath);
         }
     }
 
-    // Determines if a given position is a shield square
-    private boolean isShieldSquarePosition(int position) {
-        return shieldSquares.contains(position);
-    }
-
-    // Find a square in the global path by its position
-    public Square findSquare(int position) {
-        if (position < 1 || position > NUM_SQUARES) {
-            //throw new IllegalArgumentException("Invalid position: " + position);
-            return null;
-        }
-        return globalPath.get(position - 1);
+    // Get a square from the global path, wrapping around if necessary
+    public Square getGlobalSquare(int position) {
+        int pos = (position + NUM_SQUARES) % NUM_SQUARES;
+        return globalPath.get(pos);
     }
 
     // Get the starting square for a player
-    public ShieldSquare getPlayerStartSquare(Player player) {
-        int startPos = getPlayerStartPosition(player);
-        Square startSquare = findSquare(startPos);
-        if (startSquare instanceof ShieldSquare) {
-            return (ShieldSquare) startSquare;
+    public ShieldSquare getPlayerStartSquare(Color color) {
+        int startPos = startPositions.get(color);
+        return (ShieldSquare) getGlobalSquare(startPos);
+    }
+
+    public void setPlayerStartSquare(Color color, Square square) {
+        int position = square.getPosition();
+        startPositions.put(color, position);
+        // Update the global path with the new square if necessary
+        if (position >= 0 && position < NUM_SQUARES) {
+            globalPath.set(position, square);
         }
+    }
+
+    // Get the final path for a player
+    public List<FinalPathSquare> getPlayerFinalPath(Color color) {
+        return playerFinalPaths.get(color);
+    }
+
+    // Get the next square for a piece (and maybe handling transitions to final paths)
+    public Square getNextSquare(Square currentSquare, Piece piece) {
         return null;
     }
-
-    // Get a square by its position
-    public Square getSquare(int position) {
-        if (position <= NUM_SQUARES) {
-            return findSquare(position);
-        } else {
-            int playerIndex = (position - NUM_SQUARES - 1) / NUM_FINAL_SQUARES;
-            int finalPathPos = (position - NUM_SQUARES - 1) % NUM_FINAL_SQUARES;
-            return playerFinalPath.get(playerIndex).get(finalPathPos);
-        }
-    }
-
-    // Get the start position for a player based on their color
-    public int getPlayerStartPosition(Player player) {
-        return firstSquares.get(player.getColorIndex());
-    }
-
-    public List<Square> getPlayerFinalPath(Player player) {
-        int playerIndex = player.getColorIndex();
-        return playerFinalPath.get(playerIndex);
-    }
 }
+
