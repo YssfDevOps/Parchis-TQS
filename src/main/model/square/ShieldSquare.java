@@ -20,6 +20,7 @@ public class ShieldSquare extends Square {
 
     if (pieces.size() < 2) { // Can land if less than two pieces
       pieces.add(piece);
+      piece.setSquare(this);
     }
 
     // Invariant check

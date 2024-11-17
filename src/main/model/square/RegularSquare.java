@@ -38,12 +38,10 @@ public class RegularSquare extends Square {
         pieces.add(piece);
       } else {
         // Form a blockage
+        piece.setSquare(this);
         pieces.add(piece);
       }
     }
-
-    // Postcondition
-    assert pieces.contains(piece) : "Piece was not added to RegularSquare";
 
     // Invariant check
     invariant();

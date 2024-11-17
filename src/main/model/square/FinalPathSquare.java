@@ -11,7 +11,8 @@ public class FinalPathSquare extends Square {
     super(index);
 
     // Precondition
-    assert (color != null || index >= 0) : "Color must be null or negative index";
+    assert (index >= 0 && index < 8) : "Color must be null or negative index";
+    assert (color != null) : "Color must be null or negative index";
 
     this.color = color;
     this.index = index;
@@ -38,6 +39,7 @@ public class FinalPathSquare extends Square {
   }
 
   public int getIndex() {
+    assert (index >= 0) : "Color must be null or negative index";
     // Invariant check
     invariant();
     return index;

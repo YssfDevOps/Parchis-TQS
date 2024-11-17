@@ -11,6 +11,7 @@ public abstract class Square {
   public Square(int position) {
     // Precondition
     assert position >= 0 : "Position must positive";
+    assert position < 68 : "Out of range";
 
     this.position = position;
     this.pieces = new ArrayList<>();
@@ -52,6 +53,7 @@ public abstract class Square {
     } else {
       // Square is empty
       pieces.add(piece);
+      piece.setSquare(this);
     }
 
     // Invariant check

@@ -40,6 +40,33 @@ class ShieldSquareTest {
     shieldSquare2.landHere(piece6);
     // Piece3 should not be able to land
     assertTrue(shieldSquare2.isBlocked(piece6));
+
+    // Equivalence Partitioning and Boundary Value Analysis for ShieldSquare landing
+    // - Landing when square has 0 pieces (can land)
+    // - Landing when square has 1 piece (can land)
+    // - Landing when square has 2 pieces (cannot land)
+    // - Landing when square is blocked (full capacity)
+
+    // Boundary Values:
+    // - Number of pieces: 0, 1, 2 (maximum capacity)
+    // 1. Landing on an empty ShieldSquare
+    ShieldSquare shieldSquareEmpty = new ShieldSquare(5);
+    Piece redPiece = new Piece(Color.RED);
+    shieldSquareEmpty.landHere(redPiece);
+    assertFalse(shieldSquareEmpty.isBlocked(redPiece));
+    assertEquals(shieldSquareEmpty, redPiece.getSquare());
+
+    // 2. Landing on ShieldSquare with one piece
+    Piece bluePiece = new Piece(Color.BLUE);
+    shieldSquareEmpty.landHere(bluePiece);
+    assertFalse(shieldSquareEmpty.isBlocked(bluePiece));
+    assertEquals(shieldSquareEmpty, bluePiece.getSquare());
+
+    // 3. Landing on ShieldSquare when it has two pieces (full capacity)
+    Piece greenPiece = new Piece(Color.GREEN);
+    assertTrue(shieldSquareEmpty.isBlocked(greenPiece));
+    shieldSquareEmpty.landHere(greenPiece);
+    assertNull(greenPiece.getSquare());
   }
 
   @Test
@@ -64,10 +91,32 @@ class ShieldSquareTest {
     shieldSquare3.landHere(piece4);
     shieldSquare3.landHere(piece5);
     assertTrue(shieldSquare3.isBlocked(piece6));
+
+    // Equivalence Classes:
+    // - ShieldSquare with 0 or 1 piece (not blocked)
+    // - ShieldSquare with 2 pieces (blocked)
+    // 1. ShieldSquare with no pieces (not blocked)
+    ShieldSquare shieldSquareEmpty = new ShieldSquare(8);
+    Piece redPiece = new Piece(Color.RED);
+    assertFalse(shieldSquareEmpty.isBlocked(redPiece));
+
+    // 2. ShieldSquare with one piece (not blocked)
+    shieldSquareEmpty.landHere(redPiece);
+    Piece bluePiece = new Piece(Color.BLUE);
+    assertFalse(shieldSquareEmpty.isBlocked(bluePiece));
+
+    // 3. ShieldSquare with two pieces (blocked)
+    shieldSquareEmpty.landHere(bluePiece); // Now has two pieces
+    Piece greenPiece = new Piece(Color.GREEN);
+    assertTrue(shieldSquareEmpty.isBlocked(greenPiece));
   }
 
   @Test
   void isShieldSquare() {
+    // Equivalence Classes:
+    // - ShieldSquare instances (should return true)
+    // - Other square types (should return false)
+
     // 1. Check if each Shield Square are in fact Shield Square.
     ShieldSquare shieldSquare = new ShieldSquare(5);
     assertTrue(shieldSquare.isShieldSquare());
