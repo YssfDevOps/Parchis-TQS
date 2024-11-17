@@ -27,19 +27,57 @@ public class GameController {
   }
 
   public void startGame() {
-    // Començar partida
+    int numPlayers = 4;
+    initializePlayers(numPlayers);
+    playGame();
   }
 
   public void initializePlayers(int numPlayers) {
-    // Asignar color a cada jugador
+    Color[] colors = Color.values();
+    for (int i = 0; i < numPlayers; i++) {
+      String playerName = "Youssef"; // Needs inputs
+      Player player = new Player(playerName, colors[i], board);
+      players.add(player);
+    }
   }
 
   public void playGame() {
-    // Bucle principal
+    boolean gameWon = false;
+    while (!gameWon) {
+      for (Player player : players) {
+        int roll = playerRollDie(player);
+
+        boolean hasMoved = false;
+
+        if (roll == 10) {
+          if (player.hasPiecesAtHome()) {
+            boolean enterPiece = player.chooseToEnterPiece();
+            if (enterPiece) {
+              player.enterPieceIntoGame();
+              hasMoved = true;
+            }
+          }
+          if (!hasMoved && player.hasPiecesOnBoard()) {
+            Piece pieceToMove = player.choosePiece();
+            player.movePiece(pieceToMove, roll, board);
+            hasMoved = true;
+          }
+        } else {
+          if (player.hasPiecesOnBoard()) {
+            Piece pieceToMove = player.choosePiece();
+            player.movePiece(pieceToMove, roll, board);
+            hasMoved = true;
+          }
+        }
+        if (player.isWinner()) {
+          gameWon = true;
+          break;
+        }
+      }
+    }
   }
 
   public int playerRollDie(Player player) {
-    // Llençar dau
-    return 0;
+    return die.roll();
   }
 }

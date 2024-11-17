@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/controller/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/controller/GameControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parchis-TQS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Parchis-TQS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/controller/Prueba.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +50,7 @@
     "JUnit.BoardTest.getNextSquare.executor": "Debug",
     "JUnit.FinalPathSquareTest.executor": "Run",
     "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
+    "JUnit.GameControllerTest.executor": "Run",
     "JUnit.GoalSquareTest.executor": "Run",
     "JUnit.LastGlobalSquareTest.executor": "Run",
     "JUnit.PieceTest.executor": "Run",
@@ -71,7 +71,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Testing__Controller__And__View",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
     "node.js.detected.package.eslint": "true",

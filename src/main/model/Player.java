@@ -82,4 +82,37 @@ public class Player {
   public String getName() {
     return name;
   }
+
+  // Methods for selecting Pieces and also to enter Pieces in board (for GameController).
+  // This methods will not be tested in the Unit Testing of Player, depends on GameController.
+
+  // Choose a piece to move
+  public Piece choosePiece() {
+    List<Piece> movablePieces = new ArrayList<>();
+    for (Piece piece : pieces) {
+      if (!piece.isAtHome() && !piece.hasFinished()) {
+        movablePieces.add(piece);
+      }
+    }
+
+    if (movablePieces.isEmpty()) { // All pieces at home (or blocked).
+      return null;
+    }
+
+    int choice = 1; // Falta input per escollir
+    for (Piece piece : movablePieces) {
+      if (piece.getId() == choice) {
+        return piece;
+      }
+    }
+
+    // Invalid input
+    return choosePiece();
+  }
+
+  // Choose to bring a piece into play or move a piece in the global path
+  public boolean chooseToEnterPiece() {
+    String choice = "yes"; // Falta input
+    return choice.equalsIgnoreCase("yes");
+  }
 }
