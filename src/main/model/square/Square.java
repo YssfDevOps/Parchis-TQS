@@ -30,7 +30,7 @@ public abstract class Square {
     for (Piece p : pieces) {
       assert p != null : "Pieces list must not contain null elements";
     }
-    
+
   }
 
   public int getPosition() {
