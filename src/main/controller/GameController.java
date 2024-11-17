@@ -48,7 +48,7 @@ public class GameController {
         int roll = playerRollDie(player);
         boolean hasMoved = false;
 
-        if (roll == 10) {
+        if (roll == 5) {
           if (player.hasPiecesAtHome()) {
             boolean enterPiece = player.chooseToEnterPiece();
             if (enterPiece) {
