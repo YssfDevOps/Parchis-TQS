@@ -33,6 +33,10 @@ public class GameView {
 
   }
 
+  public void promptRollDie(Player player) {
+
+  }
+
   public void showDieRoll(Player player, int roll) {
   }
 
@@ -41,10 +45,6 @@ public class GameView {
   }
 
   public void showWinner(Player player) {
-
-  }
-
-  public void promptRollDie(Player player) {
 
   }
 }
