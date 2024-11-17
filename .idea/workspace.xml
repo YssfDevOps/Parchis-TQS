@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/view/GameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/view/GameViewTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,10 +93,12 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="test.view" />
       <recent name="test.controller" />
       <recent name="main.model" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.view" />
       <recent name="test.controller" />
       <recent name="test.model" />
       <recent name="test.model.square" />

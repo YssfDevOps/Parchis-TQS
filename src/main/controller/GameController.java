@@ -46,7 +46,6 @@ public class GameController {
     while (!gameWon) {
       for (Player player : players) {
         int roll = playerRollDie(player);
-
         boolean hasMoved = false;
 
         if (roll == 10) {
