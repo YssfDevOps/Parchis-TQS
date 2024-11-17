@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FinalPathSquareTest {
-
   @Test
   void getColor() {
     // Test getters for some regular cases

@@ -6,7 +6,6 @@ import main.model.square.RegularSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class SquareTest {

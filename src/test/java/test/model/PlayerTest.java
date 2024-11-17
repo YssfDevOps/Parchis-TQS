@@ -7,9 +7,7 @@ import main.model.Player;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
