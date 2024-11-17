@@ -5,10 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/view/GameView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/view/GameViewTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/controller/GameControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/model/BoardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/model/PieceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/model/square/FinalPathSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/model/square/ShieldSquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/test/view/GameViewTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/controller/GameControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/BoardTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/PieceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/PlayerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/Prueba.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/square/FinalPathSquareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/square/RegularSquareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/square/ShieldSquareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/model/square/SquareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/view/GameViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/view/Prueba.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,12 +118,12 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="test.view" />
       <recent name="test.controller" />
+      <recent name="test" />
       <recent name="test.model" />
-      <recent name="test.model.square" />
-      <recent name="main.model.square" />
+      <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameControllerTest">
+  <component name="RunManager" selected="JUnit.BoardTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
@@ -191,11 +209,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BoardTest" />
         <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.PieceTest" />
         <item itemvalue="JUnit.PlayerTest" />
         <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
-        <item itemvalue="JUnit.BoardTest" />
       </list>
     </recent_temporary>
   </component>
