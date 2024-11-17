@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/controller/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/controller/GameControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parchis-TQS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Parchis-TQS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/controller/Prueba.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +53,7 @@
     "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
     "JUnit.GoalSquareTest.executor": "Run",
     "JUnit.LastGlobalSquareTest.executor": "Run",
-    "JUnit.PieceTest.executor": "Coverage",
+    "JUnit.PieceTest.executor": "Run",
     "JUnit.PlayerTest.executor": "Coverage",
     "JUnit.PlayerTest.hasPiecesAtHome.executor": "Debug",
     "JUnit.RegularSquareTest.executor": "Run",
@@ -67,7 +71,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Test__LogicWithSquares",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
     "node.js.detected.package.eslint": "true",
@@ -76,8 +80,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable",
     "show.migrate.to.gradle.popup": "false",
@@ -89,15 +93,17 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="test.controller" />
       <recent name="main.model" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.controller" />
       <recent name="test.model" />
       <recent name="test.model.square" />
       <recent name="main.model.square" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PieceTest">
+  <component name="RunManager" selected="JUnit.GameControllerTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
@@ -120,18 +126,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoardTest.getGlobalSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Parchis-TQS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.model.*" />
+          <option name="PATTERN" value="test.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
-      <option name="METHOD_NAME" value="getGlobalSquare" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="test.controller" />
+      <option name="MAIN_CLASS_NAME" value="test.controller.GameControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,11 +189,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.PieceTest" />
         <item itemvalue="JUnit.PlayerTest" />
         <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
         <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="JUnit.BoardTest.getGlobalSquare" />
       </list>
     </recent_temporary>
   </component>
