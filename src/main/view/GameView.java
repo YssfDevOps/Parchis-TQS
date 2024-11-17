@@ -17,11 +17,11 @@ public class GameView {
   }
 
   public int getNumberOfPlayers() {
-
+    return 1;
   }
 
   public String getPlayerName(int playerNumber) {
-
+    return "Lucia";
   }
 
   public void showBoard(List<Player> players) {
