@@ -31,7 +31,7 @@ public class Board {
         startPositions.put(Color.GREEN, 55);
     }
 
-    // Initialize shield positions
+    // Initialize shield positions 
     private void initializeShieldPositions() {
         shieldPositions = new HashSet<>(Arrays.asList(
             4, 11, 16, 21, 28, 33, 38, 45, 50, 55, 62, 67
