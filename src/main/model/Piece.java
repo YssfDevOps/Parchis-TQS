@@ -70,4 +70,19 @@ public class Piece {
     public Color getColor() {
         return color;
     }
+
+    @Override
+    public String toString() {
+        String location;
+        if (atHome) {
+            location = "at home";
+        } else if (hasFinished) {
+            location = "has finished";
+        } else if (square instanceof FinalPathSquare) {
+            location = "on final path at position " + ((FinalPathSquare) square).getIndex();
+        } else {
+            location = "on global path at position " + square.getPosition();
+        }
+        return "Piece " + id + " is " + location;
+    }
 }

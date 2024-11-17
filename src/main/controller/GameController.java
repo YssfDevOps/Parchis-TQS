@@ -1,12 +1,16 @@
 package main.controller;
 
 import main.model.*;
+import main.view.GameView;
+
 import java.util.*;
 
 public class GameController {
   private Board board;
   private List<Player> players;
   private Die die;
+  private GameView view;
+  private Scanner scanner;
 
   public List<Player> getPlayers() {
     return players;
@@ -24,10 +28,13 @@ public class GameController {
     board = new Board();
     players = new ArrayList<>();
     die = new Die();
+    view = new GameView();
+    scanner = new Scanner(System.in);
   }
 
   public void startGame() {
-    int numPlayers = 4;
+    view.showWelcomeMessage();
+    int numPlayers = view.getNumberOfPlayers();
     initializePlayers(numPlayers);
     playGame();
   }
@@ -35,7 +42,7 @@ public class GameController {
   public void initializePlayers(int numPlayers) {
     Color[] colors = Color.values();
     for (int i = 0; i < numPlayers; i++) {
-      String playerName = "Youssef"; // Needs inputs
+      String playerName = view.getPlayerName(i + 1);
       Player player = new Player(playerName, colors[i], board);
       players.add(player);
     }
@@ -45,7 +52,12 @@ public class GameController {
     boolean gameWon = false;
     while (!gameWon) {
       for (Player player : players) {
+        view.showBoard(players);
+        view.showPlayerTurn(player);
+
         int roll = playerRollDie(player);
+        view.showDieRoll(player, roll);
+
         boolean hasMoved = false;
 
         if (roll == 5) {
@@ -66,9 +78,12 @@ public class GameController {
             Piece pieceToMove = player.choosePiece();
             player.movePiece(pieceToMove, roll, board);
             hasMoved = true;
+          } else {
+            view.showNoMovablePieces(player);
           }
         }
         if (player.isWinner()) {
+          view.showWinner(player);
           gameWon = true;
           break;
         }
@@ -77,6 +92,8 @@ public class GameController {
   }
 
   public int playerRollDie(Player player) {
+    view.promptRollDie(player);
+    scanner.nextLine();
     return die.roll();
   }
 }

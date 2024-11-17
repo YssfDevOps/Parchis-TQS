@@ -31,7 +31,7 @@ public class Board {
         startPositions.put(Color.GREEN, 55);
     }
 
-    // Initialize shield positions 
+    // Initialize shield positions
     private void initializeShieldPositions() {
         shieldPositions = new HashSet<>(Arrays.asList(
             4, 11, 16, 21, 28, 33, 38, 45, 50, 55, 62, 67
@@ -90,7 +90,47 @@ public class Board {
 
     // Get the next square for a piece (and maybe handling transitions to final paths)
     public Square getNextSquare(Square currentSquare, Piece piece) {
-        return null;
+        Color color = piece.getColor();
+
+        if (currentSquare instanceof FinalPathSquare) {
+            // Move within final path
+            int index = ((FinalPathSquare) currentSquare).getIndex();
+            if (index + 1 < NUM_FINAL_SQUARES) {
+                return playerFinalPaths.get(color).get(index);
+            } else {
+                // Reached the end of the final path
+                return null;
+            }
+        } else {
+            // Move on global path
+            int nextPos = (currentSquare.getPosition()) % NUM_SQUARES;
+            Square nextSquare = getGlobalSquare(nextPos);
+
+            // Check if the piece should enter the final path
+            int finalEntryPos = (startPositions.get(color) - 5 + NUM_SQUARES) % NUM_SQUARES;
+            if (nextSquare.getPosition() == finalEntryPos) {
+                // Enter the player's final path
+                return playerFinalPaths.get(color).get(0);
+            } else {
+                return nextSquare;
+            }
+        }
+    }
+
+    public void displayBoard() {
+        System.out.println("Global Path:");
+        for (Square square : globalPath) {
+            System.out.println(square.toString());
+        }
+
+        System.out.println("\nFinal Paths:");
+        for (Color color : Color.values()) {
+            System.out.println("Final Path for " + color + ":");
+            List<FinalPathSquare> finalPath = playerFinalPaths.get(color);
+            for (FinalPathSquare square : finalPath) {
+                System.out.println(square.toString());
+            }
+        }
     }
 }
 
