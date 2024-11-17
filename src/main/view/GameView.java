@@ -28,7 +28,6 @@ public class GameView {
 
   }
 
-
   public void showPlayerTurn(Player player) {
 
   }

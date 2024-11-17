@@ -59,7 +59,7 @@ class GameViewTest {
     assertThrows(NullPointerException.class, () -> view.showPlayerTurn(finalPlayer));
 
     // Case 2: Passing a valid player
-    player = new Player("TestPlayer", Color.RED, new Board());
+    player = new Player("TestLucia", Color.RED, new Board());
     Player finalPlayer1 = player;
     assertDoesNotThrow(() -> view.showPlayerTurn(finalPlayer1));
   }
@@ -75,7 +75,7 @@ class GameViewTest {
     assertThrows(NullPointerException.class, () -> view.showDieRoll(finalPlayer, roll));
 
     // Case 2: Passing a valid player and valid roll
-    player = new Player("TestPlayer", Color.RED, new Board());
+    player = new Player("TestLucia", Color.RED, new Board());
     Player finalPlayer1 = player;
     assertDoesNotThrow(() -> view.showDieRoll(finalPlayer1, roll));
   }
@@ -90,7 +90,7 @@ class GameViewTest {
     assertThrows(NullPointerException.class, () -> view.showNoMovablePieces(finalPlayer));
 
     // Case 2: Passing a valid player
-    player = new Player("TestPlayer", Color.RED, new Board());
+    player = new Player("TestLucia", Color.RED, new Board());
     Player finalPlayer1 = player;
     assertDoesNotThrow(() -> view.showNoMovablePieces(finalPlayer1));
   }
@@ -105,7 +105,7 @@ class GameViewTest {
     assertThrows(NullPointerException.class, () -> view.showWinner(finalPlayer));
 
     // Case 2: Passing a valid player
-    player = new Player("TestPlayer", Color.RED, new Board());
+    player = new Player("TestLucia", Color.RED, new Board());
     Player finalPlayer1 = player;
     assertDoesNotThrow(() -> view.showWinner(finalPlayer1));
   }
@@ -120,7 +120,7 @@ class GameViewTest {
     assertThrows(NullPointerException.class, () -> view.promptRollDie(finalPlayer));
 
     // 2. Passing a valid player
-    player = new Player("TestPlayer", Color.RED, new Board());
+    player = new Player("TestLucia", Color.RED, new Board());
     Player finalPlayer1 = player;
     assertDoesNotThrow(() -> view.promptRollDie(finalPlayer1));
   }
