@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +16,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="UML Class" />
+        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -38,11 +41,33 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "DefaultPlantUmlFileTemplate": "UML Class",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.BoardTest.executor": "Run",
+    "JUnit.BoardTest.getGlobalSquare.executor": "Run",
+    "JUnit.BoardTest.getNextSquare.executor": "Debug",
+    "JUnit.FinalPathSquareTest.executor": "Run",
+    "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
+    "JUnit.GoalSquareTest.executor": "Run",
+    "JUnit.LastGlobalSquareTest.executor": "Run",
+    "JUnit.PieceTest.executor": "Coverage",
+    "JUnit.PlayerTest.executor": "Coverage",
+    "JUnit.PlayerTest.hasPiecesAtHome.executor": "Debug",
+    "JUnit.RegularSquareTest.executor": "Run",
+    "JUnit.ShieldSquareTest.executor": "Run",
+    "JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor": "Run",
+    "JUnit.ShieldSquareTest.isBlocked.executor": "Run",
+    "JUnit.ShieldSquareTest.isShieldSquare.executor": "Run",
+    "JUnit.SquareTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Test__LogicWithSquares",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
     "node.js.detected.package.eslint": "true",
@@ -51,19 +76,127 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable",
+    "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="main.model" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="test.model" />
+      <recent name="test.model.square" />
+      <recent name="main.model.square" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.PieceTest">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="Parchis-TQS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.getGlobalSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="METHOD_NAME" value="getGlobalSquare" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PieceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.PieceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerTest.hasPiecesAtHome" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
+      <option name="METHOD_NAME" value="hasPiecesAtHome" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PieceTest" />
+        <item itemvalue="JUnit.PlayerTest" />
+        <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
+        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="JUnit.BoardTest.getGlobalSquare" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
@@ -77,11 +210,44 @@
       <updated>1728829843610</updated>
       <workItem from="1728829844696" duration="1194000" />
       <workItem from="1728831985078" duration="415000" />
-      <workItem from="1728836384830" duration="3812000" />
+      <workItem from="1728836384830" duration="4121000" />
+      <workItem from="1729067584814" duration="4461000" />
+      <workItem from="1730398185039" duration="2379000" />
+      <workItem from="1730402053971" duration="170000" />
+      <workItem from="1730445052529" duration="16305000" />
+      <workItem from="1730543463486" duration="3541000" />
+      <workItem from="1730548536197" duration="555000" />
+      <workItem from="1730569479121" duration="1459000" />
+      <workItem from="1730575380725" duration="27000" />
+      <workItem from="1730887986288" duration="242000" />
+      <workItem from="1730980017069" duration="599000" />
+      <workItem from="1730986976617" duration="16000" />
+      <workItem from="1731603191985" duration="5790000" />
+      <workItem from="1731610076388" duration="320000" />
+      <workItem from="1731617758710" duration="758000" />
+      <workItem from="1731655998546" duration="13000" />
+      <workItem from="1731693407570" duration="3772000" />
+      <workItem from="1731701626801" duration="232000" />
+      <workItem from="1731702872069" duration="982000" />
+      <workItem from="1731747778535" duration="8973000" />
+      <workItem from="1731759200032" duration="2409000" />
+      <workItem from="1731830938232" duration="1815000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest.ic" NAME="PlayerTest Coverage Results" MODIFIED="1731832399000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>test.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Parchis_TQS$PieceTest.ic" NAME="PieceTest Coverage Results" MODIFIED="1731832506766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>test.model.*</FILTER>
+    </SUITE>
   </component>
 </project>

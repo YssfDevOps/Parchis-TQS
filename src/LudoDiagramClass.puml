@@ -7,6 +7,10 @@ class Main {
 }
 
 class Game {
+    - players : List<Player>
+    - board : Board
+    - currentTurn : int
+
     + Game(playerNames: String[])
     + play()
     - makeBoard()
@@ -16,13 +20,48 @@ class Game {
     - notOver() : boolean
     - movePlayer(roll : int)
     - currentPlayer() : Player
+    + startGame()
+    + nextTurn()
+    + movePiece(Piece, int steps)
 }
 
 class Board {
-    + Board()
-    + firstSquare(color : String) : FirstSquare
-    + lastSquare(color : String) : FinalSquares
-    + findSquare(color : String) : Square
+    - squares : List<Square>
+    + setupBoard()
+    + getSquare(position : int) : Square
+    - globalPath : List<Square>
+    - playerFinalPaths : List<List<Square>>
+    - setUpGlobalPath() {}
+    - setUpPlayerFinalPaths() {}
+    - isShieldSquarePosition(position : int) : boolean
+    - findSquare(position : int) : Square
+    + getPlayerStartSquare(player : Player) : ShieldSquare
+    + getSquare(position : int) : Square
+    - getPlayerStartPosition(player : Player) : int
+}
+
+class Piece {
+    - Square position
+    - Player owner
+    - color : String
+    - boolean isAtGoal
+    + move(moves : int)
+    + getPosition() : int
+    + returnToHome()
+}
+
+class Player {
+    - name : String
+    - pieces : List<Piece>
+    List<FinalPathSquare> finalPath
+    - playing : boolean
+    + Player(name : String, pieces : Piece[])
+    + movePiece(piece : Piece, moves : int)
+    + wins() : boolean
+    + isPlaying() : boolean
+    + setPlaying(d : boolean)
+    + checkVictory() : boolean
+    + rollDie() : int
 }
 
 class Die {
@@ -31,72 +70,60 @@ class Die {
     + roll() : int
 }
 
-class Square {
-    # position : int
-    # isBarrier : boolean
-    + Square(pos : int, board : Board)
-    + isLastSquare() : boolean
-    + enter(p : Player)
-    + leave(p : Player)
-    + isOccupied() : boolean
-    + getPosition() : int
-    + moveAndLand(moves : int)
-    + isBarrier() : boolean
-    # landHereOrSendHome() : Square
-    # findRelativeSquare(shift : int) : Square
-}
+'interface ISquare {
+'    + enter(Piece piece)
+'    + leave(Piece piece)
+'    + isHomeSquare() : boolean
+'    + isGoalSquare() : boolean
+'    + isShieldSquare() : boolean
+'    + isLastGlobalSquare() : boolean
+'    + moveAndLand(piece : Piece, moves : int) : Square
+'    + landHereAndSendHome(piece : Piece, moves : int) : Square
+'    + isEmpty() : boolean
+'    + sendHome(piece : Piece)
+'}
 
-class FirstSquare extends Square {
-    + color : String
-    + FirstSquare(color : String, board : Board)
-    + isOccupied() : boolean
-    + isBarrier() : boolean
-    + enter(p : Player)
-    + leave(p : Player)
+abstract class Square {
+    # position : int
+    # board : Board
+    # player : Player
+    # piece : Piece
+    + enter(piece : Piece)
+    + leave(piece : Piece)
+    + isHomeSquare() : boolean
+    + isGoalSquare() : boolean
+    + isShieldSquare() : boolean
+    + isLastGlobalSquare() : boolean
+    + moveAndLand(piece : Piece, moves : int) : Square
+    + landHereAndSendHome(piece : Piece, moves : int) : Square
+    + isEmpty() : boolean
+    + sendHome(piece : Piece)
 }
 
 class ShieldSquare extends Square {
-    + enter(p : Player)
+    + enter(piece : Piece)
+    + isShieldSquare() : boolean
     + isBarrier() : boolean
     + canLeave(p : Player) : boolean
-    ' Checks if the player can leave the barrier
+}
+
+class RegularSquare extends Square {
+    + enter(piece : Piece)
+    + isEmpty() : boolean
 }
 
 class FinalSquare extends Square {
-    + squares : Square[]
-    + FinalSquare(squares: Square[])
-    + addSquare(square: Square)
+    + enter(piece : Piece)
 }
 
-class Piece {
-    - color : String
-    - square : Square
-    + Piece(color : String, square : Square)
-    + moveForward(moves : int)
-    + getPosition() : int
-}
-
-class Player {
-- name : String
-- pieces : Piece[]
-- playing : boolean
-+ Player(name : String, pieces : Piece[])
-+ movePiece(piece : Piece, moves : int)
-+ wins() : boolean
-+ isPlaying() : boolean
-+ setPlaying(d : boolean)
-}
+Main --> Game : starts
+Game "1" --> "4" Player
+Game "1" --> "1" Board
+Player "1" --> "4" Piece
+Piece --> Square : occupies
+Board --> "0..*" Square
 
 Main -[hidden]down-> Game
 Game -[hidden]down-> Die
-
-Game x--right--> "1" Board : board
-Board "1\nboard" *-down-> "10...*" Square : squares
-Game *-down-> "1..*" Player : players
-Game x-down-> "0,1" Player : winner
-Square -left-> "0,1" Player : player
-Player -right-> "1-4" Piece : pieces
-Piece -right-> "1" Square : square
-FirstSquare -left-> "*" Player : players
-Player -left-> "1-4" Piece : pieces
+Board -[hidden]down-> Die
 @enduml
