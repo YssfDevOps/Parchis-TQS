@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="" />
+    <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/FinalPathSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/FinalPathSquare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/RegularSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/RegularSquare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/ShieldSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/ShieldSquare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/FinalPathSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/FinalPathSquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/ShieldSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/ShieldSquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,11 +78,11 @@
     &quot;JUnit.RegularSquareTest.executor&quot;: &quot;Coverage&quot;,
     &quot;JUnit.RegularSquareTest.handleLandingOnRegularSquare.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.RegularSquareTest.isBlocked.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ShieldSquareTest.executor&quot;: &quot;Coverage&quot;,
     &quot;JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ShieldSquareTest.isBlocked.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ShieldSquareTest.isShieldSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SquareTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SquareTest.executor&quot;: &quot;Coverage&quot;,
     &quot;JUnit.SquareTest.getPosition.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SquareTest.landHere.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SquareTest.leave.executor&quot;: &quot;Run&quot;,
@@ -119,30 +129,10 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RegularSquareTest">
+  <component name="RunManager" selected="JUnit.SquareTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -151,29 +141,12 @@
       <module name="Parchis-TQS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.model.square.*" />
+          <option name="PATTERN" value="main.model.square.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.model.square" />
       <option name="MAIN_CLASS_NAME" value="test.model.square.FinalPathSquareTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PieceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="main.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="temurin-21" />
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.PieceTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
@@ -220,21 +193,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ShieldSquareTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.model.square.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model.square" />
+      <option name="MAIN_CLASS_NAME" value="test.model.square.ShieldSquareTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SquareTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.model.square.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model.square" />
+      <option name="MAIN_CLASS_NAME" value="test.model.square.SquareTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.RegularSquareTest" />
-      <item itemvalue="JUnit.BoardTest" />
       <item itemvalue="JUnit.FinalPathSquareTest" />
-      <item itemvalue="JUnit.PieceTest" />
+      <item itemvalue="JUnit.ShieldSquareTest" />
+      <item itemvalue="JUnit.SquareTest" />
+      <item itemvalue="JUnit.RegularSquareTest" />
       <item itemvalue="JUnit.PlayerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SquareTest" />
+        <item itemvalue="JUnit.ShieldSquareTest" />
         <item itemvalue="JUnit.RegularSquareTest" />
-        <item itemvalue="JUnit.PlayerTest" />
-        <item itemvalue="JUnit.BoardTest" />
-        <item itemvalue="JUnit.PieceTest" />
         <item itemvalue="JUnit.FinalPathSquareTest" />
+        <item itemvalue="JUnit.PlayerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -280,6 +285,8 @@
       <workItem from="1731830938232" duration="1815000" />
       <workItem from="1731864250033" duration="5222000" />
       <workItem from="1731936919703" duration="217000" />
+      <workItem from="1731944462929" duration="6870000" />
+      <workItem from="1731951399364" duration="2640000" />
     </task>
     <servers />
   </component>
@@ -297,14 +304,20 @@
     <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest.ic" NAME="PlayerTest Coverage Results" MODIFIED="1731869923197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Parchis_TQS$RegularSquareTest.ic" NAME="RegularSquareTest Coverage Results" MODIFIED="1731869953409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Parchis_TQS$RegularSquareTest.ic" NAME="RegularSquareTest Coverage Results" MODIFIED="1731951729918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Parchis_TQS$ShieldSquareTest.ic" NAME="ShieldSquareTest Coverage Results" MODIFIED="1731950697039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.model.square.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Parchis_TQS$PieceTest.ic" NAME="PieceTest Coverage Results" MODIFIED="1731867597214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Parchis_TQS$FinalPathSquareTest.ic" NAME="FinalPathSquareTest Coverage Results" MODIFIED="1731864004581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>test.model.square.*</FILTER>
+    <SUITE FILE_PATH="coverage/Parchis_TQS$SquareTest.ic" NAME="SquareTest Coverage Results" MODIFIED="1731950723044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.model.square.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Parchis_TQS$FinalPathSquareTest.ic" NAME="FinalPathSquareTest Coverage Results" MODIFIED="1731953287618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.model.square.*</FILTER>
     </SUITE>
   </component>
 </project>

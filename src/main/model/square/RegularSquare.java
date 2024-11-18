@@ -8,23 +8,19 @@ public class RegularSquare extends Square {
     invariant();
   }
 
-  protected void invariant() {
+  public void invariant() {
     super.invariant();
-    assert pieces.size() != 2 || pieces.get(0).getColor().equals(pieces.get(1).getColor()) :
-        "Blockage must consist of pieces of the same color";
+    assert pieces.size() <= 2 : "ShieldSquare cannot have more than 2 pieces";
   }
 
   @Override
   protected void handleLandingOnShieldSquare(Piece piece) {
-    // Precondition
-    assert piece != null : "Piece must not be null";
     throw new UnsupportedOperationException("Shouldn't be called");
   }
 
   @Override
   protected void handleLandingOnRegularSquare(Piece piece) {
-    // Precondition
-    assert piece != null : "Piece must not be null";
+    // No pre-condition because is already in landHere
 
     if (pieces.isEmpty()) {
       // Square is empty

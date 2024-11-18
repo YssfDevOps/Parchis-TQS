@@ -8,15 +8,14 @@ public class ShieldSquare extends Square {
     invariant();
   }
 
-  protected void invariant() {
+  public void invariant() {
     super.invariant();
     assert pieces.size() <= 2 : "ShieldSquare cannot have more than 2 pieces";
   }
 
   @Override
   protected void handleLandingOnShieldSquare(Piece piece) {
-    // Precondition
-    assert piece != null : "Piece must not be null";
+    // No pre-condition because already in landHere
 
     if (pieces.size() < 2) { // Can land if less than two pieces
       pieces.add(piece);

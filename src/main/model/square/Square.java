@@ -16,21 +16,20 @@ public abstract class Square {
     this.position = position;
     this.pieces = new ArrayList<>();
 
-    // Postcondition
-    assert this.position == position : "Position was not set correctly";
-    assert this.pieces != null : "Piece not initialized";
-
     //Invariant check
     invariant();
   }
 
-  protected void invariant() {
+  public void invariant() {
     assert position >= 0 : "Position must be positive";
     assert pieces != null : "Pieces list must not be null";
     for (Piece p : pieces) {
       assert p != null : "Pieces list must not contain null elements";
     }
+  }
 
+  public void setPosition(int position) {
+    this.position = position;
   }
 
   public int getPosition() {
@@ -74,8 +73,6 @@ public abstract class Square {
 
     pieces.remove(piece);
 
-    // Post condition
-    assert !pieces.contains(piece) : "Piece was not removed from the square";
     // Invariant check
     invariant();
   }

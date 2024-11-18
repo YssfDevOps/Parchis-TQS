@@ -80,6 +80,71 @@ class RegularSquareTest {
     assertTrue(opponentBlockedSquare.isBlocked(redPiece4));
     opponentBlockedSquare.landHere(redPiece4);
     assertNull(redPiece4.getSquare());
+
+    // Statement coverage
+    // Subclass to override isOccupied() function to return empty
+    class TestRegularSquare extends RegularSquare {
+      public TestRegularSquare(int position) {
+        super(position);
+      }
+
+      @Override
+      public boolean isOccupied() {
+        return true; // Force to return true
+      }
+
+      // Expose the protected method for testing
+      @Override
+      public void handleLandingOnRegularSquare(Piece piece) {
+        super.handleLandingOnRegularSquare(piece);
+      }
+    }
+
+    // 1. Empty pieces
+    TestRegularSquare testSquare = new TestRegularSquare(10);
+    Piece testPiece = new Piece(Color.RED);
+    testSquare.landHere(testPiece);
+    assertTrue(testSquare.isOccupied());
+
+    // Subclass to access and manipulate pieces
+    class TestRegularSquare2 extends RegularSquare {
+      public TestRegularSquare2(int position) {
+        super(position);
+      }
+
+      public void addPieceDirectly(Piece piece) {
+        this.pieces.add(piece);
+      }
+    }
+
+    TestRegularSquare2 testSquare2 = new TestRegularSquare2(10);
+    Piece piece7 = new Piece(Color.RED);
+    Piece piece8 = new Piece(Color.BLUE);
+    Piece piece9 = new Piece(Color.GREEN);
+
+    // Add three pieces directly to exceed capacity
+    testSquare2.addPieceDirectly(piece7);
+    testSquare2.addPieceDirectly(piece8);
+    testSquare2.addPieceDirectly(piece9);
+    assertThrows(AssertionError.class, testSquare2::invariant);
+
+    // 3. Cover UnsupportedOperationException
+    class TestRegularSquare3 extends RegularSquare {
+      public TestRegularSquare3(int position) {
+        super(position);
+      }
+
+      @Override
+      public boolean isShieldSquare() {
+        return true; // Force to return true
+      }
+    }
+
+    TestRegularSquare3 testSquare3 = new TestRegularSquare3(10);
+    Piece testPiece2 = new Piece(Color.BLUE);
+    testSquare3.landHere(new Piece(Color.RED));
+
+    assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
   }
 
   @Test
@@ -143,6 +208,49 @@ class RegularSquareTest {
     opponentBlockedSquare.landHere(bluePiece1);
     opponentBlockedSquare.landHere(bluePiece4); // Opponent's blockage
     assertTrue(opponentBlockedSquare.isBlocked(redPiece3));
+
+    // Statement coverage
+    // 1. Cover assertion
+    RegularSquare regularSquare6 = new RegularSquare(10);
+    assertThrows(AssertionError.class, () -> regularSquare6.isBlocked(null));
+
+    // 2. We need to create a blockage with two pieces of the same color
+    Piece redPiece6 = new Piece(Color.RED);
+    Piece redPiece8 = new Piece(Color.RED);
+    regularSquare6.landHere(redPiece6);
+    regularSquare6.landHere(redPiece8);
+
+    // 3. Now 2 pieces and both pieces have the same color
+    Piece bluePiece5 = new Piece(Color.BLUE);
+    assertTrue(regularSquare6.isBlocked(bluePiece5));
+
+    // Test with a piece of the same color
+    Piece redPiece5 = new Piece(Color.RED);
+    assertFalse(regularSquare6.isBlocked(redPiece5));
+
+    // Subclass to manipulate the pieces field directly
+    class TestRegularSquare extends RegularSquare {
+      public TestRegularSquare(int position) {
+        super(position);
+      }
+
+      public void addPieceDirectly(Piece piece) {
+        this.pieces.add(piece);
+      }
+    }
+
+    // 4. Case of being at the same time 2 pieces of different color.
+    TestRegularSquare testSquare = new TestRegularSquare(10);
+    Piece redPiece7 = new Piece(Color.RED);
+    Piece bluePiece7 = new Piece(Color.BLUE);
+
+    testSquare.addPieceDirectly(redPiece7);
+    testSquare.addPieceDirectly(bluePiece7);
+
+    Piece greenPiece = new Piece(Color.GREEN);
+    assertFalse(testSquare.isBlocked(greenPiece));
+    assertFalse(testSquare.isBlocked(redPiece7));
+    assertFalse(testSquare.isBlocked(bluePiece7));
   }
 
   @Test

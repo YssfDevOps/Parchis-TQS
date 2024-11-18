@@ -6,6 +6,10 @@ import main.model.square.RegularSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SquareTest {
@@ -47,6 +51,60 @@ class SquareTest {
     assertThrows(AssertionError.class, () -> new ShieldSquare(68));
 
     assertThrows(AssertionError.class, () -> new ShieldSquare(70));
+
+    // Statement coverage
+    // Subclass of Square with methods to manipulate piece
+    class TestSquare extends Square {
+      public TestSquare(int position) {
+        super(position);
+      }
+
+      @Override
+      protected void handleLandingOnShieldSquare(Piece piece) {}
+
+      @Override
+      protected void handleLandingOnRegularSquare(Piece piece) {}
+
+      @Override
+      public boolean isBlocked(Piece piece) {
+        return false;
+      }
+
+      @Override
+      public boolean isShieldSquare() {
+        return false;
+      }
+
+      // Method for invariant
+      public void setPiecesToNull() {
+        this.pieces = null;
+      }
+
+      // Method for invariant
+      public void addNullToPieces() {
+        this.pieces.add(null);
+      }
+
+      public void newListOfPieces() {
+        this.pieces = new ArrayList<>();
+      }
+    }
+
+    TestSquare testSquare = new TestSquare(10);
+    testSquare.setPosition(-1);
+    assertThrows(AssertionError.class, testSquare::invariant);
+
+    testSquare.setPosition(10);
+
+    testSquare.setPiecesToNull();
+    assertThrows(AssertionError.class, testSquare::invariant);
+
+    // Initialize pieces list again to avoid NullPointerException
+    testSquare.newListOfPieces();
+
+    // Test when pieces contain null elements
+    testSquare.addNullToPieces();
+    assertThrows(AssertionError.class, testSquare::invariant);
   }
 
   @Test
@@ -117,6 +175,7 @@ class SquareTest {
     Piece redPiece4 = new Piece(Color.RED);
     squareWithOwnPiece.landHere(redPiece4);
     Piece redPiece5 = new Piece(Color.RED);
+    List<Piece> pieces = squareWithOwnPiece.getPieces();
     squareWithOwnPiece.landHere(redPiece5);
     assertTrue(squareWithOwnPiece.isBlocked(new Piece(Color.BLUE)));
     assertFalse(squareWithOwnPiece.isBlocked(redPiece4));
@@ -140,6 +199,22 @@ class SquareTest {
     assertTrue(blockedSquare.isBlocked(redPiece3));
     blockedSquare.landHere(redPiece3);
     assertNull(redPiece3.getSquare());
+
+    // Statement coverage
+    // Test assertion failure when piece is null
+    Square square5 = new RegularSquare(10);
+    assertThrows(AssertionError.class, () -> square5.landHere(null));
+
+    // Test landHere on ShieldSquare when isOccupied == true and isShieldSquare == true
+    ShieldSquare shieldSquare = new ShieldSquare(15);
+    Piece piece6 = new Piece(Color.RED);
+    shieldSquare.landHere(piece6); // Now shieldSquare is occupied
+
+    Piece piece7 = new Piece(Color.BLUE);
+    shieldSquare.landHere(piece7); // Should invoke handleLandingOnShieldSquare(piece2)
+
+    assertTrue(shieldSquare.isOccupied());
+    assertEquals(shieldSquare, piece7.getSquare());
   }
 
   @Test
@@ -166,6 +241,11 @@ class SquareTest {
     // 2. Leaving a square when the piece is not on the square
     Square anotherSquare = new RegularSquare(11);
     assertThrows(IllegalStateException.class, () -> anotherSquare.leave(piece2));
+
+    // Statement coverage
+    // Test assertion failure when piece is null
+    Square square5 = new RegularSquare(10);
+    assertThrows(AssertionError.class, () -> square5.leave(null));
   }
 
   @Test
@@ -256,5 +336,23 @@ class SquareTest {
 
     String expected = "Square 10 - Pieces: RED " + piece.getId();
     assertEquals(expected, square.toString());
+
+    // Statement coverage
+
+    // Test toString for ShieldSquare with no pieces
+    Square shieldSquare = new ShieldSquare(15);
+    String expectedShieldSquare = "Square 15 (Shield Square)";
+    assertEquals(expectedShieldSquare, shieldSquare.toString());
+
+    // Test toString for ShieldSquare with pieces
+    Piece piece1 = new Piece(Color.BLUE);
+    shieldSquare.landHere(piece1);
+    String expectedShieldSquareWithPiece = "Square 15 (Shield Square) - Pieces: BLUE " + piece1.getId();
+    assertEquals(expectedShieldSquareWithPiece, shieldSquare.toString());
+
+    // Test toString for RegularSquare with no pieces
+    Square regularSquare = new RegularSquare(20);
+    String expectedRegularSquare = "Square 20";
+    assertEquals(expectedRegularSquare, regularSquare.toString());
   }
 }

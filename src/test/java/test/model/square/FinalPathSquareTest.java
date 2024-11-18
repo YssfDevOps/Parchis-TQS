@@ -33,8 +33,29 @@ class FinalPathSquareTest {
     assertEquals(Color.BLUE, blueFinalSquare.getColor());
 
     // 3. Invalid color (null)
-    assertThrows(AssertionError.class, () -> new FinalPathSquare(2, null),
-        "Expected AssertionError for null color");
+    assertThrows(AssertionError.class, () -> new FinalPathSquare(2, null));
+
+
+    // Statement coverage
+    // 1. Cover invariant
+    // Create a subclass to access and manipulate pieces
+    class TestFinalPathSquare extends FinalPathSquare {
+      public TestFinalPathSquare(int index, Color color) {
+        super(index, color);
+      }
+
+      public void addPieceDirectly(Piece piece) {
+        this.pieces.add(piece);
+      }
+
+      public void setColor(Color newColor) {
+        this.color = newColor;
+      }
+    }
+    TestFinalPathSquare testSquare = new TestFinalPathSquare(0, Color.RED);
+    Piece bluePiece = new Piece(Color.BLUE);
+    testSquare.addPieceDirectly(bluePiece);
+    assertThrows(AssertionError.class, testSquare::invariant);
   }
 
   @Test
@@ -71,24 +92,36 @@ class FinalPathSquareTest {
     assertEquals(7, squareAtMax.getIndex());
 
     // 4. Index below lower and upper boundary
-    assertThrows(AssertionError.class, () -> new FinalPathSquare(-1, Color.BLUE),
-        "Expected AssertionError for index -1");
+    assertThrows(AssertionError.class, () -> new FinalPathSquare(-1, Color.BLUE));
 
     FinalPathSquare squareUpperFront = new FinalPathSquare(1, Color.YELLOW);
     assertEquals(1, squareUpperFront.getIndex());
 
     // 5. Index above lower and upper boundary
-    assertThrows(AssertionError.class, () -> new FinalPathSquare(8, Color.GREEN),
-        "Expected AssertionError for index 8");
+    assertThrows(AssertionError.class, () -> new FinalPathSquare(8, Color.GREEN));
 
     FinalPathSquare squareLow = new FinalPathSquare(6, Color.YELLOW);
     assertEquals(6, squareLow.getIndex());
 
     // 6. Out of range really far
-    assertThrows(AssertionError.class, () -> new FinalPathSquare(-10, Color.GREEN),
-        "Expected AssertionError for index -10");
-    assertThrows(AssertionError.class, () -> new FinalPathSquare(10, Color.GREEN),
-        "Expected AssertionError for index 10");
+    assertThrows(AssertionError.class, () -> new FinalPathSquare(-10, Color.GREEN));
+    assertThrows(AssertionError.class, () -> new FinalPathSquare(10, Color.GREEN));
+
+    // Statement coverage
+    // Create a subclass to manipulate index
+    class TestFinalPathSquare extends FinalPathSquare {
+      public TestFinalPathSquare(int index, Color color) {
+        super(index, color);
+      }
+
+      public void setIndex(int newIndex) {
+        this.index = newIndex;
+      }
+    }
+
+    TestFinalPathSquare testSquare = new TestFinalPathSquare(0, Color.RED);
+    testSquare.setIndex(-1);
+    assertThrows(AssertionError.class, testSquare::getIndex);
   }
 
   @Test
@@ -118,8 +151,64 @@ class FinalPathSquareTest {
 
     // 2. Landing with non-matching color piece
     Piece bluePiece2 = new Piece(Color.BLUE);
-    assertThrows(UnsupportedOperationException.class, () -> redFinalSquare.landHere(bluePiece2),
-        "Expected AssertionError when landing non-matching color piece");
+    assertThrows(UnsupportedOperationException.class, () -> redFinalSquare.landHere(bluePiece2));
+
+    // Statement coverage
+    // Subclass to override isShieldSquare
+    class TestFinalPathSquare extends FinalPathSquare {
+      public TestFinalPathSquare(int index, Color color) {
+        super(index, color);
+      }
+
+      @Override
+      public boolean isShieldSquare() {
+        return true; // Force to return true
+      }
+    }
+
+    TestFinalPathSquare testSquare = new TestFinalPathSquare(0, Color.RED);
+    Piece redPiece5 = new Piece(Color.RED);
+
+    // Subclass to override isOccupied
+    class TestFinalPathSquare2 extends TestFinalPathSquare {
+      public TestFinalPathSquare2(int index, Color color) {
+        super(index, color);
+      }
+
+      @Override
+      public boolean isOccupied() {
+        return true; // Force to return true
+      }
+    }
+
+    TestFinalPathSquare2 testSquare2 = new TestFinalPathSquare2(0, Color.RED);
+
+    assertThrows(UnsupportedOperationException.class, () -> testSquare2.landHere(redPiece5));
+
+
+    // Subclass that overrides isOccupied to return true
+    class TestFinalPathSquare3 extends FinalPathSquare {
+      public TestFinalPathSquare3(int index, Color color) {
+        super(index, color);
+      }
+
+      @Override
+      public boolean isOccupied() {
+        return true; // Force to return true
+      }
+    }
+
+    TestFinalPathSquare3 testSquare3 = new TestFinalPathSquare3(0, Color.RED);
+    Piece redPiece2 = new Piece(Color.RED);
+    assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(redPiece2));
+
+  }
+
+  @Test
+  void isBlocked() {
+    // Statement coverage
+    FinalPathSquare finalPathSquare = new FinalPathSquare(0, Color.RED);
+    assertThrows(AssertionError.class, () -> finalPathSquare.isBlocked(null));
   }
 
   @Test

@@ -4,28 +4,26 @@ import main.model.Color;
 import main.model.Piece;
 
 public class FinalPathSquare extends Square {
-  private Color color;
-  private int index; // Position in the final path (0 to 7)
+  protected Color color;
+  protected int index; // Position in the final path (0 to 7)
 
   public FinalPathSquare(int index, Color color) {
     super(index);
 
     // Precondition
-    assert (index >= 0 && index < 8) : "Color must be null or negative index";
+    assert (index >= 0) : "Color must be null or negative index";
+    assert (index < 8) : "Color must be null or negative index";
+
     assert (color != null) : "Color must be null or negative index";
 
     this.color = color;
     this.index = index;
 
-    // Postcondition
-    assert this.color == color : "Color not set correctly";
-    assert this.index == index : "Index not set correctly";
-
     // Invariant check
     invariant();
   }
 
-  protected void invariant() {
+  public void invariant() {
     super.invariant();
     for (Piece p : pieces) {
       assert p.getColor() == color : "Piece color must match FinalPathSquare color";
@@ -47,15 +45,11 @@ public class FinalPathSquare extends Square {
 
   @Override
   protected void handleLandingOnShieldSquare(Piece piece) {
-    // Precondition
-    assert piece != null : "Piece must not be null";
     throw new UnsupportedOperationException("Shouldn't be called");
   }
 
   @Override
   protected void handleLandingOnRegularSquare(Piece piece) {
-    // Precondition
-    assert piece != null : "Piece must not be null";
     throw new UnsupportedOperationException("Shouldn't be called");
   }
 

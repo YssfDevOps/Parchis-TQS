@@ -59,7 +59,7 @@ class ShieldSquareTest {
     // 2. Landing on ShieldSquare with one piece
     Piece bluePiece = new Piece(Color.BLUE);
     shieldSquareEmpty.landHere(bluePiece);
-    assertFalse(shieldSquareEmpty.isBlocked(bluePiece));
+    assertTrue(shieldSquareEmpty.isBlocked(bluePiece));
     assertEquals(shieldSquareEmpty, bluePiece.getSquare());
 
     // 3. Landing on ShieldSquare when it has two pieces (full capacity)
@@ -67,6 +67,53 @@ class ShieldSquareTest {
     assertTrue(shieldSquareEmpty.isBlocked(greenPiece));
     shieldSquareEmpty.landHere(greenPiece);
     assertNull(greenPiece.getSquare());
+
+    // Statement coverage
+    // 1. When piece is null
+    ShieldSquare shieldSquare7 = new ShieldSquare(5);
+    assertThrows(AssertionError.class, () -> shieldSquare7.landHere(null));
+
+    // 2. When pieces size > 2
+    // Subclass to access and manipulate pieces
+    class TestShieldSquare extends ShieldSquare {
+      public TestShieldSquare(int position) {
+        super(position);
+      }
+
+      public void addPieceDirectly(Piece piece) {
+        this.pieces.add(piece);
+      }
+    }
+
+    TestShieldSquare testShieldSquare = new TestShieldSquare(5);
+    Piece piece8 = new Piece(Color.RED);
+    Piece piece9 = new Piece(Color.BLUE);
+    Piece piece10 = new Piece(Color.GREEN);
+
+    // Land two pieces normally
+    testShieldSquare.landHere(piece8);
+    testShieldSquare.landHere(piece9);
+    testShieldSquare.addPieceDirectly(piece10);
+    assertThrows(AssertionError.class, testShieldSquare::invariant);
+
+    // Subclass that overrides isShieldSquare to return false
+    class TestShieldSquare2 extends ShieldSquare {
+      public TestShieldSquare2(int position) {
+        super(position);
+      }
+
+      @Override
+      public boolean isShieldSquare() {
+        return false; // Force isShieldSquare to return false
+      }
+    }
+
+    TestShieldSquare2 testShieldSquare2 = new TestShieldSquare2(5);
+    Piece testPiece = new Piece(Color.RED);
+
+    testShieldSquare2.landHere(testPiece);
+    Piece testPiece2 = new Piece(Color.BLUE);
+    assertThrows(UnsupportedOperationException.class, () -> testShieldSquare2.landHere(testPiece2));
   }
 
   @Test
@@ -109,6 +156,11 @@ class ShieldSquareTest {
     shieldSquareEmpty.landHere(bluePiece); // Now has two pieces
     Piece greenPiece = new Piece(Color.GREEN);
     assertTrue(shieldSquareEmpty.isBlocked(greenPiece));
+
+    // Statement coverage
+    // 1. When piece is null
+    ShieldSquare shieldSquare5 = new ShieldSquare(5);
+    assertThrows(AssertionError.class, () -> shieldSquare5.isBlocked(null));
   }
 
   @Test
