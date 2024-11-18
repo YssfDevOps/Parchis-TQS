@@ -92,6 +92,18 @@ public abstract class Square {
 
   @Override
   public String toString() {
-    return "Square 10 - Pieces: RED " + pieces.get(0).getId();
+    StringBuilder sb = new StringBuilder();
+    sb.append("Square ").append(position);
+    if (isShieldSquare()) {
+      sb.append(" (Shield Square)");
+    }
+    if (!pieces.isEmpty()) {
+      sb.append(" - Pieces: ");
+      for (Piece piece : pieces) {
+        sb.append(piece.getColor()).append(" ").append(piece.getId()).append(", ");
+      }
+      sb.setLength(sb.length() - 2); // Remove last comma and space
+    }
+    return sb.toString();
   }
 }
