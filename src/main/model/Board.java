@@ -96,14 +96,14 @@ public class Board {
             // Move within final path
             int index = ((FinalPathSquare) currentSquare).getIndex();
             if (index + 1 < NUM_FINAL_SQUARES) {
-                return playerFinalPaths.get(color).get(index);
+                return playerFinalPaths.get(color).get(index + 1);
             } else {
                 // Reached the end of the final path
                 return null;
             }
         } else {
             // Move on global path
-            int nextPos = (currentSquare.getPosition()) % NUM_SQUARES;
+            int nextPos = (currentSquare.getPosition() + 1) % NUM_SQUARES;
             Square nextSquare = getGlobalSquare(nextPos);
 
             // Check if the piece should enter the final path
