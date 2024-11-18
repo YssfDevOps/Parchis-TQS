@@ -15,6 +15,11 @@ public class Player {
   private Scanner scanner = new Scanner(System.in);
 
   public Player(String name, Color color, Board board) {
+    // Preconditions
+    assert name != null && !name.isEmpty() : "Name cannot be null or empty";
+    assert color != null : "Color cannot be null";
+    assert board != null : "Board cannot be null";
+
     this.name = name;
     this.color = color;
     this.winner = false;
@@ -25,10 +30,31 @@ public class Player {
     for (int i = 0; i < 4; i++) {
       pieces.add(new Piece(color));
     }
+
+    // Postcondition
+    assert pieces.size() == 4 : "Player must have 4 pieces initialized";
+
+    // Invariant
+    invariant();
   }
+
+  private void invariant() {
+    assert pieces.size() == 4 : "Player must always have exactly 4 pieces";
+    assert pieces.stream().allMatch(piece -> piece.getColor() == color) :
+            "All pieces must have the same color as the player";
+    assert name != null && !name.isEmpty() :
+            "Player name must not be null or empty";
+  }
+
 
   // Move a piece by a certain number of moves
   public void movePiece(Piece piece, int moves, Board board) {
+    // Preconditions
+    assert piece != null : "Piece cannot be null";
+    assert moves > 0 : "Moves must be positive";
+    assert board != null : "Board cannot be null";
+    assert pieces.contains(piece) : "Piece must belong to the player";
+
     Square currentSquare = piece.getSquare();
     Square lastAccessibleSquare = currentSquare;
 
@@ -38,13 +64,15 @@ public class Player {
       if (nextSquare == null) {
         // Reached the end of final path
         piece.setHasFinished(true);
-        currentSquare.leave(piece);
+        if (currentSquare != null) {
+          currentSquare.leave(piece);
+        }
         piece.setSquare(null);
         return;
       }
 
       if (nextSquare.isBlocked(piece)) {
-        // Cannot pass through blockage, stop to square behind.
+        // Cannot pass through blockage, stop to square behind
         break;
       }
 
@@ -54,19 +82,27 @@ public class Player {
 
     if (lastAccessibleSquare != currentSquare) {
       // Move the piece to the last accessible square
-      currentSquare.leave(piece);
+      if (currentSquare != null) {
+        currentSquare.leave(piece);
+      }
       lastAccessibleSquare.landHere(piece);
       piece.setSquare(lastAccessibleSquare);
     } else {
       // Could not move due to blockage; stay on the same square
       System.out.println(piece.getColor() + " Piece " + piece.getId() + " is blocked.");
     }
+
+    // Postconditions
+    assert piece.hasFinished() || piece.getSquare() != currentSquare :
+            "Piece must have moved or finished";
   }
 
   public boolean enterPieceIntoGame() {
     for (Piece piece : pieces) {
       if (piece.isAtHome()) {
         piece.enterGame(board);
+        // Postcondition: At least one piece is no longer at home
+        assert !piece.isAtHome() : "Piece must no longer be at home";
         return true;
       }
     }
@@ -81,6 +117,8 @@ public class Player {
       }
     }
     winner = true;
+    // Postcondition: Winner status must be true if all pieces have finished
+    assert winner : "Winner must be true when all pieces are finished";
     return true;
   }
 
@@ -105,14 +143,20 @@ public class Player {
   }
 
   public List<Piece> getPieces() {
+    // Postcondition: List of pieces must contain exactly 4 elements
+    assert pieces.size() == 4 : "Player must always have 4 pieces";
     return pieces;
   }
 
   public Color getColor() {
+    // Postcondition: Returned color must not be null
+    assert color != null : "Player color must not be null";
     return color;
   }
 
   public String getName() {
+    // Postcondition: Returned name must not be null or empty
+    assert name != null && !name.isEmpty() : "Player name must not be null or empty";
     return name;
   }
 

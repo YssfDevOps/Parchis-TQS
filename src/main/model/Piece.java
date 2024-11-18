@@ -12,11 +12,26 @@ public class Piece {
     private static int idCounter = 0;
 
     public Piece(Color color) {
+        // Precondition
+        assert color != null : "Color cannot be null";
+
         this.id = ++idCounter;
         this.color = color;
         this.atHome = true;
         this.hasFinished = false;
         this.square = null;
+
+        // Invariant
+        invariant();
+    }
+
+    private void invariant() {
+        assert color != null : "Piece color cannot be null";
+        assert id > 0 : "Piece ID must be greater than 0";
+        assert (atHome && square == null && !hasFinished) ||
+                (!atHome && square != null && !hasFinished) ||
+                (hasFinished && square == null) :
+                "Piece state must be consistent (atHome, on the board, or finished)";
     }
 
     public int getId() {
@@ -25,6 +40,8 @@ public class Piece {
 
     public void setAtHome(boolean atHome) {
         this.atHome = atHome;
+
+        invariant();
     }
 
     public boolean isAtHome() {
@@ -32,16 +49,33 @@ public class Piece {
     }
 
     public void sendHome() {
+        // Precondition
+        assert square == null || square.getPieces().contains(this) :
+                "Piece must be on its current square or null";
+
         if (square != null) {
             square.leave(this);
         }
         square = null;
         atHome = true;
+
+        // Postcondition
+        assert atHome : "Piece should be at home";
+        assert square == null : "Square should be null";
+
+        // Invariant
+        invariant();
     }
 
     public void enterGame(Board board) {
+        // Precondition
+        assert board != null : "Board cannot be null";
+        assert atHome : "Piece must be at home to enter game";
+
         if (atHome) {
             Square startSquare = board.getPlayerStartSquare(color);
+            assert startSquare != null : "Start square cannot be null";
+
             // Check if the start square is unblocked for this piece
             if (!startSquare.isBlocked(this)) {
                 startSquare.landHere(this);
@@ -49,6 +83,13 @@ public class Piece {
                 atHome = false;
             }
         }
+
+        // Postcondition
+        assert !atHome || square == null :
+                "If piece is not at home, it must be on a square";
+
+        // Invariant
+        invariant();
     }
 
     public Square getSquare() {
@@ -56,7 +97,14 @@ public class Piece {
     }
 
     public void setSquare(Square square) {
+        // Precondition
+        assert square == null || square.getPieces().contains(this) || square.getPieces().isEmpty() :
+                "Square must be null, contain this piece, or be empty";
+
         this.square = square;
+
+        // Invariant
+        invariant();
     }
 
     public boolean hasFinished() {
@@ -64,7 +112,12 @@ public class Piece {
     }
 
     public void setHasFinished(boolean hasFinished) {
-        this.hasFinished = hasFinished;
+        // Postcondition
+        assert this.hasFinished == hasFinished :
+                "hasFinished value mismatch";
+
+        // Invariant
+        invariant();
     }
 
     public Color getColor() {

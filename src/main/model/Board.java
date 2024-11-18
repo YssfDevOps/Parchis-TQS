@@ -20,6 +20,20 @@ public class Board {
         initializeShieldPositions();
         setUpGlobalPath();
         setUpPlayerFinalPaths();
+
+        // Invariant
+        invariant();
+    }
+
+    private void invariant() {
+        assert globalPath != null && globalPath.size() == NUM_SQUARES :
+                "Global path must be initialized with correct size";
+        assert playerFinalPaths != null && playerFinalPaths.size() == Color.values().length :
+                "Final paths must exist for all players";
+        assert startPositions != null && startPositions.size() == Color.values().length :
+                "Start positions must exist for all players";
+        assert shieldPositions != null && !shieldPositions.isEmpty() :
+                "Shield positions must be initialized";
     }
 
     // Initialize start positions based on colors
@@ -64,28 +78,67 @@ public class Board {
 
     // Get a square from the global path, wrapping around if necessary
     public Square getGlobalSquare(int position) {
+        // Preconditions
+        assert position >= 0 : "position cannot be negative";
+
         int pos = (position + NUM_SQUARES) % NUM_SQUARES;
-        return globalPath.get(pos);
+        Square square = globalPath.get(pos);
+
+        // Postconditions
+        assert square != null : "Returned square cannot be null";
+        return square;
     }
 
     // Get the starting square for a player
     public ShieldSquare getPlayerStartSquare(Color color) {
+        // Preconditions
+        assert color != null : "Color cannot be null";
+        assert startPositions.containsKey(color) :
+                "Color must have a valid start position";
+
         int startPos = startPositions.get(color);
-        return (ShieldSquare) getGlobalSquare(startPos);
+        ShieldSquare startSquare = (ShieldSquare) getGlobalSquare(startPos);
+
+        // Postconditions
+        assert startSquare instanceof ShieldSquare :
+                "Player start square must be a ShieldSquare";
+        return startSquare;
     }
 
     public void setPlayerStartSquare(Color color, Square square) {
+        // Preconditions
+        assert color != null : "Color cannot be null";
+        assert square != null : "Square cannot be null";
+        assert square.getPosition() >= 0 && square.getPosition() < NUM_SQUARES :
+                "Square position must be within global path range";
+
         int position = square.getPosition();
         startPositions.put(color, position);
-        // Update the global path with the new square if necessary
+
         if (position >= 0 && position < NUM_SQUARES) {
             globalPath.set(position, square);
         }
+
+        // Postconditions
+        assert startPositions.get(color) == position :
+                "Start position not updated correctly";
+        assert globalPath.get(position) == square :
+                "Square not updated in global path";
     }
 
     // Get the final path for a player
     public List<FinalPathSquare> getPlayerFinalPath(Color color) {
-        return playerFinalPaths.get(color);
+        // Preconditions
+        assert color != null : "Color cannot be null";
+        assert playerFinalPaths.containsKey(color) :
+                "Player final path must exist for the given color";
+
+        List<FinalPathSquare> finalPath = playerFinalPaths.get(color);
+
+        // Postconditions
+        assert finalPath != null && finalPath.size() == NUM_FINAL_SQUARES :
+                "Final path must have the correct number of squares";
+        return finalPath;
     }
 
     // Get the next square for a piece (and maybe handling transitions to final paths)
