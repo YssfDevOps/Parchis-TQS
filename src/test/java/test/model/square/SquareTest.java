@@ -246,4 +246,15 @@ class SquareTest {
     assertFalse(regularSquare.isShieldSquare());
     assertTrue(shieldSquare.isShieldSquare());
   }
+
+  @Test
+  void testToString() {
+    // Simple test for toString method
+    Square square = new RegularSquare(10);
+    Piece piece = new Piece(Color.RED);
+    square.landHere(piece);
+
+    String expected = "Square 10 - Pieces: RED " + piece.getId();
+    assertEquals(expected, square.toString());
+  }
 }

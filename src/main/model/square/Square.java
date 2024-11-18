@@ -89,4 +89,9 @@ public abstract class Square {
   public abstract boolean isBlocked(Piece piece);
 
   public abstract boolean isShieldSquare();
+
+  @Override
+  public String toString() {
+    return "Square 10 - Pieces: RED " + pieces.get(0).getId();
+  }
 }
