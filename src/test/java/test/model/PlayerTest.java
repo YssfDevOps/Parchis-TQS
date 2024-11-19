@@ -4,6 +4,7 @@ import main.model.Board;
 import main.model.Color;
 import main.model.Piece;
 import main.model.Player;
+import main.model.square.FinalPathSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-  
   // For testing purposes
   public void leaveAllPieces(List<Piece> pieces) {
     pieces.clear();
@@ -20,10 +20,19 @@ class PlayerTest {
 
   @Test
   void movePiece() {
-    // 1. Move a piece on the board (regular movement)
+    // Equivalent Partitions:
+    // - Moving a piece normally (no blockage, not finishing).
+    // - Moving a piece that finishes the game.
+    // - Moving a piece that is blocked and cannot move.
+    // - Attempting to move a piece that is at home (should fail).
+    // - Attempting to move a piece that has finished (should fail).
+    // - Moves is zero or negative (should fail).
+
     Board board = new Board();
     Player player = new Player("Lucia", Color.RED, board);
     Piece piece = player.getPieces().get(0);
+
+    // 1. Moving a piece normally
     ShieldSquare startSquare = board.getPlayerStartSquare(Color.RED);
     leaveAllPieces(startSquare.getPieces());
     piece.enterGame(board);
@@ -33,51 +42,99 @@ class PlayerTest {
     assertNotNull(piece.getSquare());
     assertNotEquals(startSquare, piece.getSquare());
 
-    // 2. Forming a blockage, try to pass it
-    Square currentSquare = piece.getSquare();
-    Square blockageSquare = board.getNextSquare(currentSquare, piece);
-    leaveAllPieces(blockageSquare.getPieces());
+    // 2. Moving a piece that finishes the game
+    // For simplicity, we'll move the piece to the last square
+    Square s = new FinalPathSquare(7, Color.RED);
+    s.landHere(piece); // Simulate near the end
+    player.movePiece(piece, 1, board); // Move into the finish
 
+    assertTrue(piece.hasFinished());
+    assertNull(piece.getSquare());
+
+    // 3. Moving a piece that is blocked and cannot move
+    Piece piece2 = player.getPieces().get(1);
+    piece2.enterGame(board);
+    Square currentSquare = piece2.getSquare();
+
+    // Create a blockage ahead
+    Square blockageSquare = board.getNextSquare(currentSquare, piece2);
+    leaveAllPieces(blockageSquare.getPieces());
     Piece blockingPiece1 = new Piece(Color.BLUE);
     Piece blockingPiece2 = new Piece(Color.BLUE);
     blockageSquare.landHere(blockingPiece1);
     blockageSquare.landHere(blockingPiece2); // Forms a blockage
 
-    player.movePiece(piece, 1, board);
-    assertEquals(currentSquare, piece.getSquare());
+    player.movePiece(piece2, 1, board);
+    assertEquals(currentSquare, piece2.getSquare());
+
+    // 4. Attempting to move a piece that is at home (should fail)
+    Piece atHomePiece = player.getPieces().get(2);
+    assertTrue(atHomePiece.isAtHome());
+    assertThrows(AssertionError.class, () -> player.movePiece(atHomePiece, 1, board));
+
+    // 5. Attempting to move a piece that has finished (should fail)
+    assertThrows(AssertionError.class, () -> player.movePiece(piece, 1, board));
+
+    // 6. Attempting to move a piece with zero or negative moves (should fail)
+    Piece piece3 = player.getPieces().get(3);
+    piece3.enterGame(board);
+    assertThrows(AssertionError.class, () -> player.movePiece(piece3, 0, board));
+    assertThrows(AssertionError.class, () -> player.movePiece(piece3, -1, board));
   }
 
   @Test
   void enterPieceIntoGame() {
-    // 1. Enter a piece into the game when pieces are at home
+    // Equivalent Partitions:
+    // - Entering a piece into the game when start square is unblocked.
+    // - Attempting to enter a piece when start square is blocked.
+    // - Attempting to enter a piece when all pieces are already in play or finished.
+
     Board board = new Board();
     Player player = new Player("Youssef", Color.BLUE, board);
-
     ShieldSquare startSquare = board.getPlayerStartSquare(Color.BLUE);
     leaveAllPieces(startSquare.getPieces());
 
+    // 1. Enter a piece into the game when start square is unblocked
     boolean entered = player.enterPieceIntoGame();
     assertTrue(entered);
     long atHomeCount = player.getPieces().stream().filter(Piece::isAtHome).count();
     assertEquals(3, atHomeCount);
 
     // 2. Attempt to enter a piece when start square is blocked
+    Piece blocker1 = new Piece(Color.BLUE);
+    Piece blocker2 = new Piece(Color.BLUE);
+    startSquare.landHere(blocker1);
+    startSquare.landHere(blocker2); // Forms a blockage
+
+    Piece piece = new Piece(Color.BLUE);
+    assertTrue(startSquare.isBlocked(piece));
+
+    // 3. Attempt to enter a piece when all pieces are already in play or finished
+    leaveAllPieces(startSquare.getPieces()); // Clear blockage
     player.enterPieceIntoGame();
     player.enterPieceIntoGame();
-    assertTrue(startSquare.isBlocked(player.getPieces().get(0)));
-    boolean cannotEnter = player.enterPieceIntoGame();
-    assertTrue(cannotEnter);
+    leaveAllPieces(startSquare.getPieces());
+    player.enterPieceIntoGame();
+    player.enterPieceIntoGame();
+    assertFalse(player.hasPiecesAtHome());
   }
 
   @Test
   void isWinner() {
-    // 1. Player has not won when not all pieces have finished
+    // Equivalent Partitions:
+    // - Player has not won (not all pieces have finished).
+    // - Player has won (all pieces have finished).
+
     Board board = new Board();
     Player player = new Player("Lucia", Color.GREEN, board);
+
+    // 1. Player has not won
     assertFalse(player.isWinner());
 
     // 2. Player has won when all pieces have finished
     for (Piece piece : player.getPieces()) {
+      piece.enterGame(board);
+      piece.setAtHome(false); // Simulate faster that the pieces left the first square
       piece.setHasFinished(true);
     }
     assertTrue(player.isWinner());
@@ -85,17 +142,24 @@ class PlayerTest {
 
   @Test
   void hasPiecesAtHome() {
-    // 1. All pieces are at home at start
+    // Equivalent Partitions:
+    // - Player has pieces at home.
+    // - Player has no pieces at home.
+
     Board board = new Board();
     Player player = new Player("Youssef", Color.YELLOW, board);
+
+    // 1. All pieces are at home initially
     assertTrue(player.hasPiecesAtHome());
 
     // 2. No pieces at home after entering all pieces into the game
     ShieldSquare startSquare = board.getPlayerStartSquare(Color.YELLOW);
+    leaveAllPieces(startSquare.getPieces());
+    int i = 0;
     while (player.hasPiecesAtHome()) {
-      for (Piece piece : player.getPieces()) {
-        piece.setAtHome(false);
-      }
+      i++;
+      player.enterPieceIntoGame();
+      player.getPieces().get(i).setAtHome(false);
     }
     // Check if all pieces are no longer at home
     assertFalse(player.hasPiecesAtHome());
@@ -103,9 +167,15 @@ class PlayerTest {
 
   @Test
   void hasPiecesOnBoard() {
-    // 1. No pieces on board at start
+    // Equivalent Partitions:
+    // - Player has no pieces on board.
+    // - Player has pieces on board.
+    // - Player has all pieces finished.
+
     Board board = new Board();
     Player player = new Player("Lucia", Color.RED, board);
+
+    // 1. No pieces on board initially
     assertFalse(player.hasPiecesOnBoard());
 
     // 2. Pieces on board after entering a piece into the game
@@ -116,6 +186,7 @@ class PlayerTest {
 
     // 3. No pieces on board after all have finished
     for (Piece piece : player.getPieces()) {
+      piece.setAtHome(false);// Simulate faster that the pieces left the first square
       piece.setHasFinished(true);
     }
     assertFalse(player.hasPiecesOnBoard());
@@ -123,13 +194,16 @@ class PlayerTest {
 
   @Test
   void getPieces() {
-    // 1. Player should have 4 pieces
+    // Equivalent Partitions:
+    // - Player has exactly 4 pieces.
+    // - All pieces belong to the player.
+
     Board board = new Board();
     Player player = new Player("Lucia", Color.BLUE, board);
     List<Piece> pieces = player.getPieces();
     assertEquals(4, pieces.size());
 
-    // 2. Pieces should have the player's color
+    // All pieces should have the player's color
     for (Piece piece : pieces) {
       assertEquals(player.getColor(), piece.getColor());
     }
@@ -137,6 +211,9 @@ class PlayerTest {
 
   @Test
   void getColor() {
+    // Equivalent partition:
+    // - Player's color is correctly assigned and gotten.
+
     // 1. Get player's color
     Board board = new Board();
     Player player = new Player("Youssef", Color.GREEN, board);
@@ -154,12 +231,22 @@ class PlayerTest {
 
   @Test
   void getName() {
-    // Case 1: Get player's name
+    // Equivalent Partitions:
+    // - Player's name is correctly assigned and gotten.
+    // - Player's name null.
+    // - Player's name empty.
+
     Board board = new Board();
-    Player player = new Player("Youssef", Color.YELLOW, board);
-    assertEquals("Youssef", player.getName());
+    Player player1 = new Player("Youssef", Color.YELLOW, board);
+    assertEquals("Youssef", player1.getName());
 
     Player player2 = new Player("Lucia", Color.YELLOW, board);
     assertEquals("Lucia", player2.getName());
+
+    // Attempt to create a player with null name (should fail)
+    assertThrows(AssertionError.class, () -> new Player(null, Color.RED, board));
+
+    // Attempt to create a player with empty name (should fail)
+    assertThrows(AssertionError.class, () -> new Player("", Color.RED, board));
   }
 }

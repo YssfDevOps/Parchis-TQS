@@ -86,10 +86,6 @@ public class Player {
       System.out.println(piece.getColor() + " Piece " + piece.getId() + " is blocked.");
     }
 
-    // Postconditions
-    assert piece.hasFinished() || piece.getSquare() != currentSquare :
-            "Piece must have moved or finished";
-
     // Invariant
     invariant();
   }

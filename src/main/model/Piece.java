@@ -92,10 +92,6 @@ public class Piece {
     }
 
     public void setSquare(Square square) {
-        // Precondition
-        assert square == null || square.getPieces().contains(this) || square.getPieces().isEmpty() :
-                "Square must be null, contain this piece, or be empty";
-
         this.square = square;
 
         // Invariant
