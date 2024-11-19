@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Die.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Die.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/model/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Die.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Die.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/model/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Piece.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Player.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +95,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "DesignByContractV2",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS",
     "node.js.detected.package.eslint": "true",
@@ -101,7 +107,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.33908045",
-    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
@@ -123,7 +129,7 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BoardTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
@@ -277,7 +283,7 @@
       <workItem from="1731944462929" duration="6870000" />
       <workItem from="1731951399364" duration="2640000" />
       <workItem from="1732030201962" duration="253000" />
-      <workItem from="1732030462277" duration="1084000" />
+      <workItem from="1732030462277" duration="6724000" />
     </task>
     <servers />
   </component>

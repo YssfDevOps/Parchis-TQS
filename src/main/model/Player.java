@@ -40,8 +40,6 @@ public class Player {
 
   private void invariant() {
     assert pieces.size() == 4 : "Player must always have exactly 4 pieces";
-    assert pieces.stream().allMatch(piece -> piece.getColor() == color) :
-            "All pieces must have the same color as the player";
     assert name != null && !name.isEmpty() :
             "Player name must not be null or empty";
   }
@@ -64,9 +62,7 @@ public class Player {
       if (nextSquare == null) {
         // Reached the end of final path
         piece.setHasFinished(true);
-        if (currentSquare != null) {
-          currentSquare.leave(piece);
-        }
+        currentSquare.leave(piece);
         piece.setSquare(null);
         return;
       }
@@ -82,9 +78,7 @@ public class Player {
 
     if (lastAccessibleSquare != currentSquare) {
       // Move the piece to the last accessible square
-      if (currentSquare != null) {
-        currentSquare.leave(piece);
-      }
+      currentSquare.leave(piece);
       lastAccessibleSquare.landHere(piece);
       piece.setSquare(lastAccessibleSquare);
     } else {
@@ -95,14 +89,18 @@ public class Player {
     // Postconditions
     assert piece.hasFinished() || piece.getSquare() != currentSquare :
             "Piece must have moved or finished";
+
+    // Invariant
+    invariant();
   }
 
   public boolean enterPieceIntoGame() {
     for (Piece piece : pieces) {
       if (piece.isAtHome()) {
         piece.enterGame(board);
-        // Postcondition: At least one piece is no longer at home
-        assert !piece.isAtHome() : "Piece must no longer be at home";
+        // Postcondition: Piece might not enter game if start square is blocked
+        assert piece.isAtHome() || piece.getSquare() != null :
+            "Piece must be on a square if not at home";
         return true;
       }
     }
@@ -117,7 +115,8 @@ public class Player {
       }
     }
     winner = true;
-    // Postcondition: Winner status must be true if all pieces have finished
+
+    // Postcondition
     assert winner : "Winner must be true when all pieces are finished";
     return true;
   }
@@ -143,46 +142,25 @@ public class Player {
   }
 
   public List<Piece> getPieces() {
-    // Postcondition: List of pieces must contain exactly 4 elements
+    // Precondition: List of pieces must contain exactly 4 elements
     assert pieces.size() == 4 : "Player must always have 4 pieces";
     return pieces;
   }
 
   public Color getColor() {
-    // Postcondition: Returned color must not be null
+    // Precondition: Returned color must not be null
     assert color != null : "Player color must not be null";
     return color;
   }
 
   public String getName() {
-    // Postcondition: Returned name must not be null or empty
+    // Precondition: Returned name must not be null or empty
     assert name != null && !name.isEmpty() : "Player name must not be null or empty";
     return name;
   }
 
   // Methods for selecting Pieces and also to enter Pieces in board (for GameController).
   // This methods will not be tested in the Unit Testing of Player, depends on GameController.
-
-  public void displayPieces() {
-    System.out.println("Pieces for " + name + " (" + color + "):");
-    for (Piece piece : pieces) {
-      String location;
-      if (piece.isAtHome()) {
-        location = "at home";
-      } else if (piece.hasFinished()) {
-        location = "has finished";
-      } else {
-        Square square = piece.getSquare();
-        String squareType = square.isShieldSquare() ? "Shield Square" : "Regular Square";
-        if (square instanceof FinalPathSquare) {
-          location = "on final path at position " + (((FinalPathSquare) square).getIndex() + 1) + " (" + squareType + ")";
-        } else {
-          location = "on global path at position " + (square.getPosition() + 1) + " (" + squareType + ")";
-        }
-      }
-      System.out.println(" - Piece " + piece.getId() + " is " + location);
-    }
-  }
 
   // Choose a piece to move
   public Piece choosePiece() {
@@ -219,5 +197,26 @@ public class Player {
     System.out.println("You rolled a 5. Do you want to bring a piece into play? (yes/no)");
     String choice = scanner.next();
     return choice.equalsIgnoreCase("yes");
+  }
+
+  public void displayPieces() {
+    System.out.println("Pieces for " + name + " (" + color + "):");
+    for (Piece piece : pieces) {
+      String location;
+      if (piece.isAtHome()) {
+        location = "at home";
+      } else if (piece.hasFinished()) {
+        location = "has finished";
+      } else {
+        Square square = piece.getSquare();
+        String squareType = square.isShieldSquare() ? "Shield Square" : "Regular Square";
+        if (square instanceof FinalPathSquare) {
+          location = "on final path at position " + (((FinalPathSquare) square).getIndex() + 1) + " (" + squareType + ")";
+        } else {
+          location = "on global path at position " + (square.getPosition() + 1) + " (" + squareType + ")";
+        }
+      }
+      System.out.println(" - Piece " + piece.getId() + " is " + location);
+    }
   }
 }

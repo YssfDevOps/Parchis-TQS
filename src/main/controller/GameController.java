@@ -40,12 +40,17 @@ public class GameController {
   }
 
   public void initializePlayers(int numPlayers) {
+    assert numPlayers > 0 && numPlayers <= Color.values().length : "Invalid number of players";
+
     Color[] colors = Color.values();
     for (int i = 0; i < numPlayers; i++) {
       String playerName = view.getPlayerName(i + 1);
       Player player = new Player(playerName, colors[i], board);
       players.add(player);
     }
+
+    // Postcondition
+    assert players.size() == numPlayers : "Players not initialized correctly";
   }
 
   public void playGame() {
@@ -92,6 +97,8 @@ public class GameController {
   }
 
   public int playerRollDie(Player player) {
+    assert player != null : "player is null";
+
     view.promptRollDie(player);
     scanner.nextLine();
     return die.roll();
