@@ -3,6 +3,7 @@ package test.model;
 import main.model.Board;
 import main.model.Color;
 import main.model.Piece;
+import main.model.square.FinalPathSquare;
 import main.model.square.RegularSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
@@ -177,5 +178,31 @@ class PieceTest {
 
     Piece piece4 = new Piece(Color.GREEN);
     assertEquals(Color.GREEN, piece4.getColor());
+  }
+
+  @Test
+  void testToString() {
+    // Case 1: Piece at home
+    Piece piece = new Piece(Color.RED);
+    String expected = "Piece " + piece.getId() + " is at home";
+    assertEquals(expected, piece.toString(), "toString should indicate piece is at home");
+
+    // Case 2: Piece has finished
+    piece.setHasFinished(true);
+    expected = "Piece " + piece.getId() + " is has finished";
+    assertEquals(expected, piece.toString(), "toString should indicate piece has finished");
+
+    // Case 3: Piece on global path
+    piece.setHasFinished(false);
+    Square square = new RegularSquare(10);
+    piece.setSquare(square);
+    expected = "Piece " + piece.getId() + " is on global path at position 10";
+    assertEquals(expected, piece.toString(), "toString should indicate piece's position on global path");
+
+    // Case 4: Piece on final path
+    Square finalSquare = new FinalPathSquare(2, Color.RED);
+    piece.setSquare(finalSquare);
+    expected = "Piece " + piece.getId() + " is on final path at position 2";
+    assertEquals(expected, piece.toString(), "toString should indicate piece's position on final path");
   }
 }
