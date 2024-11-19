@@ -11,6 +11,7 @@ public class Piece {
     private int id;
     private static int idCounter = 0;
 
+    
     public Piece(Color color) {
         // Precondition
         assert color != null : "Color cannot be null";
