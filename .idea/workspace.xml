@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="" />
+    <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Piece.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,11 +56,11 @@
     "Application.Main.executor": "Run",
     "DefaultPlantUmlFileTemplate": "UML Class",
     "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.BoardTest.executor": "Coverage",
+    "JUnit.BoardTest.executor": "Run",
     "JUnit.BoardTest.getGlobalSquare.executor": "Run",
     "JUnit.BoardTest.getNextSquare.executor": "Debug",
     "JUnit.DieTest.roll.executor": "Run",
-    "JUnit.FinalPathSquareTest.executor": "Coverage",
+    "JUnit.FinalPathSquareTest.executor": "Run",
     "JUnit.FinalPathSquareTest.getColor.executor": "Run",
     "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
     "JUnit.GameControllerTest.executor": "Run",
@@ -65,10 +69,10 @@
     "JUnit.PieceTest.executor": "Coverage",
     "JUnit.PlayerTest.executor": "Coverage",
     "JUnit.PlayerTest.hasPiecesAtHome.executor": "Debug",
-    "JUnit.RegularSquareTest.executor": "Coverage",
+    "JUnit.RegularSquareTest.executor": "Run",
     "JUnit.RegularSquareTest.handleLandingOnRegularSquare.executor": "Run",
     "JUnit.RegularSquareTest.isBlocked.executor": "Run",
-    "JUnit.ShieldSquareTest.executor": "Coverage",
+    "JUnit.ShieldSquareTest.executor": "Run",
     "JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor": "Run",
     "JUnit.ShieldSquareTest.isBlocked.executor": "Run",
     "JUnit.ShieldSquareTest.isShieldSquare.executor": "Run",
@@ -87,7 +91,7 @@
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
+    "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,10 +123,25 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SquareTest">
+  <component name="RunManager" selected="JUnit.BoardTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -138,21 +157,6 @@
       <option name="PACKAGE_NAME" value="test.model.square" />
       <option name="MAIN_CLASS_NAME" value="test.model.square.FinalPathSquareTest" />
       <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.controller" />
-      <option name="MAIN_CLASS_NAME" value="test.controller.GameControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -212,7 +216,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.GameControllerTest" />
+      <item itemvalue="JUnit.BoardTest" />
       <item itemvalue="JUnit.FinalPathSquareTest" />
       <item itemvalue="JUnit.ShieldSquareTest" />
       <item itemvalue="JUnit.SquareTest" />
@@ -220,11 +224,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SquareTest" />
-        <item itemvalue="JUnit.GameControllerTest" />
-        <item itemvalue="JUnit.ShieldSquareTest" />
-        <item itemvalue="JUnit.RegularSquareTest" />
+        <item itemvalue="JUnit.BoardTest" />
         <item itemvalue="JUnit.FinalPathSquareTest" />
+        <item itemvalue="JUnit.SquareTest" />
+        <item itemvalue="JUnit.RegularSquareTest" />
+        <item itemvalue="JUnit.ShieldSquareTest" />
       </list>
     </recent_temporary>
   </component>
@@ -273,7 +277,7 @@
       <workItem from="1731944462929" duration="6870000" />
       <workItem from="1731951399364" duration="2640000" />
       <workItem from="1732030201962" duration="253000" />
-      <workItem from="1732030462277" duration="401000" />
+      <workItem from="1732030462277" duration="1084000" />
     </task>
     <servers />
   </component>
