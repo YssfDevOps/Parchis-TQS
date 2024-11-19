@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+  
   // For testing purposes
   public void leaveAllPieces(List<Piece> pieces) {
     pieces.clear();
