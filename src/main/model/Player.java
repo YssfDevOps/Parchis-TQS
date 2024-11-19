@@ -175,9 +175,9 @@ public class Player {
         Square square = piece.getSquare();
         String squareType = square.isShieldSquare() ? "Shield Square" : "Regular Square";
         if (square instanceof FinalPathSquare) {
-          location = "on final path at position " + ((FinalPathSquare) square).getIndex() + " (" + squareType + ")";
+          location = "on final path at position " + (((FinalPathSquare) square).getIndex() + 1) + " (" + squareType + ")";
         } else {
-          location = "on global path at position " + square.getPosition() + " (" + squareType + ")";
+          location = "on global path at position " + (square.getPosition() + 1) + " (" + squareType + ")";
         }
       }
       System.out.println(" - Piece " + piece.getId() + " is " + location);

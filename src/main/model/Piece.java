@@ -132,9 +132,9 @@ public class Piece {
         } else if (hasFinished) {
             location = "has finished";
         } else if (square instanceof FinalPathSquare) {
-            location = "on final path at position " + ((FinalPathSquare) square).getIndex();
+            location = "on final path at position " + (((FinalPathSquare) square).getIndex() + 1);
         } else {
-            location = "on global path at position " + square.getPosition();
+            location = "on global path at position " + (square.getPosition() + 1);
         }
         return "Piece " + id + " is " + location;
     }

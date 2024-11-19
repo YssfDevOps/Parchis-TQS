@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/checkstyle.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/tests.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checkstyle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/square/FinalPathSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/FinalPathSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/square/RegularSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/RegularSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/square/ShieldSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/ShieldSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/square/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/FinalPathSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/FinalPathSquareTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/ShieldSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/ShieldSquareTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,61 +58,61 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Class&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.BoardTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.BoardTest.getGlobalSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BoardTest.getNextSquare.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.DieTest.roll.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FinalPathSquareTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.FinalPathSquareTest.getColor.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GameControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.GoalSquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LastGlobalSquareTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PieceTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.PlayerTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.PlayerTest.hasPiecesAtHome.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.RegularSquareTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.RegularSquareTest.handleLandingOnRegularSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegularSquareTest.isBlocked.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.isBlocked.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ShieldSquareTest.isShieldSquare.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SquareTest.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.SquareTest.getPosition.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SquareTest.landHere.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SquareTest.leave.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;StatementCoverage__Squares&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.infernus.idea.checkstyle.CheckStyleConfigurable&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "DefaultPlantUmlFileTemplate": "UML Class",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.BoardTest.executor": "Coverage",
+    "JUnit.BoardTest.getGlobalSquare.executor": "Run",
+    "JUnit.BoardTest.getNextSquare.executor": "Debug",
+    "JUnit.DieTest.roll.executor": "Run",
+    "JUnit.FinalPathSquareTest.executor": "Coverage",
+    "JUnit.FinalPathSquareTest.getColor.executor": "Run",
+    "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
+    "JUnit.GameControllerTest.executor": "Run",
+    "JUnit.GoalSquareTest.executor": "Run",
+    "JUnit.LastGlobalSquareTest.executor": "Run",
+    "JUnit.PieceTest.executor": "Coverage",
+    "JUnit.PlayerTest.executor": "Coverage",
+    "JUnit.PlayerTest.hasPiecesAtHome.executor": "Debug",
+    "JUnit.RegularSquareTest.executor": "Coverage",
+    "JUnit.RegularSquareTest.handleLandingOnRegularSquare.executor": "Run",
+    "JUnit.RegularSquareTest.isBlocked.executor": "Run",
+    "JUnit.ShieldSquareTest.executor": "Coverage",
+    "JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor": "Run",
+    "JUnit.ShieldSquareTest.isBlocked.executor": "Run",
+    "JUnit.ShieldSquareTest.isShieldSquare.executor": "Run",
+    "JUnit.SquareTest.executor": "Run",
+    "JUnit.SquareTest.getPosition.executor": "Run",
+    "JUnit.SquareTest.landHere.executor": "Run",
+    "JUnit.SquareTest.leave.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/Youssef/Desktop/TQS/Practiques/Parchis-TQS/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33908045",
+    "settings.editor.selected.configurable": "org.infernus.idea.checkstyle.CheckStyleConfigurable",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -153,21 +154,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Parchis-TQS" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.model.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="main.model.*" />
+          <option name="PATTERN" value="test.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="PACKAGE_NAME" value="test.controller" />
+      <option name="MAIN_CLASS_NAME" value="test.controller.GameControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -227,19 +223,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.GameControllerTest" />
       <item itemvalue="JUnit.FinalPathSquareTest" />
       <item itemvalue="JUnit.ShieldSquareTest" />
       <item itemvalue="JUnit.SquareTest" />
       <item itemvalue="JUnit.RegularSquareTest" />
-      <item itemvalue="JUnit.PlayerTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SquareTest" />
+        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.ShieldSquareTest" />
         <item itemvalue="JUnit.RegularSquareTest" />
         <item itemvalue="JUnit.FinalPathSquareTest" />
-        <item itemvalue="JUnit.PlayerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -287,11 +283,35 @@
       <workItem from="1731936919703" duration="217000" />
       <workItem from="1731944462929" duration="6870000" />
       <workItem from="1731951399364" duration="2640000" />
+      <workItem from="1732030201962" duration="253000" />
+      <workItem from="1732030462277" duration="70000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/model/Piece.java</url>
+          <line>136</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
