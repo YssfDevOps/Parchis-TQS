@@ -133,6 +133,7 @@ public class Board {
         assert playerFinalPaths.containsKey(color) :
                 "Player final path must exist for the given color";
 
+        
         List<FinalPathSquare> finalPath = playerFinalPaths.get(color);
 
         // Postconditions
