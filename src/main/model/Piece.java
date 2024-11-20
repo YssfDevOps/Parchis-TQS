@@ -67,19 +67,17 @@ public class Piece {
         assert board != null : "Board cannot be null";
         assert atHome : "Piece must be at home to enter game";
 
-        if (atHome) {
-            Square startSquare = board.getPlayerStartSquare(color);
-            // Check if the start square is unblocked for this piece
-            if (!startSquare.isBlocked(this)) {
-                startSquare.landHere(this);
-                square = startSquare;
-                atHome = false;
-            } else {
-                System.out.println("Your home is full.");
-            }
-        }
+      Square startSquare = board.getPlayerStartSquare(color);
+      // Check if the start square is unblocked for this piece
+      if (!startSquare.isBlocked(this)) {
+          startSquare.landHere(this);
+          square = startSquare;
+          atHome = false;
+      } else {
+          System.out.println("Your home is full.");
+      }
 
-        // Postcondition
+      // Postcondition
         assert (!atHome && square != null) || (atHome && square == null) :
             "Piece must be either at home without a square or on a square";
 

@@ -20,6 +20,8 @@ class PieceTest {
 
   @Test
   void getId() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - IDs are positive integers and increment sequentially.
 
@@ -46,6 +48,8 @@ class PieceTest {
 
   @Test
   void isAtHome() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Piece is at home.
     // - Piece is not at home.
@@ -74,6 +78,8 @@ class PieceTest {
 
   @Test
   void sendHome() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Sending home a piece that is on the board.
     // - Sending home a piece that is already at home.
@@ -99,6 +105,8 @@ class PieceTest {
 
   @Test
   void enterGame() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // 1. Enter game when start square is NOT blocked
     Piece piece = new Piece(Color.RED);
     Board board = new Board();
@@ -155,6 +163,8 @@ class PieceTest {
 
   @Test
   void getSquare() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // 1. New piece should have null square
     Piece piece = new Piece(Color.RED);
     assertNull(piece.getSquare());
@@ -202,6 +212,8 @@ class PieceTest {
 
   @Test
   void setSquare() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // 1. Set square to a square
     Piece piece = new Piece(Color.RED);
     Square square = new RegularSquare(10);
@@ -231,11 +243,13 @@ class PieceTest {
     Piece otherPiece = new Piece(Color.BLUE);
     square2.landHere(otherPiece); // Now square is occupied by otherPiece
     assertTrue(square2.isOccupied());
-    assertEquals(null, piece2.getSquare());
+    assertNull(piece2.getSquare());
   }
 
   @Test
   void hasFinished() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent partitions:
     // - Piece has not finished.
     // - Piece has finished.
@@ -256,6 +270,8 @@ class PieceTest {
 
   @Test
   void setHasFinished() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Setting hasFinished to true when piece is not at home.
     // - Setting hasFinished to true when piece is at home (should fail).
@@ -281,6 +297,8 @@ class PieceTest {
 
   @Test
   void getColor() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Valid colors (RED, BLUE, GREEN, YELLOW).
     // - Invalid color (null, should fail at construction).
@@ -304,6 +322,8 @@ class PieceTest {
 
   @Test
   void testToString() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Piece at home.
     // - Piece has finished.
