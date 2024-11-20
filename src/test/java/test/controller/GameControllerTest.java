@@ -52,7 +52,6 @@ class GameControllerTest {
   void playerRollDie() {
     // 1. Simulate rolling the die multiple times to test the die roll range
     GameController game = new GameController();
-    Player player = game.getPlayers().get(0);
     for (int i = 0; i < 100; i++) {
       int roll = game.getDie().roll();
       assertTrue(roll >= 1 && roll <= 6);
