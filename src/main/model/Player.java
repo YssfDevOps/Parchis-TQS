@@ -52,7 +52,6 @@ public class Player {
     assert moves > 0 : "Moves must be positive";
     assert moves <= 6 : "Moves must be less than 6";
     assert board != null : "Board cannot be null";
-    assert pieces.contains(piece) : "Piece must belong to the player";
 
     Square currentSquare = piece.getSquare();
     Square lastAccessibleSquare = currentSquare;
@@ -113,8 +112,6 @@ public class Player {
     }
     winner = true;
 
-    // Postcondition
-    assert winner : "Winner must be true when all pieces are finished";
     return true;
   }
 

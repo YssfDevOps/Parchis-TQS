@@ -20,6 +20,8 @@ class PlayerTest {
 
   @Test
   void movePiece() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Different cases:
     // - Moving a piece normally (no blockage, not finishing).
     // - Moving a piece that finishes the game.
@@ -156,10 +158,12 @@ class PlayerTest {
 
   @Test
   void enterPieceIntoGame() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Entering a piece into the game when start square is unblocked.
     // - Attempt to enter a piece when start square is blocked.
-    // - Attemp to enter a piece when all pieces are already in play or finished.
+    // - Attempt to enter a piece when all pieces are already in play or finished.
 
     Board board = new Board();
     Player player = new Player("Youssef", Color.BLUE, board);
@@ -192,6 +196,8 @@ class PlayerTest {
 
   @Test
   void isWinner() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Player has not won (not all pieces have finished).
     // - Player has won (all pieces have finished).
@@ -213,6 +219,8 @@ class PlayerTest {
 
   @Test
   void hasPiecesAtHome() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Player has pieces at home.
     // - Player has no pieces at home.
@@ -238,6 +246,8 @@ class PlayerTest {
 
   @Test
   void hasPiecesOnBoard() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Player has no pieces on board.
     // - Player has pieces on board.
@@ -265,6 +275,8 @@ class PlayerTest {
 
   @Test
   void getPieces() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Player has exactly 4 pieces.
     // - All pieces belong to the player.
@@ -282,6 +294,8 @@ class PlayerTest {
 
   @Test
   void getColor() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent partition:
     // - Player's color is correctly assigned and gotten.
 
@@ -298,10 +312,13 @@ class PlayerTest {
 
     Player player4 = new Player("Lucia-2", Color.YELLOW, board);
     assertEquals(Color.YELLOW, player4.getColor());
+
   }
 
   @Test
   void getName() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalent Partitions:
     // - Player's name is correctly assigned and gotten.
     // - Player's name null.
