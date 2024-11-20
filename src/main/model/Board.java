@@ -97,6 +97,7 @@ public class Board {
         return (ShieldSquare) getGlobalSquare(startPos);
     }
 
+    // Function just for testing.
     public void setPlayerStartSquare(Color color, Square square) {
         // Preconditions
         assert color != null : "Color cannot be null";

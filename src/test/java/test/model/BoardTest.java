@@ -17,6 +17,8 @@ class BoardTest {
 
   @Test
   void getGlobalSquare() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     // Equivalence Partitions:
     // - Invalid positions: position < 0 (should fail)
     // - Valid positions: position >= 0 && position < 68
@@ -71,6 +73,8 @@ class BoardTest {
 
   @Test
   void getPlayerStartSquare() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     Board board = new Board();
     // Equivalence Partitions:
     // - Valid colors: RED, BLUE, GREEN, YELLOW
@@ -106,6 +110,8 @@ class BoardTest {
 
   @Test
   void setPlayerStartSquare() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     Board board = new Board();
     // Equivalence Partitions:
     // - Valid color and square
@@ -126,6 +132,8 @@ class BoardTest {
 
   @Test
   void getPlayerFinalPath() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     Board board = new Board();
     // Equivalence Partitions:
     // - Valid colors: RED, BLUE, GREEN, YELLOW
@@ -145,6 +153,8 @@ class BoardTest {
 
   @Test
   void getNextSquare() {
+    // Statement coverage (already covered all the statements with the tests already done).
+
     Board board = new Board();
     // Equivalence Partitions:
     // - currentSquare on global path
