@@ -36,10 +36,10 @@ class GameControllerTest {
     assertEquals(numPlayers, players.size());
 
     // Check that players have correct names and colors
-    assertEquals("Alice", players.get(0).getName());
+    assertEquals("Youssef", players.get(0).getName());
     assertEquals(Color.YELLOW, players.get(0).getColor());
 
-    assertEquals("Bob", players.get(1).getName());
+    assertEquals("Lucia", players.get(1).getName());
     assertEquals(Color.BLUE, players.get(1).getColor());
   }
 
