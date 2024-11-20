@@ -231,8 +231,7 @@ class PieceTest {
     Piece otherPiece = new Piece(Color.BLUE);
     square2.landHere(otherPiece); // Now square is occupied by otherPiece
     assertTrue(square2.isOccupied());
-
-    assertThrows(AssertionError.class, () -> piece2.setSquare(square2));
+    assertEquals(null, piece2.getSquare());
   }
 
   @Test

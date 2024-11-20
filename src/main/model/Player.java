@@ -50,6 +50,7 @@ public class Player {
     // Preconditions
     assert piece != null : "Piece cannot be null";
     assert moves > 0 : "Moves must be positive";
+    assert moves <= 6 : "Moves must be less than 6";
     assert board != null : "Board cannot be null";
     assert pieces.contains(piece) : "Piece must belong to the player";
 

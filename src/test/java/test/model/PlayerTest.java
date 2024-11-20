@@ -20,12 +20,12 @@ class PlayerTest {
 
   @Test
   void movePiece() {
-    // Equivalent Partitions:
+    // Different cases:
     // - Moving a piece normally (no blockage, not finishing).
     // - Moving a piece that finishes the game.
     // - Moving a piece that is blocked and cannot move.
-    // - Attempting to move a piece that is at home (should fail).
-    // - Attempting to move a piece that has finished (should fail).
+    // - Attempt to move a piece that is at home (should fail).
+    // - Attempt to move a piece that has finished (should fail).
     // - Moves is zero or negative (should fail).
 
     Board board = new Board();
@@ -67,27 +67,99 @@ class PlayerTest {
     player.movePiece(piece2, 1, board);
     assertEquals(currentSquare, piece2.getSquare());
 
-    // 4. Attempting to move a piece that is at home (should fail)
+    // 4. Move a piece that is at home (should fail)
     Piece atHomePiece = player.getPieces().get(2);
     assertTrue(atHomePiece.isAtHome());
     assertThrows(AssertionError.class, () -> player.movePiece(atHomePiece, 1, board));
 
-    // 5. Attempting to move a piece that has finished (should fail)
+    // 5. Move a piece that has finished (should fail)
     assertThrows(AssertionError.class, () -> player.movePiece(piece, 1, board));
 
-    // 6. Attempting to move a piece with zero or negative moves (should fail)
+    // 6. Move a piece with zero or negative moves (should fail)
     Piece piece3 = player.getPieces().get(3);
     piece3.enterGame(board);
     assertThrows(AssertionError.class, () -> player.movePiece(piece3, 0, board));
     assertThrows(AssertionError.class, () -> player.movePiece(piece3, -1, board));
+
+    // Equivalence Partitions for amount of moves:
+    // - Invalid moves: moves < 1 (should fail)
+    // - Valid moves: moves >= 1 && moves <= 6
+    // - Invalid moves: moves > 6 (should fail)
+
+    // Boundary Values for amount of moves:
+    // - moves = -10 (invalid)
+    // - moves = 0 (invalid lower boundary)
+    // - moves = 2 (valid upper boundary)
+    // - moves = 4 (in between)
+    // - moves = 5 (valid lower boundary)
+    // - moves = 6 (Boundary)
+    // - moves = 7 (invalid upper boundary)
+    // - moves = 10 (invalid)
+
+    Board board2 = new Board();
+    Player player4 = new Player("Lucia", Color.RED, board2);
+    Piece piece4 = player4.getPieces().get(0);
+
+    // Set up the piece on the board
+    ShieldSquare startSquare3 = board2.getPlayerStartSquare(Color.RED);
+    leaveAllPieces(startSquare3.getPieces());
+    piece4.enterGame(board2);
+
+    // 1. Move a piece with invalid negative moves (should fail)
+    assertThrows(AssertionError.class, () -> player4.movePiece(piece4, -10, board2));
+    assertThrows(AssertionError.class, () -> player4.movePiece(piece4, -1, board2));
+
+    // 2. Move a piece with zero moves (should fail)
+    assertThrows(AssertionError.class, () -> player4.movePiece(piece4, 0, board2));
+
+    // 3. Moving a piece with moves = 2 (valid lower boundary)
+    piece4.sendHome();
+    piece4.enterGame(board2);
+    Square initialSquare = piece4.getSquare();
+    player4.movePiece(piece4, 2, board2);
+    assertNotEquals(initialSquare, piece4.getSquare());
+    assertNotNull(piece4.getSquare());
+
+    // 4. Moving a piece with moves = 4 (in between valid range)
+    piece4.sendHome();
+    piece4.enterGame(board2);
+    initialSquare = piece4.getSquare();
+    player4.movePiece(piece4, 4, board2);
+    assertNotEquals(initialSquare, piece4.getSquare());
+    assertNotNull(piece4.getSquare());
+
+    // 5. Moving a piece with moves = 5 (valid upper boundary)
+    piece4.sendHome();
+    piece4.enterGame(board2);
+    initialSquare = piece4.getSquare();
+    player4.movePiece(piece4, 5, board2);
+    assertNotEquals(initialSquare, piece4.getSquare());
+    assertNotNull(piece4.getSquare());
+
+    // 6. Moving a piece with moves = 6 (boundary value)
+    piece4.sendHome();
+    piece4.enterGame(board2);
+    initialSquare = piece4.getSquare();
+    player4.movePiece(piece4, 6, board2);
+    assertNotEquals(initialSquare, piece4.getSquare());
+    assertNotNull(piece4.getSquare());
+
+    // 7. Move a piece with moves greater than 6 (should fail)
+    assertThrows(AssertionError.class, () -> player4.movePiece(piece4, 7, board2));
+    assertThrows(AssertionError.class, () -> player4.movePiece(piece4, 10, board2));
+
+    // 8. Move a piece that is at home (should fail)
+    Piece atHomePiece3 = player4.getPieces().get(1);
+    assertTrue(atHomePiece3.isAtHome());
+    assertThrows(AssertionError.class, () -> player4.movePiece(atHomePiece3, 3, board2));
   }
 
   @Test
   void enterPieceIntoGame() {
     // Equivalent Partitions:
     // - Entering a piece into the game when start square is unblocked.
-    // - Attempting to enter a piece when start square is blocked.
-    // - Attempting to enter a piece when all pieces are already in play or finished.
+    // - Attempt to enter a piece when start square is blocked.
+    // - Attemp to enter a piece when all pieces are already in play or finished.
 
     Board board = new Board();
     Player player = new Player("Youssef", Color.BLUE, board);
@@ -105,7 +177,6 @@ class PlayerTest {
     Piece blocker2 = new Piece(Color.BLUE);
     startSquare.landHere(blocker1);
     startSquare.landHere(blocker2); // Forms a blockage
-
     Piece piece = new Piece(Color.BLUE);
     assertTrue(startSquare.isBlocked(piece));
 

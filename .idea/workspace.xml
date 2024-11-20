@@ -6,19 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/model/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/BoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PieceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PieceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/controller/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Die.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Die.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Piece.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Piece.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/model/PieceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/model/PlayerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/PieceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/PieceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +60,9 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.BoardTest.executor": "Run",
     "JUnit.BoardTest.getGlobalSquare.executor": "Run",
-    "JUnit.BoardTest.getNextSquare.executor": "Debug",
+    "JUnit.BoardTest.getNextSquare.executor": "Run",
+    "JUnit.BoardTest.getPlayerFinalPath.executor": "Run",
+    "JUnit.BoardTest.getPlayerStartSquare.executor": "Run",
     "JUnit.DieTest.roll.executor": "Run",
     "JUnit.FinalPathSquareTest.executor": "Run",
     "JUnit.FinalPathSquareTest.getColor.executor": "Run",
@@ -146,10 +139,72 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlayerTest">
+  <component name="RunManager" selected="JUnit.BoardTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.getNextSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="METHOD_NAME" value="getNextSquare" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.getPlayerFinalPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="METHOD_NAME" value="getPlayerFinalPath" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PieceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.PieceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -169,85 +224,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlayerTest.enterPieceIntoGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
-      <option name="METHOD_NAME" value="enterPieceIntoGame" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest.hasPiecesAtHome" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
-      <option name="METHOD_NAME" value="hasPiecesAtHome" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest.hasPiecesOnBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
-      <option name="METHOD_NAME" value="hasPiecesOnBoard" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlayerTest.isWinner" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
-      <option name="METHOD_NAME" value="isWinner" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.BoardTest" />
+      <item itemvalue="JUnit.BoardTest.getNextSquare" />
+      <item itemvalue="JUnit.BoardTest.getPlayerFinalPath" />
+      <item itemvalue="JUnit.PieceTest" />
       <item itemvalue="JUnit.PlayerTest" />
-      <item itemvalue="JUnit.PlayerTest.enterPieceIntoGame" />
-      <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
-      <item itemvalue="JUnit.PlayerTest.hasPiecesOnBoard" />
-      <item itemvalue="JUnit.PlayerTest.isWinner" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BoardTest" />
         <item itemvalue="JUnit.PlayerTest" />
-        <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
-        <item itemvalue="JUnit.PlayerTest.hasPiecesOnBoard" />
-        <item itemvalue="JUnit.PlayerTest.isWinner" />
-        <item itemvalue="JUnit.PlayerTest.enterPieceIntoGame" />
+        <item itemvalue="JUnit.PieceTest" />
+        <item itemvalue="JUnit.BoardTest.getNextSquare" />
+        <item itemvalue="JUnit.BoardTest.getPlayerFinalPath" />
       </list>
     </recent_temporary>
   </component>
@@ -297,7 +288,9 @@
       <workItem from="1731951399364" duration="2640000" />
       <workItem from="1732030201962" duration="253000" />
       <workItem from="1732030462277" duration="13814000" />
-      <workItem from="1732046072012" duration="2477000" />
+      <workItem from="1732046072012" duration="2562000" />
+      <workItem from="1732049466705" duration="47000" />
+      <workItem from="1732087938082" duration="4704000" />
     </task>
     <servers />
   </component>

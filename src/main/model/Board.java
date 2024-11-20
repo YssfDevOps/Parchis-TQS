@@ -80,6 +80,7 @@ public class Board {
     public Square getGlobalSquare(int position) {
         // Preconditions
         assert position >= 0 : "position cannot be negative";
+        assert position < 68 : "position cannot be greater than 68";
 
         int pos = (position + NUM_SQUARES) % NUM_SQUARES;
         return globalPath.get(pos);
