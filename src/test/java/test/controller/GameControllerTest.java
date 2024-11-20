@@ -1,6 +1,7 @@
 package test.controller;
 
 import main.controller.GameController;
+import main.model.Color;
 import main.model.Player;
 import org.junit.jupiter.api.Test;
 
@@ -25,11 +26,21 @@ class GameControllerTest {
   void initializePlayers() {
     // 1. Check initialization of players
     GameController game = new GameController();
-    List<String> playerNames = Arrays.asList("Youssef", "Lucia", "Carlos", "Carla");
-    int numPlayers = 4;
-    game.initializePlayers(numPlayers);
+
+    List<String> playerNames = Arrays.asList("Youssef", "Lucia");
+    int numPlayers = playerNames.size();
+
+    game.initializePlayers(numPlayers, playerNames);
+
     List<Player> players = game.getPlayers();
     assertEquals(numPlayers, players.size());
+
+    // Check that players have correct names and colors
+    assertEquals("Alice", players.get(0).getName());
+    assertEquals(Color.YELLOW, players.get(0).getColor());
+
+    assertEquals("Bob", players.get(1).getName());
+    assertEquals(Color.BLUE, players.get(1).getColor());
   }
 
   @Test
@@ -41,6 +52,7 @@ class GameControllerTest {
   void playerRollDie() {
     // 1. Simulate rolling the die multiple times to test the die roll range
     GameController game = new GameController();
+    Player player = game.getPlayers().get(0);
     for (int i = 0; i < 100; i++) {
       int roll = game.getDie().roll();
       assertTrue(roll >= 1 && roll <= 6);

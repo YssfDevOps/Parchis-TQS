@@ -39,6 +39,22 @@ public class GameController {
     playGame();
   }
 
+  // For testing
+  public void initializePlayers(int numPlayers, List<String> playerNames) {
+    assert numPlayers > 0 && numPlayers <= Color.values().length : "Invalid number of players";
+
+    Color[] colors = Color.values();
+    for (int i = 0; i < numPlayers; i++) {
+      String playerName = playerNames.get(i);
+      Player player = new Player(playerName, colors[i], board);
+      players.add(player);
+    }
+
+    // Postcondition
+    assert players.size() == numPlayers : "Players not initialized correctly";
+  }
+
+
   public void initializePlayers(int numPlayers) {
     assert numPlayers > 0 && numPlayers <= Color.values().length : "Invalid number of players";
 
