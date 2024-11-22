@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/model/MockDie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/UserInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/view/MockGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/controller/GameControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test/controller/GameControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/controller/GameControllerTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -322,7 +315,7 @@
       <workItem from="1732174650571" duration="659000" />
       <workItem from="1732205228157" duration="12308000" />
       <workItem from="1732224840606" duration="350000" />
-      <workItem from="1732260323128" duration="2421000" />
+      <workItem from="1732260323128" duration="3782000" />
     </task>
     <servers />
   </component>
@@ -369,12 +362,12 @@
     <SUITE FILE_PATH="coverage/Parchis_TQS$FinalPathSquareTest.ic" NAME="FinalPathSquareTest Coverage Results" MODIFIED="1732129986010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.square.FinalPathSquare</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest.ic" NAME="GameControllerTest Coverage Results" MODIFIED="1732262209454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.controller.GameController</FILTER>
-      <FILTER>main.model.Player</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest_testPlayerHasNoMovablePieces.ic" NAME="GameControllerTest.testPlayerHasNoMovablePieces Coverage Results" MODIFIED="1732262673804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>test.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest.ic" NAME="GameControllerTest Coverage Results" MODIFIED="1732262764226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.controller.GameController</FILTER>
+      <FILTER>main.model.Player</FILTER>
     </SUITE>
   </component>
 </project>
