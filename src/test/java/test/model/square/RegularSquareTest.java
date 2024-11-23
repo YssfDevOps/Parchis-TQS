@@ -98,7 +98,6 @@ class RegularSquareTest {
       public void handleLandingOnRegularSquare(Piece piece) {
         super.handleLandingOnRegularSquare(piece);
       }
-
     }
 
     // 1. Empty pieces
