@@ -8,6 +8,10 @@ import main.model.square.RegularSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import static org.mockito.Mockito.*;
+
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -104,6 +108,25 @@ class PieceTest {
   }
 
   @Test
+  void sendHome_Mockito() {
+    // Testing to send piece back home after being in a square of globalPath:
+
+    Square mockSquare = Mockito.mock(Square.class);
+    Piece piece = new Piece(Color.RED);
+    piece.setSquare(mockSquare);
+    when(mockSquare.getPieces()).thenReturn(List.of(piece));
+    doNothing().when(mockSquare).leave(piece);
+
+    // Now sending home
+    piece.sendHome();
+    verify(mockSquare).leave(piece);
+
+    // Look if it worked
+    assertTrue(piece.isAtHome());
+    assertNull(piece.getSquare());
+  }
+
+  @Test
   void enterGame() {
     // Statement coverage (already covered all the statements with the tests already done).
 
@@ -159,6 +182,27 @@ class PieceTest {
     assertTrue(piece5.isAtHome());
     assertNull(piece5.getSquare());
     piece5.sendHome();
+  }
+
+  @Test
+  void enterGame_Mockito() {
+    // Testing to put piece in his start square:
+
+    // Create a mock Board and mock ShieldSquare
+    Board mockBoard = Mockito.mock(Board.class);
+    ShieldSquare mockStartSquare = Mockito.mock(ShieldSquare.class);
+    when(mockBoard.getPlayerStartSquare(Color.RED)).thenReturn(mockStartSquare);
+
+    Piece piece = new Piece(Color.RED);
+    when(mockStartSquare.isBlocked(piece)).thenReturn(false);
+
+    doNothing().when(mockStartSquare).landHere(piece);
+    piece.enterGame(mockBoard);
+    verify(mockStartSquare).landHere(piece);
+
+    // Look if piece is not at home and square is done correctly
+    assertFalse(piece.isAtHome());
+    assertEquals(mockStartSquare, piece.getSquare());
   }
 
   @Test
@@ -247,6 +291,15 @@ class PieceTest {
   }
 
   @Test
+  void setSquare_Mockito() {
+    // Setting up piece to a square:
+    Square mockSquare = Mockito.mock(Square.class);
+    Piece piece = new Piece(Color.RED);
+    piece.setSquare(mockSquare);
+    assertEquals(mockSquare, piece.getSquare());
+  }
+  
+  @Test
   void hasFinished() {
     // Statement coverage (already covered all the statements with the tests already done).
 
@@ -292,7 +345,7 @@ class PieceTest {
 
     // 3. Set hasFinished back to false
     piece.setHasFinished(false);
-    assertFalse(piece.hasFinished(), "Piece should not have finished after setting hasFinished to false");
+    assertFalse(piece.hasFinished());
   }
 
   @Test

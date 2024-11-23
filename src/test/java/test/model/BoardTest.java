@@ -75,7 +75,7 @@ class BoardTest {
   }
 
   @Test
-  void getGlobalSquare_withMockito() {
+  void getGlobalSquare_Mockito() {
     // In this case we are mocking Square:
     List<Square> mockGlobalPath = Mockito.mock(List.class);
     Board board = new Board();
@@ -145,7 +145,7 @@ class BoardTest {
   }
 
   @Test
-  void getPlayerStartSquare_withMockito() {
+  void getPlayerStartSquare_Mockito() {
     // In this case we are mocking Shield Square:
     Map<Color, Integer> mockStartPositions = Mockito.mock(Map.class);
     List<Square> mockGlobalPath = Mockito.mock(List.class);
@@ -206,7 +206,7 @@ class BoardTest {
   }
 
   @Test
-  void setPlayerStartSquare_withMockito() {
+  void setPlayerStartSquare_Mockito() {
     // In this case we are mocking Shield Square:
     Map<Color, Integer> mockStartPositions = Mockito.mock(Map.class);
     List<Square> mockGlobalPath = Mockito.mock(List.class);
@@ -272,7 +272,7 @@ class BoardTest {
   }
 
   @Test
-  void getPlayerFinalPath_withMockito() {
+  void getPlayerFinalPath_Mockito() {
     // In this case we are mocking FinalPath Square:
     Map<Color, List<FinalPathSquare>> mockPlayerFinalPaths = Mockito.mock(Map.class);
     Board board = new Board();
@@ -350,7 +350,7 @@ class BoardTest {
   }
 
   @Test
-  void getNextSquare_withMockito() {
+  void getNextSquare_Mockito() {
     // Mocking different classes RegularSquare, ShieldSquare and FinalPathSquare:
 
     Board board = new Board();
