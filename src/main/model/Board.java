@@ -52,6 +52,18 @@ public class Board {
         ));
     }
 
+    public void setGlobalPath(List<Square> globalPath) {
+        this.globalPath = globalPath;
+    }
+
+    public Map<Color, List<FinalPathSquare>> getPlayerFinalPaths() {
+        return playerFinalPaths;
+    }
+
+    public List<Square> getGlobalPath() {
+        return globalPath;
+    }
+
     // Set up the global path with squares
     private void setUpGlobalPath() {
         for (int i = 0; i < NUM_SQUARES; i++) {
@@ -70,6 +82,17 @@ public class Board {
         for (Color color : Color.values()) {
             List<FinalPathSquare> finalPath = new ArrayList<>(NUM_FINAL_SQUARES);
             for (int i = 0; i < NUM_FINAL_SQUARES; i++) {
+                finalPath.add(new FinalPathSquare(i, color));
+            }
+            playerFinalPaths.put(color, finalPath);
+        }
+    }
+
+    // For testing purposes
+    public void setUpPlayerFinalPaths_Custom(List<Color> colors, int NUM_SQUARES) {
+        for (Color color : colors) {
+            List<FinalPathSquare> finalPath = new ArrayList<>(NUM_SQUARES);
+            for (int i = 0; i < NUM_SQUARES; i++) {
                 finalPath.add(new FinalPathSquare(i, color));
             }
             playerFinalPaths.put(color, finalPath);

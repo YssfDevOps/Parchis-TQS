@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/controller/MockGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/controller/GameControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/controller/GameControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/model/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/BoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PieceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PieceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/model/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/controller/GameControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/controller/GameControllerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/BoardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/BoardTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/PieceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/PieceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,18 +74,22 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.BoardTest.executor": "Run",
     "JUnit.BoardTest.getGlobalSquare.executor": "Run",
+    "JUnit.BoardTest.getGlobalSquare_Mockito.executor": "Run",
     "JUnit.BoardTest.getNextSquare.executor": "Run",
     "JUnit.BoardTest.getPlayerFinalPath.executor": "Run",
     "JUnit.BoardTest.getPlayerStartSquare.executor": "Run",
+    "JUnit.BoardTest.setUpPlayerFinalPaths_loopTesting.executor": "Debug",
     "JUnit.DieTest.executor": "Coverage",
     "JUnit.DieTest.roll.executor": "Run",
     "JUnit.FinalPathSquareTest.executor": "Coverage",
     "JUnit.FinalPathSquareTest.getColor.executor": "Run",
     "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
     "JUnit.GameControllerTest.executor": "Coverage",
+    "JUnit.GameControllerTest.initializePlayers_loopTesting.executor": "Run",
     "JUnit.GameControllerTest.playerRollDie.executor": "Run",
     "JUnit.GameControllerTest.testCoveringOtherCases.executor": "Run",
     "JUnit.GameControllerTest.testPlayGameUntilYellowWins.executor": "Debug",
+    "JUnit.GameControllerTest.testPlayGame_loopTesting.executor": "Run",
     "JUnit.GameControllerTest.testPlayerChoosesNotToEnterPiece.executor": "Run",
     "JUnit.GameControllerTest.testPlayerHasNoMovablePieces.executor": "Coverage",
     "JUnit.GameControllerTest.testYellowBlockedByBlue.executor": "Run",
@@ -98,6 +112,7 @@
     "JUnit.PlayerTest.hasPiecesOnBoard.executor": "Run",
     "JUnit.PlayerTest.isWinner.executor": "Run",
     "JUnit.PlayerTest.movePiece.executor": "Run",
+    "JUnit.PlayerTest.movePiece_loopTesting.executor": "Coverage",
     "JUnit.RegularSquareTest.executor": "Coverage",
     "JUnit.RegularSquareTest.handleLandingOnRegularSquare.executor": "Run",
     "JUnit.RegularSquareTest.isBlocked.executor": "Run",
@@ -105,7 +120,7 @@
     "JUnit.ShieldSquareTest.handleLandingOnShieldSquare.executor": "Run",
     "JUnit.ShieldSquareTest.isBlocked.executor": "Run",
     "JUnit.ShieldSquareTest.isShieldSquare.executor": "Run",
-    "JUnit.SquareTest.executor": "Coverage",
+    "JUnit.SquareTest.executor": "Run",
     "JUnit.SquareTest.getPosition.executor": "Run",
     "JUnit.SquareTest.landHere.executor": "Run",
     "JUnit.SquareTest.leave.executor": "Run",
@@ -152,7 +167,7 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PieceTest">
+  <component name="RunManager" selected="JUnit.GameControllerTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
@@ -180,6 +195,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BoardTest.getGlobalSquare_Mockito" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.BoardTest" />
+      <option name="METHOD_NAME" value="getGlobalSquare_Mockito" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Parchis-TQS" />
       <extension name="coverage">
@@ -192,7 +223,7 @@
           <option name="ENABLED" value="true" />
         </pattern>
         <pattern>
-          <option name="PATTERN" value="main.model.Player" />
+          <option name="PATTERN" value="main.controller.MockGameController" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -204,7 +235,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameControllerTest.testPlayerHasNoMovablePieces" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameControllerTest.testPlayGame_loopTesting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Parchis-TQS" />
       <extension name="coverage">
         <pattern>
@@ -214,28 +245,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="test.controller" />
       <option name="MAIN_CLASS_NAME" value="test.controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="testPlayerHasNoMovablePieces" />
+      <option name="METHOD_NAME" value="testPlayGame_loopTesting" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PieceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="main.model.Piece" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model" />
-      <option name="MAIN_CLASS_NAME" value="test.model.PieceTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -245,16 +256,11 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="test.model.square.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="main.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test.model.square" />
       <option name="MAIN_CLASS_NAME" value="test.model.square.SquareTest" />
-      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -262,19 +268,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.BoardTest" />
-      <item itemvalue="JUnit.PieceTest" />
+      <item itemvalue="JUnit.BoardTest.getGlobalSquare_Mockito" />
       <item itemvalue="JUnit.SquareTest" />
-      <item itemvalue="JUnit.GameControllerTest.testPlayerHasNoMovablePieces" />
+      <item itemvalue="JUnit.GameControllerTest.testPlayGame_loopTesting" />
+      <item itemvalue="JUnit.BoardTest" />
       <item itemvalue="JUnit.GameControllerTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PieceTest" />
+        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.BoardTest" />
         <item itemvalue="JUnit.SquareTest" />
-        <item itemvalue="JUnit.GameControllerTest" />
-        <item itemvalue="JUnit.GameControllerTest.testPlayerHasNoMovablePieces" />
+        <item itemvalue="JUnit.BoardTest.getGlobalSquare_Mockito" />
+        <item itemvalue="JUnit.GameControllerTest.testPlayGame_loopTesting" />
       </list>
     </recent_temporary>
   </component>
@@ -336,7 +342,7 @@
       <workItem from="1732224840606" duration="350000" />
       <workItem from="1732260323128" duration="3782000" />
       <workItem from="1732347663265" duration="1609000" />
-      <workItem from="1732349762946" duration="7559000" />
+      <workItem from="1732349762946" duration="23615000" />
     </task>
     <servers />
   </component>
@@ -369,14 +375,14 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Parchis_TQS$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1732363094544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Parchis_TQS$BoardTest.ic" NAME="BoardTest Coverage Results" MODIFIED="1732384279455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.Board</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest.ic" NAME="PlayerTest Coverage Results" MODIFIED="1732129873981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.model.Player</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Parchis_TQS$DieTest.ic" NAME="DieTest Coverage Results" MODIFIED="1732130439104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.Die</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest.ic" NAME="PlayerTest Coverage Results" MODIFIED="1732378649574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.model.Player</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Parchis_TQS$RegularSquareTest.ic" NAME="RegularSquareTest Coverage Results" MODIFIED="1732130029801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.square.RegularSquare</FILTER>
@@ -396,9 +402,12 @@
     <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest_testPlayerHasNoMovablePieces.ic" NAME="GameControllerTest.testPlayerHasNoMovablePieces Coverage Results" MODIFIED="1732262673804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>test.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest.ic" NAME="GameControllerTest Coverage Results" MODIFIED="1732262764226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest_movePiece_loopTesting.ic" NAME="PlayerTest.movePiece_loopTesting Coverage Results" MODIFIED="1732378349295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>test.model.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest.ic" NAME="GameControllerTest Coverage Results" MODIFIED="1732388293640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.controller.GameController</FILTER>
-      <FILTER>main.model.Player</FILTER>
+      <FILTER>main.controller.MockGameController</FILTER>
     </SUITE>
   </component>
 </project>
