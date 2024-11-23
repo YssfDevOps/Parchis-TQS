@@ -1,13 +1,9 @@
 package test.model;
 
-import main.model.Board;
-import main.model.Color;
-import main.model.Piece;
-import main.model.Player;
-import main.model.square.FinalPathSquare;
-import main.model.square.ShieldSquare;
-import main.model.square.Square;
+import main.model.*;
+import main.model.square.*;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -154,6 +150,56 @@ class PlayerTest {
     Piece atHomePiece3 = player4.getPieces().get(1);
     assertTrue(atHomePiece3.isAtHome());
     assertThrows(AssertionError.class, () -> player4.movePiece(atHomePiece3, 3, board2));
+
+    // Decision coverage ---------------------------------------------------------------------
+
+    // Create the board, piece, and required squares
+    MockBoard board_dc = new MockBoard();
+    Player player_dc = new Player("Lucia", Color.BLUE, board_dc);
+    Piece piece_dc = player_dc.getPieces().get(0);
+
+    MockSquare startSquare_dc = new MockSquare(1);
+    MockSquare midSquare_dc = new MockSquare(2);
+    MockSquare endSquare_dc = new MockSquare(3);
+    MockSquare blockedSquare_dc = new MockSquare(2);
+    blockedSquare_dc.setBlocked(true);
+    MockSquare nullSquare_dc = null;
+
+    // Case 1: nextSquare == null
+    // Simulates that the piece is on a square and the next square is null (end of path)
+    piece_dc.setSquare(startSquare_dc);
+    board_dc.setNextSquare(nullSquare_dc, null); // The next square is null
+    player_dc.movePiece(piece_dc, 1, board_dc);
+    assertTrue(piece_dc.hasFinished(), "Case 1: The piece should be marked as finished");
+    assertNull(piece_dc.getSquare(), "Case 1: The piece should have left the board");
+
+    // Case 2: nextSquare.isBlocked(piece) == true
+    // Simulates that the next square is blocked
+    piece_dc.setSquare(startSquare_dc);
+    board_dc.setNextSquare(blockedSquare_dc, null); // The next square is the blocked one
+    player_dc.movePiece(piece_dc, 1, board_dc);
+    assertEquals(startSquare_dc, piece_dc.getSquare(), "Case 2: The piece should stay in the starting square");
+
+    // Case 3: nextSquare.isBlocked(piece) == false
+    // Simulates that the piece can move to an unblocked square
+    piece_dc.setSquare(startSquare_dc);
+    board_dc.setNextSquare(midSquare_dc, null); // The next square is accessible
+    player_dc.movePiece(piece_dc, 1, board_dc);
+    assertEquals(midSquare_dc, piece.getSquare(), "Case 3: The piece should move to the next square");
+
+    // Case 4: lastAccessibleSquare != currentSquare
+    // Simulates that the piece moves through multiple squares and ends on a different square
+    piece_dc.setSquare(startSquare_dc);
+    board_dc.setNextSquare(midSquare_dc, endSquare_dc); // The piece can move through two squares
+    player_dc.movePiece(piece_dc, 2, board_dc);
+    assertEquals(endSquare_dc, piece_dc.getSquare(), "Case 4: The piece should end on a square different from the start");
+
+    // Case 5: lastAccessibleSquare == currentSquare - TODO:REVISAR
+    // Simulates that the piece cannot move due to blockages
+    piece_dc.setSquare(startSquare_dc);
+    board_dc.setNextSquare(blockedSquare_dc, null); // The next square is blocked
+    player_dc.movePiece(piece, 1, board_dc);
+    assertEquals(startSquare, piece.getSquare(), "Case 5: The piece should stay in the starting square");
   }
 
   @Test

@@ -2,6 +2,7 @@ package test.model.square;
 
 import main.model.Color;
 import main.model.Piece;
+import main.model.square.MockSquare;
 import main.model.square.RegularSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
@@ -215,6 +216,55 @@ class SquareTest {
 
     assertTrue(shieldSquare.isOccupied());
     assertEquals(shieldSquare, piece7.getSquare());
+
+
+    // Decision coverage ----------------------------------------------------------------
+
+    MockSquare square_dc = new MockSquare(1);
+    Piece piece_dc = new Piece(Color.GREEN);
+    Piece piece2_dc = new Piece(Color.BLUE);
+    Piece piece3_dc = new Piece(Color.BLUE);
+
+    // Case 1: isOccupied() returns true
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+    square_dc.landHere(piece_dc);
+    assertTrue(square_dc.getPieces().contains(piece_dc), "The piece 1 must land in this square.");
+    square_dc.setOccupied(true); // The square is occupied
+    square_dc.landHere(piece2_dc);
+    assertFalse(square_dc.getPieces().contains(piece_dc), "The piece 1 must be dead.");
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "The piece 2 must land in this square.");
+
+    // Leave the piece
+    square_dc.leave(piece2_dc);
+
+    // Case 2: isOccupied() returns false
+    // Simulates that the square is not occupied (can land here)
+    square_dc.setOccupied(false); // The square is not occupied
+    square_dc.landHere(piece_dc);
+    assertTrue(square_dc.getPieces().contains(piece_dc), "The piece must be in this square.");
+
+    // Leave the piece
+    square_dc.leave(piece_dc);
+
+    // Case 3: isShieldSquare() returns false
+    // Simulates that the square is a ShieldSquare, and it is occupied by a piece from a differents color
+    square_dc.setShieldSquare(false);
+    square_dc.setOccupied(true);
+    square_dc.landHere(piece_dc);
+    square_dc.landHere(piece2_dc);
+    assertFalse(square_dc.getPieces().contains(piece_dc), "The piece 1 must be dead.");
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "The piece 2 must land in this square.");
+
+    // Leave the piece
+    square_dc.leave(piece2_dc);
+
+    // Case 4: isShieldSquare() returns true
+    // Simulates that the square is a ShieldSquare, and it is occupied by a piece from a differents color
+    square_dc.setShieldSquare(true);
+    square_dc.landHere(piece2_dc);
+    square_dc.landHere(piece3_dc);
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "The piece 2 must be in this square.");
+    assertTrue(square_dc.getPieces().contains(piece3_dc), "The piece 3 must be in this square.");
   }
 
   @Test
