@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +95,7 @@
     "JUnit.PlayerTest.hasPiecesAtHome.executor": "Run",
     "JUnit.PlayerTest.hasPiecesOnBoard.executor": "Run",
     "JUnit.PlayerTest.isWinner.executor": "Run",
-    "JUnit.PlayerTest.movePiece.executor": "Run",
+    "JUnit.PlayerTest.movePiece.executor": "Coverage",
     "JUnit.RegularSquareTest.executor": "Coverage",
     "JUnit.RegularSquareTest.handleLandingOnRegularSquare.executor": "Run",
     "JUnit.RegularSquareTest.isBlocked.executor": "Run",
@@ -332,7 +330,7 @@
       <workItem from="1732224840606" duration="350000" />
       <workItem from="1732260323128" duration="3782000" />
       <workItem from="1732359396664" duration="15918000" />
-      <workItem from="1732448418211" duration="5438000" />
+      <workItem from="1732448418211" duration="5803000" />
     </task>
     <servers />
   </component>
@@ -358,7 +356,7 @@
     <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest_testPlayerHasNoMovablePieces.ic" NAME="GameControllerTest.testPlayerHasNoMovablePieces Coverage Results" MODIFIED="1732262673804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>test.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest_movePiece.ic" NAME="PlayerTest.movePiece Coverage Results" MODIFIED="1732385271266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest_movePiece.ic" NAME="PlayerTest.movePiece Coverage Results" MODIFIED="1732455154628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.Player</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Parchis_TQS$PieceTest.ic" NAME="PieceTest Coverage Results" MODIFIED="1732132746013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
