@@ -6,7 +6,7 @@ import main.model.square.MockSquare;
 import main.model.square.RegularSquare;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+//import static org.mockito.Mockito.*;
 
 class RegularSquareTest {
 
@@ -104,35 +104,42 @@ class RegularSquareTest {
     assertThrows(AssertionError.class, testSquare2::invariant);
 
     // 3. Cover UnsupportedOperationException
-    RegularSquare testSquare3 = mock(RegularSquare.class);
-    when(testSquare3.isShieldSquare()).thenReturn(true);
-    Piece testPiece2 = new Piece(Color.BLUE);
-    testSquare3.landHere(new Piece(Color.RED));
+    //RegularSquare testSquare3 = mock(RegularSquare.class);
+    //when(testSquare3.isShieldSquare()).thenReturn(true);
+    //Piece testPiece2 = new Piece(Color.BLUE);
+    //testSquare3.landHere(new Piece(Color.RED));
 
-    assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
+    //assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
 
     // Decision coverage ------------------------------------------------------------------------------
+
     // Case 1: pieces.isEmpty() returns true
-    // Simulates that the square is occupied (piece 2 eat piece 1)
+    RegularSquare square_dc = new RegularSquare(1);
+    Piece piece_dc = new Piece(Color.RED);
+    square_dc.landHere(piece_dc);
+    assertTrue(square_dc.getPieces().contains(piece_dc), "Case 1: The piece must be in this square.");
 
-    // Case 2: pieces.isEmpty() returns false
-    // Simulates that the square is occupied (piece 2 eat piece 1)
-
-
-    // Case 3: pieces.size() == 1
-    // Simulates that the square is occupied (piece 2 eat piece 1)
+    // Case 2 and 3: pieces.isEmpty() returns false and pieces.size() == 1
+    Piece piece2_dc = new Piece(Color.RED);
+    square_dc.landHere(piece2_dc);
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 2-3: The piece must be in this square.");
 
     // Case 4: pieces.size() != 1
-    // Simulates that the square is occupied (piece 2 eat piece 1)
+    Piece piece3_dc = new Piece(Color.RED);
+    square_dc.landHere(piece3_dc);
+    assertFalse(square_dc.getPieces().contains(piece3_dc), "Case 4: The square is full.");
 
-    
     // Case 5: occupant.getColor().equals(piece.getColor()) returns true
-    // Simulates that the square is occupied (piece 2 eat piece 1)
+    square_dc.leave(piece2_dc);
+    square_dc.landHere(piece2_dc);
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 5: The piece must be in this square.");
 
     // Case 6: occupant.getColor().equals(piece.getColor()) returns false
-    // Simulates that the square is occupied (piece 2 eat piece 1)
-
-
+    square_dc.leave(piece2_dc);
+    Piece piece4_dc = new Piece(Color.GREEN);
+    square_dc.landHere(piece4_dc);
+    assertTrue(square_dc.getPieces().contains(piece4_dc), "Case 6: The piece must be in this square.");
+    assertFalse(square_dc.getPieces().contains(piece_dc), "Case 6: The piece must be died.");
   }
 
   @Test

@@ -56,6 +56,8 @@ public class MockSquare extends RegularSquare {
   }
 
   public void addPieceDirectly(Piece piece) {
+    piece.setSquare(this);
+    piece.setAtHome(false);
     this.pieces.add(piece);
   }
 }
