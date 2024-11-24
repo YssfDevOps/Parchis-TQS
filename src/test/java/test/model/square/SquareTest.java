@@ -357,7 +357,7 @@ class SquareTest {
   }
 
   @Test
-  void pairwiseTesting() {
+  void landHere_pairwiseTesting() {
     // Pairwise Testing for landHere method
 
     // 1. RegularSquare, Empty
