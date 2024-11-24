@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/model/MockBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test/controller/GameControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/controller/GameControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +37,12 @@
     &quot;assignee&quot;: &quot;YssfDevOps&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/YssfDevOps/Parchis-TQS.git",
-    "accountId": "7c1b32bd-c3b1-45bf-ba02-9faeabf98583"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/YssfDevOps/Parchis-TQS.git&quot;,
+    &quot;accountId&quot;: &quot;7c1b32bd-c3b1-45bf-ba02-9faeabf98583&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -132,7 +127,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.33908045",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
@@ -154,7 +149,7 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SquareTest.landHere">
+  <component name="RunManager" selected="JUnit.RegularSquareTest.handleLandingOnRegularSquare">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
@@ -182,22 +177,6 @@
       <option name="MAIN_CLASS_NAME" value="test.controller.GameControllerTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameControllerTest.testCoveringOtherCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.controller" />
-      <option name="MAIN_CLASS_NAME" value="test.controller.GameControllerTest" />
-      <option name="METHOD_NAME" value="testCoveringOtherCases" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -238,6 +217,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RegularSquareTest.handleLandingOnRegularSquare" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.square.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model.square" />
+      <option name="MAIN_CLASS_NAME" value="test.model.square.RegularSquareTest" />
+      <option name="METHOD_NAME" value="handleLandingOnRegularSquare" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SquareTest.landHere" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Parchis-TQS" />
       <extension name="coverage">
@@ -260,19 +255,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.RegularSquareTest.handleLandingOnRegularSquare" />
       <item itemvalue="JUnit.PlayerTest.movePiece" />
       <item itemvalue="JUnit.SquareTest.landHere" />
-      <item itemvalue="JUnit.GameControllerTest.testCoveringOtherCases" />
       <item itemvalue="JUnit.GameControllerTest.testPlayerHasNoMovablePieces" />
       <item itemvalue="JUnit.GameControllerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RegularSquareTest.handleLandingOnRegularSquare" />
         <item itemvalue="JUnit.SquareTest.landHere" />
         <item itemvalue="JUnit.PlayerTest.movePiece" />
         <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.GameControllerTest.testPlayerHasNoMovablePieces" />
-        <item itemvalue="JUnit.GameControllerTest.testCoveringOtherCases" />
       </list>
     </recent_temporary>
   </component>
@@ -333,7 +328,8 @@
       <workItem from="1732205228157" duration="12308000" />
       <workItem from="1732224840606" duration="350000" />
       <workItem from="1732260323128" duration="3782000" />
-      <workItem from="1732359396664" duration="15031000" />
+      <workItem from="1732359396664" duration="15918000" />
+      <workItem from="1732448418211" duration="2632000" />
     </task>
     <servers />
   </component>

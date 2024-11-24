@@ -2,9 +2,11 @@ package test.model.square;
 
 import main.model.Color;
 import main.model.Piece;
+import main.model.square.MockSquare;
 import main.model.square.RegularSquare;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class RegularSquareTest {
 
@@ -81,43 +83,16 @@ class RegularSquareTest {
     opponentBlockedSquare.landHere(redPiece4);
     assertNull(redPiece4.getSquare());
 
-    // Statement coverage
-    // Subclass to override isOccupied() function to return empty
-    class TestRegularSquare extends RegularSquare {
-      public TestRegularSquare(int position) {
-        super(position);
-      }
-
-      @Override
-      public boolean isOccupied() {
-        return true; // Force to return true
-      }
-
-      // Expose the protected method for testing
-      @Override
-      public void handleLandingOnRegularSquare(Piece piece) {
-        super.handleLandingOnRegularSquare(piece);
-      }
-    }
+    // Statement coverage -------------------------------------------------------------------------
 
     // 1. Empty pieces
-    TestRegularSquare testSquare = new TestRegularSquare(10);
+    MockSquare testSquare = new MockSquare(10);
     Piece testPiece = new Piece(Color.RED);
     testSquare.landHere(testPiece);
+    testSquare.setOccupied(true);
     assertTrue(testSquare.isOccupied());
 
-    // Subclass to access and manipulate pieces
-    class TestRegularSquare2 extends RegularSquare {
-      public TestRegularSquare2(int position) {
-        super(position);
-      }
-
-      public void addPieceDirectly(Piece piece) {
-        this.pieces.add(piece);
-      }
-    }
-
-    TestRegularSquare2 testSquare2 = new TestRegularSquare2(10);
+    MockSquare testSquare2 = new MockSquare(10);
     Piece piece7 = new Piece(Color.RED);
     Piece piece8 = new Piece(Color.BLUE);
     Piece piece9 = new Piece(Color.GREEN);
@@ -129,22 +104,35 @@ class RegularSquareTest {
     assertThrows(AssertionError.class, testSquare2::invariant);
 
     // 3. Cover UnsupportedOperationException
-    class TestRegularSquare3 extends RegularSquare {
-      public TestRegularSquare3(int position) {
-        super(position);
-      }
-
-      @Override
-      public boolean isShieldSquare() {
-        return true; // Force to return true
-      }
-    }
-
-    TestRegularSquare3 testSquare3 = new TestRegularSquare3(10);
+    RegularSquare testSquare3 = mock(RegularSquare.class);
+    when(testSquare3.isShieldSquare()).thenReturn(true);
     Piece testPiece2 = new Piece(Color.BLUE);
     testSquare3.landHere(new Piece(Color.RED));
 
     assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
+
+    // Decision coverage ------------------------------------------------------------------------------
+    // Case 1: pieces.isEmpty() returns true
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+
+    // Case 2: pieces.isEmpty() returns false
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+
+
+    // Case 3: pieces.size() == 1
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+
+    // Case 4: pieces.size() != 1
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+
+    
+    // Case 5: occupant.getColor().equals(piece.getColor()) returns true
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+
+    // Case 6: occupant.getColor().equals(piece.getColor()) returns false
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+
+
   }
 
   @Test

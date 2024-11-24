@@ -54,5 +54,9 @@ public class MockSquare extends RegularSquare {
     // Invariant check
     invariant();
   }
+
+  public void addPieceDirectly(Piece piece) {
+    this.pieces.add(piece);
+  }
 }
 
