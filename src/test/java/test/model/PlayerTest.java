@@ -20,9 +20,7 @@ class PlayerTest {
 
   @Test
   void movePiece() {
-    // Statement coverage (already covered all the statements with the tests already done).
-
-    // Different cases:
+    // Statement coverage:
     // - Moving a piece normally (no blockage, not finishing).
     // - Moving a piece that finishes the game.
     // - Moving a piece that is blocked and cannot move.
