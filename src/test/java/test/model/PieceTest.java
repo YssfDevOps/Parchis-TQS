@@ -57,6 +57,7 @@ class PieceTest {
     // Equivalent Partitions:
     // - Piece is at home.
     // - Piece is not at home.
+    // - Send piece home, piece should be at home again
 
     // 1. New piece should be at home (start of the game)
     Piece piece = new Piece(Color.RED);
