@@ -242,9 +242,9 @@ class GameControllerTest {
 
     // MAX_TURNS = 1000 (for n)
     // MAX_PLAYERS = 4 (for m)
-    // (n,m) = (1,0) (1,1) (1,2) (1,MAX_COLOURS-1) (1,MAX_COLOURS)
-    // (0,m<MAX_COLOURS) (1,m<MAX_COLOURS) (2,m<MAX_COLOURS) (n<MAX_SQUARES-1,m<MAX_COLOURS)
-    // (MAX_SQUARES-1,m<MAX_COLOURS) (MAX_SQUARES,m<MAX_COLOURS)
+    // (n,m) = (1,0) (1,1) (1,2) (1,MAX_PLAYERS-1) (1,MAX_PLAYERS)
+    // (0,m<MAX_PLAYERS) (1,m<MAX_PLAYERS) (2,m<MAX_PLAYERS) (n<MAX_TURNS-1,m<MAX_PLAYERS)
+    // (MAX_TURNS-1,m<MAX_PLAYERS) (MAX_TURNS,m<MAX_PLAYERS)
 
     int MAX_TURNS = 1000;
     int MAX_PLAYERS = 4;
