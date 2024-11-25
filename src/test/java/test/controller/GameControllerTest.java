@@ -58,7 +58,7 @@ class GameControllerTest {
   void initializePlayers_loopTesting() {
     // Testing of loop simple testing
     // MAX_PLAYERS = 4 (because of amount of colours).
-    // Simple loop: 0, 1, 2, MAX_MOVES - 1, MAX_MOVES
+    // Simple loop: 0, 1, 2, MAX_PLAYERS - 1, MAX_PLAYERS
 
     GameController game = new GameController();
 
