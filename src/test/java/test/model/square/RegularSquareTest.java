@@ -6,7 +6,7 @@ import main.model.square.MockSquare;
 import main.model.square.RegularSquare;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.*;
 
 class RegularSquareTest {
 
@@ -103,13 +103,13 @@ class RegularSquareTest {
     testSquare2.addPieceDirectly(piece9);
     assertThrows(AssertionError.class, testSquare2::invariant);
 
-    // 3. Cover UnsupportedOperationException
-    //RegularSquare testSquare3 = mock(RegularSquare.class);
-    //when(testSquare3.isShieldSquare()).thenReturn(true);
-    //Piece testPiece2 = new Piece(Color.BLUE);
-    //testSquare3.landHere(new Piece(Color.RED));
+    // 3. Cover UnsupportedOperationException TODO
+    RegularSquare testSquare3 = mock(RegularSquare.class);
+    when(testSquare3.isShieldSquare()).thenReturn(true);
+    Piece testPiece2 = new Piece(Color.BLUE);
+    testSquare3.landHere(new Piece(Color.RED));
 
-    //assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
+    assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
 
     // Decision coverage ------------------------------------------------------------------------------
 

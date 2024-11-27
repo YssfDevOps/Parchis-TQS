@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/diagramsPathCoverage/landHere.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diagramsPathCoverage/movePiece.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/SquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/model/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/model/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/PlayerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest$1TestSquare.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest$1TestSquare.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/SquareTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +30,8 @@
         <option value="Interface" />
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="UML Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -106,7 +111,7 @@
     "JUnit.ShieldSquareTest.isShieldSquare.executor": "Run",
     "JUnit.SquareTest.executor": "Coverage",
     "JUnit.SquareTest.getPosition.executor": "Run",
-    "JUnit.SquareTest.landHere.executor": "Coverage",
+    "JUnit.SquareTest.landHere.executor": "Run",
     "JUnit.SquareTest.leave.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -151,7 +156,7 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.RegularSquareTest.handleLandingOnRegularSquare">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
@@ -265,8 +270,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PlayerTest.movePiece" />
         <item itemvalue="JUnit.RegularSquareTest.handleLandingOnRegularSquare" />
+        <item itemvalue="JUnit.PlayerTest.movePiece" />
         <item itemvalue="JUnit.SquareTest.landHere" />
         <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.GameControllerTest.testPlayerHasNoMovablePieces" />
@@ -357,7 +362,7 @@
     <SUITE FILE_PATH="coverage/Parchis_TQS$GameControllerTest_testPlayerHasNoMovablePieces.ic" NAME="GameControllerTest.testPlayerHasNoMovablePieces Coverage Results" MODIFIED="1732262673804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>test.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest_movePiece.ic" NAME="PlayerTest.movePiece Coverage Results" MODIFIED="1732455284611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/Parchis_TQS$PlayerTest_movePiece.ic" NAME="PlayerTest.movePiece Coverage Results" MODIFIED="1732640969757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.model.Player</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Parchis_TQS$PieceTest.ic" NAME="PieceTest Coverage Results" MODIFIED="1732132746013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">

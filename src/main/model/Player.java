@@ -141,6 +141,11 @@ public class Player {
     return pieces;
   }
 
+  // Test method
+  public void setPieces(List<Piece> pieces) {
+    this.pieces = pieces;
+  }
+  
   public Color getColor() {
     // Precondition: Returned color must not be null
     assert color != null : "Player color must not be null";

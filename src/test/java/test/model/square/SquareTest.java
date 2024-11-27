@@ -1,7 +1,9 @@
 package test.model.square;
 
+import main.model.Board;
 import main.model.Color;
 import main.model.Piece;
+import main.model.Player;
 import main.model.square.MockSquare;
 import main.model.square.RegularSquare;
 import main.model.square.ShieldSquare;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class SquareTest {
 
@@ -265,6 +268,49 @@ class SquareTest {
     square_dc.landHere(piece3_dc);
     assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 4: The piece 2 must be in this square.");
     assertTrue(square_dc.getPieces().contains(piece3_dc), "Case 4: The piece 3 must be in this square.");
+
+
+    // Path coverage ------------------------------------------------------------------------------------------
+
+    // Set up
+    Board board_pc = mock(Board.class);
+    Piece piece1_pc = mock(Piece.class);
+    Piece piece2_pc = mock(Piece.class);
+    Piece piece3_pc = mock(Piece.class);
+    Piece piece4_pc = mock(Piece.class);
+    Player player_pc = new Player("Player1", Color.RED, board_pc);
+    player_pc.setPieces(List.of(piece1_pc, piece2_pc, piece3_pc, piece4_pc)); // with test method
+    Square square_pc = mock(Square.class);
+
+    // Case 1: Square is empty (piece lands here)
+    when(square_pc.isOccupied()).thenReturn(false);
+
+    square_pc.landHere(piece1_pc);
+
+    // Verify that the piece is added to the square and its position is updated
+    verify(piece1_pc).setSquare(square_pc);
+
+    // Case 2: Square is occupied and is a shield square
+    when(square_pc.isOccupied()).thenReturn(true);
+    when(square_pc.isShieldSquare()).thenReturn(true);
+
+    square_pc.landHere(piece2_pc);
+
+    // Verify that the piece is added to the square and its position is updated
+    verify(piece2_pc).setSquare(square_pc);
+
+
+    // Case 3: Square is occupied and is a regular square
+    when(square_pc.isOccupied()).thenReturn(true);
+    when(square_pc.isShieldSquare()).thenReturn(false);
+
+    square.landHere(piece3_pc);
+
+    // Verify that the piece is added to the square and its position is updated
+    verify(piece3_pc).setSquare(square_pc);
+
+    // Case 4: Null piece
+    assertThrows(AssertionError.class, () -> square_pc.landHere(null));
   }
 
   @Test

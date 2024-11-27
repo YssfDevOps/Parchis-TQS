@@ -3,9 +3,11 @@ package test.model;
 import main.model.*;
 import main.model.square.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class PlayerTest {
 
@@ -197,12 +199,78 @@ class PlayerTest {
     player_dc.movePiece(piece2_dc, 2, board_dc);
     assertEquals(endSquare_dc, piece2_dc.getSquare(), "Case 4: The piece should end on a square different from the start");
 
-    // Case 5: lastAccessibleSquare == currentSquare - TODO:REVISAR
+    // Case 5: lastAccessibleSquare == currentSquare
     // Simulates that the piece cannot move due to blockages
     startSquare_dc.addPieceDirectly(piece2_dc);
     board_dc.setNextSquare(blockedSquare_dc, null); // The next square is blocked
     player_dc.movePiece(piece2_dc, 1, board_dc);
     assertEquals(startSquare_dc, piece2_dc.getSquare(), "Case 5: The piece should stay in the starting square");
+
+
+    // Path coverage ----------------------------------------------------------------------------------------------------
+
+    // Set up
+    Board board_pc = mock(Board.class);
+    Piece piece1_pc = mock(Piece.class);
+    Piece piece2_pc = mock(Piece.class);
+    Piece piece3_pc = mock(Piece.class);
+    Piece piece4_pc = mock(Piece.class);
+    Player player_pc = new Player("Player1", Color.RED, board_pc);
+    player_pc.setPieces(List.of(piece1_pc, piece2_pc, piece3_pc, piece4_pc)); // with test method
+    Square square_pc = mock(Square.class);
+
+    // Case 1: Valid move (piece moves successfully)
+    Square currentSquare_pc = mock(Square.class);
+    Square nextSquare_pc = mock(Square.class);
+    when(piece1_pc.getSquare()).thenReturn(currentSquare_pc);
+    when(board_pc.getNextSquare(any(), any())).thenReturn(nextSquare_pc);
+
+    player_pc.movePiece(piece1_pc, 3, board_pc);  // Move 3 steps
+
+    // Verify that the piece moves correctly
+    verify(piece1_pc).setSquare(nextSquare_pc);
+
+    // Case 2: Piece reaches the end of the path (nextSquare is null)
+    when(board_pc.getNextSquare(any(), any())).thenReturn(null);  // nextSquare is null
+
+    player_pc.movePiece(piece1_pc, 2, board_pc);  // Try to move 2 steps
+
+    // Verify that the piece is marked as finished
+    verify(piece1_pc).setHasFinished(true);
+
+    // Case 3: Piece encounters a blockage (nextSquare is blocked)
+    when(board_pc.getNextSquare(any(), any())).thenReturn(nextSquare_pc);
+    when(nextSquare_pc.isBlocked(piece1_pc)).thenReturn(true);  // Blocked square
+
+    Square initialSquare_pc = piece1_pc.getSquare();
+
+    player_pc.movePiece(piece1_pc, 2, board_pc);  // Try to move 2 steps
+
+    Square finalSquare_pc = piece1_pc.getSquare();
+
+    // Verify that the movement stops when the piece encounters a blockage
+    assertEquals(initialSquare_pc, finalSquare_pc);
+
+    // Case 4: Piece cannot move (blocked at the start)
+    when(board_pc.getNextSquare(any(), any())).thenReturn(null);  // nextSquare is null
+
+    initialSquare_pc = piece1_pc.getSquare();
+
+    player_pc.movePiece(piece1_pc, 1, board_pc);  // Try to move 1 step
+
+    finalSquare_pc = piece1_pc.getSquare();
+
+    // Verify that the piece stays on the same square
+    assertEquals(initialSquare_pc, finalSquare_pc);
+
+    // Case 5: Invalid moves (<= 0 or > 6)
+    assertThrows(AssertionError.class, () -> player_pc.movePiece(piece1_pc, 0, board_pc));
+    assertThrows(AssertionError.class, () -> player_pc.movePiece(piece1_pc, -1, board_pc));
+    assertThrows(AssertionError.class, () -> player_pc.movePiece(piece1_pc, 7, board_pc));
+
+    // Case 6: Null piece or null board
+    assertThrows(AssertionError.class, () -> player_pc.movePiece(null, 3, board_pc));
+    assertThrows(AssertionError.class, () -> player_pc.movePiece(piece1_pc, 3, null));
   }
 
   @Test
