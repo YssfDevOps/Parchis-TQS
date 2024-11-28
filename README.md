@@ -1,6 +1,6 @@
 # Parchís Game in Java
 
-A Java implementation of the traditional Spanish board game **Parchís**, developed using the **MVC (Model-View-Controller)** architecture. Currently, the **Model** component is under development.
+A Java implementation of the traditional Spanish board game **Parchís**, developed using the **MVC (Model-View-Controller)** architecture.
 
 ![Parchís Board](https://upload.wikimedia.org/wikipedia/commons/c/cd/Parch%C3%ADs.svg)
 
