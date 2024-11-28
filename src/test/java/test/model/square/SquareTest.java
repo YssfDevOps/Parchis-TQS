@@ -314,145 +314,6 @@ class SquareTest {
   }
 
   @Test
-  void leave() {
-    Square square = new RegularSquare(10);
-    Piece piece = new Piece(Color.RED);
-    square.landHere(piece);
-    assertTrue(square.isOccupied());
-    square.leave(piece);
-    assertFalse(square.isOccupied());
-
-    // Equivalence Partitioning:
-    // - Leaving a square when the piece is on the square
-    // - Leaving a square when the piece is not on the square (invalid operation)
-
-    // 1. Leaving a square when the piece is on the square
-    Square square2 = new RegularSquare(10);
-    Piece piece2 = new Piece(Color.RED);
-    square2.landHere(piece2);
-    assertTrue(square2.isOccupied());
-    square2.leave(piece2);
-    assertFalse(square2.isOccupied());
-
-    // 2. Leaving a square when the piece is not on the square
-    Square anotherSquare = new RegularSquare(11);
-    assertThrows(IllegalStateException.class, () -> anotherSquare.leave(piece2));
-
-    // Statement coverage
-    // Test assertion failure when piece is null
-    Square square5 = new RegularSquare(10);
-    assertThrows(AssertionError.class, () -> square5.leave(null));
-  }
-
-  @Test
-  void isOccupied() {
-    Square square = new RegularSquare(10);
-    assertFalse(square.isOccupied());
-
-    Piece piece = new Piece(Color.RED);
-    square.landHere(piece);
-    assertTrue(square.isOccupied());
-
-    square.leave(piece);
-    assertFalse(square.isOccupied());
-
-    // Equivalence Partitioning:
-    // - Square is empty (not occupied)
-    // - Square has one or more pieces (occupied)
-
-    // 1. Square is empty
-    Square square2 = new RegularSquare(10);
-    assertFalse(square2.isOccupied());
-
-    // 2. Square has one piece
-    Piece piece2 = new Piece(Color.RED);
-    square2.landHere(piece2);
-    assertTrue(square2.isOccupied());
-
-    // 3. Square after piece leaves
-    square2.leave(piece2);
-    assertFalse(square2.isOccupied());
-  }
-
-  @Test
-  void isBlocked() {
-    // Equivalence Partitioning:
-    // - Square is empty or has one piece (not blocked)
-    // - Square has two pieces of same color (blocked for opponents)
-    // - Square has two pieces of opponent's color (blocked for own pieces)
-
-    // 1. Square has no pieces
-    Square square = new RegularSquare(10);
-    Piece piece = new Piece(Color.RED);
-    assertFalse(square.isBlocked(piece));
-
-    // 2. Piece of same color
-    Square square1 = new RegularSquare(10);
-    Piece piece1 = new Piece(Color.RED);
-    square1.landHere(piece1);
-    assertFalse(square1.isBlocked(piece1));
-
-    // 3. Square has one opponent piece
-    Square square2 = new RegularSquare(10);
-    Piece redPiece = new Piece(Color.RED);
-    Piece bluePiece = new Piece(Color.BLUE);
-    square2.landHere(redPiece);
-    assertFalse(square2.isBlocked(bluePiece)); // Can capture
-
-    // 4. When square has a blockage
-    Square square3 = new RegularSquare(10);
-    Piece redPiece1 = new Piece(Color.RED);
-    Piece redPiece2 = new Piece(Color.RED);
-    Piece bluePiece1 = new Piece(Color.BLUE);
-    square3.landHere(redPiece1);
-    square3.landHere(redPiece2);
-    assertTrue(square3.isBlocked(bluePiece1));
-    assertFalse(square3.isBlocked(redPiece1));
-  }
-
-  @Test
-  void isShieldSquare() {
-    // Equivalence Partitioning:
-    // - Square is a ShieldSquare (returns true)
-    // - Square is not a ShieldSquare (returns false)
-
-    Square regularSquare = new RegularSquare(10);
-    Square shieldSquare = new ShieldSquare(15);
-
-    assertFalse(regularSquare.isShieldSquare());
-    assertTrue(shieldSquare.isShieldSquare());
-  }
-
-  @Test
-  void testToString() {
-    // Simple test for toString method
-    Square square = new RegularSquare(10);
-    Piece piece = new Piece(Color.RED);
-    square.landHere(piece);
-
-    String expected = "Square 10 - Pieces: RED " + piece.getId();
-    assertEquals(expected, square.toString());
-
-    // Statement coverage
-
-    // Test toString for ShieldSquare with no pieces
-    Square shieldSquare = new ShieldSquare(15);
-    String expectedShieldSquare = "Square 15 (Shield Square)";
-    assertEquals(expectedShieldSquare, shieldSquare.toString());
-
-    // Test toString for ShieldSquare with pieces
-    Piece piece1 = new Piece(Color.BLUE);
-    shieldSquare.landHere(piece1);
-    String expectedShieldSquareWithPiece = "Square 15 (Shield Square) - Pieces: BLUE " + piece1.getId();
-    assertEquals(expectedShieldSquareWithPiece, shieldSquare.toString());
-
-    // Test toString for RegularSquare with no pieces
-    Square regularSquare = new RegularSquare(20);
-    String expectedRegularSquare = "Square 20";
-    assertEquals(expectedRegularSquare, regularSquare.toString());
-  }
-
-  @Test
   void landHere_pairwiseTesting() {
     // Pairwise Testing for landHere method
 
@@ -589,5 +450,144 @@ class SquareTest {
 
     assertEquals(2, square8.getPieces().size());
     assertFalse(square8.getPieces().contains(movingPiece8));
+  }
+
+  @Test
+  void leave() {
+    Square square = new RegularSquare(10);
+    Piece piece = new Piece(Color.RED);
+    square.landHere(piece);
+    assertTrue(square.isOccupied());
+    square.leave(piece);
+    assertFalse(square.isOccupied());
+
+    // Equivalence Partitioning:
+    // - Leaving a square when the piece is on the square
+    // - Leaving a square when the piece is not on the square (invalid operation)
+
+    // 1. Leaving a square when the piece is on the square
+    Square square2 = new RegularSquare(10);
+    Piece piece2 = new Piece(Color.RED);
+    square2.landHere(piece2);
+    assertTrue(square2.isOccupied());
+    square2.leave(piece2);
+    assertFalse(square2.isOccupied());
+
+    // 2. Leaving a square when the piece is not on the square
+    Square anotherSquare = new RegularSquare(11);
+    assertThrows(IllegalStateException.class, () -> anotherSquare.leave(piece2));
+
+    // Statement coverage
+    // Test assertion failure when piece is null
+    Square square5 = new RegularSquare(10);
+    assertThrows(AssertionError.class, () -> square5.leave(null));
+  }
+
+  @Test
+  void isOccupied() {
+    Square square = new RegularSquare(10);
+    assertFalse(square.isOccupied());
+
+    Piece piece = new Piece(Color.RED);
+    square.landHere(piece);
+    assertTrue(square.isOccupied());
+
+    square.leave(piece);
+    assertFalse(square.isOccupied());
+
+    // Equivalence Partitioning:
+    // - Square is empty (not occupied)
+    // - Square has one or more pieces (occupied)
+
+    // 1. Square is empty
+    Square square2 = new RegularSquare(10);
+    assertFalse(square2.isOccupied());
+
+    // 2. Square has one piece
+    Piece piece2 = new Piece(Color.RED);
+    square2.landHere(piece2);
+    assertTrue(square2.isOccupied());
+
+    // 3. Square after piece leaves
+    square2.leave(piece2);
+    assertFalse(square2.isOccupied());
+  }
+
+  @Test
+  void isBlocked() {
+    // Equivalence Partitioning:
+    // - Square is empty or has one piece (not blocked)
+    // - Square has two pieces of same color (blocked for opponents)
+    // - Square has two pieces of opponent's color (blocked for own pieces)
+
+    // 1. Square has no pieces
+    Square square = new RegularSquare(10);
+    Piece piece = new Piece(Color.RED);
+    assertFalse(square.isBlocked(piece));
+
+    // 2. Piece of same color
+    Square square1 = new RegularSquare(10);
+    Piece piece1 = new Piece(Color.RED);
+    square1.landHere(piece1);
+    assertFalse(square1.isBlocked(piece1));
+
+    // 3. Square has one opponent piece
+    Square square2 = new RegularSquare(10);
+    Piece redPiece = new Piece(Color.RED);
+    Piece bluePiece = new Piece(Color.BLUE);
+    square2.landHere(redPiece);
+    assertFalse(square2.isBlocked(bluePiece)); // Can capture
+
+    // 4. When square has a blockage
+    Square square3 = new RegularSquare(10);
+    Piece redPiece1 = new Piece(Color.RED);
+    Piece redPiece2 = new Piece(Color.RED);
+    Piece bluePiece1 = new Piece(Color.BLUE);
+    square3.landHere(redPiece1);
+    square3.landHere(redPiece2);
+    assertTrue(square3.isBlocked(bluePiece1));
+    assertFalse(square3.isBlocked(redPiece1));
+  }
+
+  @Test
+  void isShieldSquare() {
+    // Equivalence Partitioning:
+    // - Square is a ShieldSquare (returns true)
+    // - Square is not a ShieldSquare (returns false)
+
+    Square regularSquare = new RegularSquare(10);
+    Square shieldSquare = new ShieldSquare(15);
+
+    assertFalse(regularSquare.isShieldSquare());
+    assertTrue(shieldSquare.isShieldSquare());
+  }
+
+  @Test
+  void testToString() {
+    // Simple test for toString method
+    Square square = new RegularSquare(10);
+    Piece piece = new Piece(Color.RED);
+    square.landHere(piece);
+
+    String expected = "Square 10 - Pieces: RED " + piece.getId();
+    assertEquals(expected, square.toString());
+
+    // Statement coverage
+
+    // Test toString for ShieldSquare with no pieces
+    Square shieldSquare = new ShieldSquare(15);
+    String expectedShieldSquare = "Square 15 (Shield Square)";
+    assertEquals(expectedShieldSquare, shieldSquare.toString());
+
+    // Test toString for ShieldSquare with pieces
+    Piece piece1 = new Piece(Color.BLUE);
+    shieldSquare.landHere(piece1);
+    String expectedShieldSquareWithPiece = "Square 15 (Shield Square) - Pieces: BLUE " + piece1.getId();
+    assertEquals(expectedShieldSquareWithPiece, shieldSquare.toString());
+
+    // Test toString for RegularSquare with no pieces
+    Square regularSquare = new RegularSquare(20);
+    String expectedRegularSquare = "Square 20";
+    assertEquals(expectedRegularSquare, regularSquare.toString());
   }
 }

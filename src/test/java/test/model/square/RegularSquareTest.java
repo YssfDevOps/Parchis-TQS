@@ -103,13 +103,23 @@ class RegularSquareTest {
     testSquare2.addPieceDirectly(piece9);
     assertThrows(AssertionError.class, testSquare2::invariant);
 
-    // 3. Cover UnsupportedOperationException TODO
-    RegularSquare testSquare3 = mock(RegularSquare.class);
-    when(testSquare3.isShieldSquare()).thenReturn(true);
+    // 3. Cover UnsupportedOperationException
+    class TestRegularSquare3 extends RegularSquare {
+      public TestRegularSquare3(int position) {
+        super(position);
+      }
+
+      @Override
+      public boolean isShieldSquare() {
+        return true; // Force to return true
+      }
+    }
+
+    TestRegularSquare3 testSquare3 = new TestRegularSquare3(10);
     Piece testPiece2 = new Piece(Color.BLUE);
     testSquare3.landHere(new Piece(Color.RED));
 
-    //assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
+    assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
 
     // Decision coverage ------------------------------------------------------------------------------
 
