@@ -18,9 +18,7 @@ class PlayerTest {
 
   @Test
   void movePiece() {
-    // Statement coverage (already covered all the statements with the tests already done).
-
-    // Different cases:
+    // Statement coverage:
     // - Moving a piece normally (no blockage, not finishing).
     // - Moving a piece that finishes the game.
     // - Moving a piece that is blocked and cannot move.
@@ -272,6 +270,69 @@ class PlayerTest {
     assertThrows(AssertionError.class, () -> player_pc.movePiece(null, 3, board_pc));
     assertThrows(AssertionError.class, () -> player_pc.movePiece(piece1_pc, 3, null));
   }
+
+  @Test
+  void movePiece_loopTesting() {
+    // Testing of loop simple testing
+    // MAX_MOVES = 6
+    // Simple loop: 0, 1, 2, n < MAX_MOVES - 1, MAX_MOVES - 1, MAX_MOVES
+
+    Board board = new Board();
+    Player player = new Player("Lucia", Color.RED, board);
+    Piece piece = player.getPieces().get(0);
+
+    // 1. Loop zero times
+    ShieldSquare startSquare = board.getPlayerStartSquare(Color.RED);
+    leaveAllPieces(startSquare.getPieces());
+    piece.enterGame(board);
+    assertThrows(AssertionError.class, () -> player.movePiece(piece, 0, board));
+
+    // 2. One time
+    piece.sendHome();
+    leaveAllPieces(startSquare.getPieces());
+    piece.enterGame(board);
+    player.movePiece(piece, 1, board); // Move 1 step forward.
+    // Check that the piece has moved
+    assertNotNull(piece.getSquare());
+    assertNotEquals(startSquare, piece.getSquare());
+
+    // 3. Two times
+    piece.sendHome();
+    leaveAllPieces(startSquare.getPieces());
+    piece.enterGame(board);
+    player.movePiece(piece, 2, board); // Move 2 step forward.
+    // Check that the piece has moved
+    assertNotNull(piece.getSquare());
+    assertNotEquals(startSquare, piece.getSquare());
+
+    // 4. n < MAX_MOVES - 2 = 4
+    piece.sendHome();
+    leaveAllPieces(startSquare.getPieces());
+    piece.enterGame(board);
+    player.movePiece(piece, 4, board); // Move 4 step forward.
+    // Check that the piece has moved
+    assertNotNull(piece.getSquare());
+    assertNotEquals(startSquare, piece.getSquare());
+
+    // 5. MAX_MOVES - 1
+    piece.sendHome();
+    leaveAllPieces(startSquare.getPieces());
+    piece.enterGame(board);
+    player.movePiece(piece, 5, board); // Move 5 step forward.
+    // Check that the piece has moved
+    assertNotNull(piece.getSquare());
+    assertNotEquals(startSquare, piece.getSquare());
+
+    // 6. MAX_MOVES
+    piece.sendHome();
+    leaveAllPieces(startSquare.getPieces());
+    piece.enterGame(board);
+    player.movePiece(piece, 6, board); // Move 6 step forward.
+    // Check that the piece has moved
+    assertNotNull(piece.getSquare());
+    assertNotEquals(startSquare, piece.getSquare());
+  }
+
 
   @Test
   void enterPieceIntoGame() {

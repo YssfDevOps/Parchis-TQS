@@ -3,15 +3,17 @@ package test.model;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.mockito.Mockito.*;
 import main.model.Board;
 import main.model.Color;
 import main.model.Piece;
 import main.model.square.FinalPathSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
+import org.mockito.Mockito;
 
-import java.util.List;
+import java.lang.reflect.Field;
+import java.util.*;
 
 class BoardTest {
 
@@ -25,12 +27,12 @@ class BoardTest {
     // - Invalid positions: position > 68 (should fail)
 
     // Boundary Values:
-    // - position = 0
-    // - position = NUM_SQUARES - 1 (67)
+    // - position = 0 (valid(
+    // - position = NUM_SQUARES - 1 (67) (valid)
     // - position = -1 (invalid)
     // - position = NUM_SQUARES (68), (invalid)
     // - position = 1 (valid)
-    // - position = 66
+    // - position = 66 (valid)
     // - position = -10 (invalid)
     // - position = 100 (invalid)
 
@@ -72,6 +74,36 @@ class BoardTest {
   }
 
   @Test
+  void getGlobalSquare_Mockito() {
+    // Mocking list of squares:
+
+    List<Square> mockGlobalPath = Mockito.mock(List.class);
+
+    Board board = new Board();
+
+    board.setGlobalPath(mockGlobalPath);
+    Board spyBoard = Mockito.spy(board);
+    when(spyBoard.getGlobalPath()).thenReturn(mockGlobalPath);
+
+    Square mockSquare = Mockito.mock(Square.class);
+    when(mockGlobalPath.get(anyInt())).thenReturn(mockSquare);
+
+    // 1. Valid position
+    Square result = spyBoard.getGlobalSquare(0);
+    assertNotNull(result);
+    verify(mockGlobalPath).get(0);
+
+    // 2. Another valid position
+    result = spyBoard.getGlobalSquare(10);
+    assertNotNull(result);
+    verify(mockGlobalPath).get(10);
+
+    // 3. Invalid positions (should fail)
+    assertThrows(AssertionError.class, () -> spyBoard.getGlobalSquare(-1));
+    assertThrows(AssertionError.class, () -> spyBoard.getGlobalSquare(68));
+  }
+
+  @Test
   void getPlayerStartSquare() {
     // Statement coverage (already covered all the statements with the tests already done).
 
@@ -109,6 +141,45 @@ class BoardTest {
   }
 
   @Test
+  void getPlayerStartSquare_Mockito() {
+    // In this case we are mocking Shield Square:
+    Map<Color, Integer> mockStartPositions = Mockito.mock(Map.class);
+    List<Square> mockGlobalPath = Mockito.mock(List.class);
+    Board board = new Board();
+
+    // Need to do try and catch to make this work.
+    try {
+      Field startPositionsField = Board.class.getDeclaredField("startPositions");
+      startPositionsField.setAccessible(true);
+      startPositionsField.set(board, mockStartPositions);
+
+      Field globalPathField = Board.class.getDeclaredField("globalPath");
+      globalPathField.setAccessible(true);
+      globalPathField.set(board, mockGlobalPath);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      fail("Failed to set up mocks");
+    }
+
+    when(mockStartPositions.containsKey(Color.RED)).thenReturn(true);
+    when(mockStartPositions.get(Color.RED)).thenReturn(10);
+    ShieldSquare mockShieldSquare = Mockito.mock(ShieldSquare.class);
+    when(mockGlobalPath.get(10)).thenReturn(mockShieldSquare);
+
+    // Call the method and verify it works
+    ShieldSquare result = board.getPlayerStartSquare(Color.RED);
+    assertNotNull(result);
+    verify(mockStartPositions).get(Color.RED);
+    verify(mockGlobalPath).get(10);
+
+    // 1. Test with a color not in startPositions
+    when(mockStartPositions.containsKey(Color.GREEN)).thenReturn(false);
+    assertThrows(AssertionError.class, () -> board.getPlayerStartSquare(Color.GREEN));
+
+    // 2. Test with null color (should fail)
+    assertThrows(AssertionError.class, () -> board.getPlayerStartSquare(null));
+  }
+
+  @Test
   void setPlayerStartSquare() {
     // Statement coverage (already covered all the statements with the tests already done).
 
@@ -131,6 +202,51 @@ class BoardTest {
   }
 
   @Test
+  void setPlayerStartSquare_Mockito() {
+    // In this case we are mocking Shield Square:
+    Map<Color, Integer> mockStartPositions = Mockito.mock(Map.class);
+    List<Square> mockGlobalPath = Mockito.mock(List.class);
+    Board board = new Board();
+
+    // Need to do try and catch to make this work.
+    try {
+      Field startPositionsField = Board.class.getDeclaredField("startPositions");
+      startPositionsField.setAccessible(true);
+      startPositionsField.set(board, mockStartPositions);
+
+      Field globalPathField = Board.class.getDeclaredField("globalPath");
+      globalPathField.setAccessible(true);
+      globalPathField.set(board, mockGlobalPath);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      fail("Failed to set up mocks");
+    }
+
+    ShieldSquare mockShieldSquare = Mockito.mock(ShieldSquare.class);
+    when(mockShieldSquare.getPosition()).thenReturn(10);
+
+    // Store the position in the map
+    doAnswer(invocation -> {
+      Object[] args = invocation.getArguments();
+      Color colorArg = (Color) args[0];
+      Integer positionArg = (Integer) args[1];
+      when(mockStartPositions.get(colorArg)).thenReturn(positionArg);
+      return null;
+    }).when(mockStartPositions).put(any(Color.class), anyInt());
+
+    // Call the method and verify
+    board.setPlayerStartSquare(Color.RED, mockShieldSquare);
+    verify(mockStartPositions).put(Color.RED, 10);
+    verify(mockGlobalPath).set(10, mockShieldSquare);
+
+    // 1. Test with null color
+    assertThrows(AssertionError.class, () -> board.setPlayerStartSquare(null, mockShieldSquare));
+
+    // 2. Test with null square
+    assertThrows(AssertionError.class, () -> board.setPlayerStartSquare(Color.RED, null));
+  }
+
+
+  @Test
   void getPlayerFinalPath() {
     // Statement coverage (already covered all the statements with the tests already done).
 
@@ -148,6 +264,38 @@ class BoardTest {
     }
 
     // 2. Attempt to get final path with null color (should fail)
+    assertThrows(AssertionError.class, () -> board.getPlayerFinalPath(null));
+  }
+
+  @Test
+  void getPlayerFinalPath_Mockito() {
+    // In this case we are mocking FinalPath Square:
+    Map<Color, List<FinalPathSquare>> mockPlayerFinalPaths = Mockito.mock(Map.class);
+    Board board = new Board();
+
+    // Need to do try and catch to make this work.
+    try {
+      Field playerFinalPathsField = Board.class.getDeclaredField("playerFinalPaths");
+      playerFinalPathsField.setAccessible(true);
+      playerFinalPathsField.set(board, mockPlayerFinalPaths);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      fail("Failed to set up mock");
+    }
+
+    List<FinalPathSquare> mockFinalPath = Mockito.mock(List.class);
+    when(mockPlayerFinalPaths.containsKey(Color.GREEN)).thenReturn(true);
+    when(mockPlayerFinalPaths.get(Color.GREEN)).thenReturn(mockFinalPath);
+
+    // Call the method and verify
+    List<FinalPathSquare> result = board.getPlayerFinalPath(Color.GREEN);
+    assertNotNull(result);
+    verify(mockPlayerFinalPaths).get(Color.GREEN);
+
+    // 1. Test with a color not in playerFinalPaths
+    when(mockPlayerFinalPaths.containsKey(Color.BLUE)).thenReturn(false);
+    assertThrows(AssertionError.class, () -> board.getPlayerFinalPath(Color.BLUE));
+
+    // 2. Test with null color
     assertThrows(AssertionError.class, () -> board.getPlayerFinalPath(null));
   }
 
@@ -195,5 +343,127 @@ class BoardTest {
     currentSquare = board.getGlobalSquare(10);
     Square finalCurrentSquare = currentSquare;
     assertThrows(AssertionError.class, () -> board.getNextSquare(finalCurrentSquare, null));
+  }
+
+  @Test
+  void getNextSquare_Mockito() {
+    // Mocking different classes RegularSquare, ShieldSquare and FinalPathSquare:
+
+    Board board = new Board();
+    Piece mockPiece = Mockito.mock(Piece.class);
+    when(mockPiece.getColor()).thenReturn(Color.RED);
+
+    // Mock startPositions
+    Map<Color, Integer> mockStartPositions = Mockito.mock(Map.class);
+    try {
+      Field startPositionsField = Board.class.getDeclaredField("startPositions");
+      startPositionsField.setAccessible(true);
+      startPositionsField.set(board, mockStartPositions);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      fail("Failed to set up mock");
+    }
+    when(mockStartPositions.get(Color.RED)).thenReturn(38);
+
+    // Mock globalPath
+    List<Square> mockGlobalPath = Mockito.mock(List.class);
+    try {
+      Field globalPathField = Board.class.getDeclaredField("globalPath");
+      globalPathField.setAccessible(true);
+      globalPathField.set(board, mockGlobalPath);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+      fail("Failed to set up mocks");
+    }
+
+    Square mockNextSquare = Mockito.mock(Square.class);
+    when(mockNextSquare.getPosition()).thenReturn(33);
+    when(mockGlobalPath.get(anyInt())).thenReturn(mockNextSquare);
+
+    // Mock playerFinalPaths
+    Map<Color, List<FinalPathSquare>> mockPlayerFinalPaths = Mockito.mock(Map.class);
+
+    // Defining behaviours
+    List<FinalPathSquare> mockFinalPath = Mockito.mock(List.class);
+    FinalPathSquare mockFinalPathSquare0 = new FinalPathSquare(0, Color.RED);
+    FinalPathSquare mockFinalPathSquare1 = new FinalPathSquare(1, Color.RED);
+    when(mockFinalPath.get(0)).thenReturn(mockFinalPathSquare0);
+    when(mockFinalPath.get(1)).thenReturn(mockFinalPathSquare1);
+    when(mockPlayerFinalPaths.get(Color.RED)).thenReturn(mockFinalPath);
+
+    // 1. currentSquare is not a FinalPathSquare
+    Square mockCurrentSquare = Mockito.mock(Square.class);
+    when(mockCurrentSquare.getPosition()).thenReturn(32);
+
+    // 2. currentSquare is a FinalPathSquare
+    Square result = board.getNextSquare(mockCurrentSquare, mockPiece);
+    assertNotNull(result);
+    FinalPathSquare realCurrentFinalSquare = new FinalPathSquare(0, Color.RED);
+
+    // 3. At the end of the final path
+    result = board.getNextSquare(realCurrentFinalSquare, mockPiece);
+    assertNotNull(result);
+    FinalPathSquare realFinalSquareEnd = new FinalPathSquare(7, Color.RED);
+    result = board.getNextSquare(realFinalSquareEnd, mockPiece);
+    assertNull(result);
+
+    // 4. Test with null currentSquare
+    assertThrows(AssertionError.class, () -> board.getNextSquare(null, mockPiece));
+
+    // 5. Test with null piece
+    assertThrows(AssertionError.class, () -> board.getNextSquare(mockCurrentSquare, null));
+  }
+
+  @Test
+  void setUpPlayerFinalPaths_loopTesting() {
+    // Nested loop testing
+    // MAX_COLOURS = 4 (for n)
+    // MAX_SQUARES = 8 (for m)
+    // (n,m) = (1,0) (1,1) (1,2) (1,m<MAX_COLOURS-1) (1,MAX_COLOURS-1) (1,MAX_COLOURS)
+    // (0,M<MAX_COLOURS) (1,M<MAX_COLOURS) (2,m<MAX_COLOURS) (n<MAX_SQUARES-1,m<MAX_COLOURS)
+    // (MAX_SQUARES-1,m<MAX_COLOURS) (MAX_SQUARES,m<MAX_COLOURS)
+
+    List<int[]> testCases = Arrays.asList(
+        new int[]{1, 0},   // n=1, m=0
+        new int[]{1, 1},   // n=1, m=1
+        new int[]{1, 2},   // n=1, m=2
+        new int[]{1, 5},   // n=1, m=5 (1, m < MAX_SQUARES -1)
+        new int[]{1, 7},   // n=1, m=7 (1, MAX_SQUARES -1)
+        new int[]{1, 8},   // n=1, m=8 (1, MAX_SQUARES)
+        new int[]{0, 5},   // n=0, m=5 (0, m < MAX_SQUARES)
+        new int[]{2, 5},   // n=2, m=5 (2, m < MAX_SQUARES)
+        new int[]{3, 5},   // n=3, m=5 (MAX_COLOURS -1, m < MAX_SQUARES)
+        new int[]{4, 5}    // n=4, m=5 (MAX_COLOURS, m < MAX_SQUARES)
+    );
+
+    // For each test case
+    for (int[] testCase : testCases) {
+      int n = testCase[0]; // Number of colors
+      int m = testCase[1]; // Number of squares per color
+
+      List<Color> colors = new ArrayList<>();
+      if (n > 0) {
+        Color[] allColors = Color.values();
+        for (int i = 0; i < n && i < allColors.length; i++) {
+          colors.add(allColors[i]);
+        }
+      }
+
+      Board board = new Board();
+
+      board.setUpPlayerFinalPaths_Custom(colors, m);
+
+      for (Color color : colors) {
+        List<FinalPathSquare> finalPath = board.getPlayerFinalPaths().get(color);
+        assertNotNull(finalPath);
+        assertEquals(m, finalPath.size());
+
+        if (m > 0) {
+          for (int i = 0; i < m; i++) {
+            FinalPathSquare square = finalPath.get(i);
+            assertEquals(i, square.getIndex());
+            assertEquals(color, square.getColor());
+          }
+        }
+      }
+    }
   }
 }

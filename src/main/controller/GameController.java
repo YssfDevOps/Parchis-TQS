@@ -39,7 +39,7 @@ public class GameController {
     playGame();
   }
 
-  // For testing
+  // For testing purposes
   public void initializePlayers(int numPlayers, List<String> playerNames) {
     assert numPlayers > 0 && numPlayers <= Color.values().length : "Invalid number of players";
 

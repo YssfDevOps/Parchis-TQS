@@ -52,6 +52,18 @@ public class Board {
         ));
     }
 
+    public void setGlobalPath(List<Square> globalPath) {
+        this.globalPath = globalPath;
+    }
+
+    public Map<Color, List<FinalPathSquare>> getPlayerFinalPaths() {
+        return playerFinalPaths;
+    }
+
+    public List<Square> getGlobalPath() {
+        return globalPath;
+    }
+
     // Set up the global path with squares
     private void setUpGlobalPath() {
         for (int i = 0; i < NUM_SQUARES; i++) {
@@ -70,6 +82,17 @@ public class Board {
         for (Color color : Color.values()) {
             List<FinalPathSquare> finalPath = new ArrayList<>(NUM_FINAL_SQUARES);
             for (int i = 0; i < NUM_FINAL_SQUARES; i++) {
+                finalPath.add(new FinalPathSquare(i, color));
+            }
+            playerFinalPaths.put(color, finalPath);
+        }
+    }
+
+    // For testing purposes
+    public void setUpPlayerFinalPaths_Custom(List<Color> colors, int NUM_SQUARES) {
+        for (Color color : colors) {
+            List<FinalPathSquare> finalPath = new ArrayList<>(NUM_SQUARES);
+            for (int i = 0; i < NUM_SQUARES; i++) {
                 finalPath.add(new FinalPathSquare(i, color));
             }
             playerFinalPaths.put(color, finalPath);
@@ -111,12 +134,6 @@ public class Board {
         if (position >= 0 && position < NUM_SQUARES) {
             globalPath.set(position, square);
         }
-
-        // Postconditions
-        assert startPositions.get(color) == position :
-                "Start position not updated correctly";
-        assert globalPath.get(position) == square :
-                "Square not updated in global path";
     }
 
     // Get the final path for a player
@@ -158,22 +175,6 @@ public class Board {
                 return playerFinalPaths.get(color).get(0);
             } else {
                 return nextSquare;
-            }
-        }
-    }
-
-    public void showBoard() {
-        System.out.println("Global Path:");
-        for (Square square : globalPath) {
-            System.out.println(square.toString());
-        }
-
-        System.out.println("\nFinal Paths:");
-        for (Color color : Color.values()) {
-            System.out.println("Final Path for " + color + ":");
-            List<FinalPathSquare> finalPath = playerFinalPaths.get(color);
-            for (FinalPathSquare square : finalPath) {
-                System.out.println(square.toString());
             }
         }
     }

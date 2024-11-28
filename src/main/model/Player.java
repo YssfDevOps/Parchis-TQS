@@ -59,16 +59,15 @@ public class Player {
     for (int i = 0; i < moves; i++) {
       Square nextSquare = board.getNextSquare(lastAccessibleSquare, piece);
 
-      if (nextSquare == null) {
-        // Reached the end of final path
+      if (nextSquare == null) { // Reached the end of final path
         piece.setHasFinished(true);
         currentSquare.leave(piece);
         piece.setSquare(null);
         return;
       }
 
+      // Cannot pass through blockage, stop to square behind
       if (nextSquare.isBlocked(piece)) {
-        // Cannot pass through blockage, stop to square behind
         break;
       }
 

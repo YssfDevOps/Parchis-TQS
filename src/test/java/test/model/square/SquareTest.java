@@ -451,4 +451,143 @@ class SquareTest {
     String expectedRegularSquare = "Square 20";
     assertEquals(expectedRegularSquare, regularSquare.toString());
   }
+
+  @Test
+  void landHere_pairwiseTesting() {
+    // Pairwise Testing for landHere method
+
+    // 1. RegularSquare, Empty
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Empty (E)
+
+    RegularSquare square1 = new RegularSquare(10);
+    Piece piece1 = new Piece(Color.RED);
+    assertFalse(square1.isOccupied());
+    square1.landHere(piece1);
+
+    assertTrue(square1.isOccupied());
+    assertEquals(1, square1.getPieces().size());
+    assertEquals(piece1, square1.getPieces().get(0));
+    assertEquals(square1, piece1.getSquare());
+
+    // 2. RegularSquare, Occupied by Own Piece
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Occupied by Own Piece (Own)
+
+    RegularSquare square2 = new RegularSquare(11);
+    Piece piece2_1 = new Piece(Color.RED);
+    Piece piece2_2 = new Piece(Color.RED);
+
+    square2.landHere(piece2_1);
+
+    assertTrue(square2.isOccupied());
+    assertEquals(1, square2.getPieces().size());
+
+    square2.landHere(piece2_2);
+
+    assertEquals(2, square2.getPieces().size());
+    assertTrue(square2.getPieces().contains(piece2_1));
+    assertTrue(square2.getPieces().contains(piece2_2));
+
+    // 3. RegularSquare, Occupied by Opponent's Piece
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Occupied by Opponent (Opponent)
+
+    RegularSquare square3 = new RegularSquare(12);
+    Piece opponentPiece3 = new Piece(Color.BLUE);
+    Piece movingPiece3 = new Piece(Color.RED);
+
+    square3.landHere(opponentPiece3);
+    assertTrue(square3.isOccupied());
+    assertEquals(1, square3.getPieces().size());
+    square3.landHere(movingPiece3);
+
+    assertTrue(opponentPiece3.isAtHome());
+    assertNull(opponentPiece3.getSquare());
+    assertEquals(1, square3.getPieces().size());
+    assertEquals(movingPiece3, square3.getPieces().get(0));
+
+    // 4. RegularSquare, Blockage
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Blockage (Own Pieces)
+
+    RegularSquare square4 = new RegularSquare(13);
+    Piece piece4_1 = new Piece(Color.RED);
+    Piece piece4_2 = new Piece(Color.RED);
+    Piece movingPiece4 = new Piece(Color.RED);
+
+    square4.landHere(piece4_1);
+    square4.landHere(piece4_2);
+    assertFalse(square4.isBlocked(movingPiece4));
+
+    square4.landHere(movingPiece4);
+    assertEquals(2, square4.getPieces().size());
+    assertFalse(square4.getPieces().contains(movingPiece4));
+
+    // Test Case 5: ShieldSquare, Empty
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Empty (E)
+    ShieldSquare square5 = new ShieldSquare(14);
+    Piece piece5 = new Piece(Color.RED);
+    assertFalse(square5.isOccupied());
+    square5.landHere(piece5);
+    assertTrue(square5.isOccupied());
+
+    assertEquals(1, square5.getPieces().size());
+    assertEquals(piece5, square5.getPieces().get(0));
+    assertEquals(square5, piece5.getSquare());
+
+    // Test Case 6: ShieldSquare, Occupied by Own Piece
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Occupied by Own Piece (Own)
+
+    ShieldSquare square6 = new ShieldSquare(15);
+    Piece piece6_1 = new Piece(Color.RED);
+    Piece piece6_2 = new Piece(Color.RED);
+    square6.landHere(piece6_1);
+
+    assertTrue(square6.isOccupied());
+    assertEquals(1, square6.getPieces().size());
+
+    square6.landHere(piece6_2);
+
+    assertEquals(2, square6.getPieces().size());
+    assertTrue(square6.getPieces().contains(piece6_1));
+    assertTrue(square6.getPieces().contains(piece6_2));
+
+    // Test Case 7: ShieldSquare, Occupied by Opponent's Piece
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Occupied by Opponent (Opponent)
+
+    ShieldSquare square7 = new ShieldSquare(16);
+    Piece opponentPiece7 = new Piece(Color.BLUE);
+    Piece movingPiece7 = new Piece(Color.RED);
+    square7.landHere(opponentPiece7);
+
+    assertTrue(square7.isOccupied());
+    assertEquals(1, square7.getPieces().size());
+
+    square7.landHere(movingPiece7);
+
+    assertEquals(2, square7.getPieces().size());
+    assertTrue(square7.getPieces().contains(opponentPiece7));
+    assertTrue(square7.getPieces().contains(movingPiece7));
+
+    // Test Case 8: ShieldSquare, Blockage
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Blockage (Own Pieces)
+
+    ShieldSquare square8 = new ShieldSquare(17);
+    Piece piece8_1 = new Piece(Color.RED);
+    Piece piece8_2 = new Piece(Color.RED);
+    Piece movingPiece8 = new Piece(Color.RED);
+
+    square8.landHere(piece8_1);
+    square8.landHere(piece8_2);
+    assertTrue(square8.isBlocked(movingPiece8));
+    square8.landHere(movingPiece8);
+
+    assertEquals(2, square8.getPieces().size());
+    assertFalse(square8.getPieces().contains(movingPiece8));
+  }
 }
