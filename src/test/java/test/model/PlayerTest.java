@@ -388,6 +388,40 @@ class PlayerTest {
       piece.setHasFinished(true);
     }
     assertFalse(player.hasPiecesOnBoard());
+
+    // Condition coverage ----------------------------------------------------------------
+
+    // Case 1: Player has a piece on the board (not at home or finished)
+    Piece piece1 = new Piece(Color.RED);
+    piece1.setAtHome(false);
+    Player player1 = new Player("Player1", Color.RED, board);
+    player1.setPieces(List.of(piece1));
+    assertTrue(player1.hasPiecesOnBoard(), "Case 1: Expected true when a piece is on the board");
+
+    // Case 2: All pieces are at home
+    Piece piece2 = new Piece(Color.BLUE);
+    piece2.setAtHome(true);
+    Player player2 = new Player("Player2", Color.BLUE, board);
+    player2.setPieces(List.of(piece2));
+    assertFalse(player2.hasPiecesOnBoard(), "Case 2: Expected false when all pieces are at home");
+
+    // Case 3: All pieces have finished
+    Piece piece3 = new Piece(Color.GREEN);
+    piece3.setAtHome(false);
+    piece3.setHasFinished(true);
+    Player player3 = new Player("Player3", Color.GREEN, board);
+    player3.setPieces(List.of(piece3));
+    assertFalse(player3.hasPiecesOnBoard(), "Case 3: Expected false when all pieces have finished");
+
+    // Case 4: Mixed states, at least one piece satisfies the condition
+    Player player4 = new Player("Player4", Color.RED, board);
+    player4.setPieces(List.of(piece1, piece2, piece3));
+    assertTrue(player4.hasPiecesOnBoard(), "Case 4: Expected true when at least one piece is on the board");
+
+    // Case 5: No pieces
+    Player player5 = new Player("Player5", Color.YELLOW, board);
+    player5.setPieces(List.of());
+    assertFalse(player5.hasPiecesOnBoard(), "Case 5: Expected false when the player has no pieces");
   }
 
   @Test
