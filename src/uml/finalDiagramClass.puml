@@ -1,0 +1,137 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class GameController {
+  - board : Board
+  - players : List<Player>
+  - die : Die
+  - view : GameView
+  - scanner : Scanner
+  + startGame()
+  + initializePlayers(numPlayers: int)
+  + playGame()
+  + playerRollDie(player: Player) : int
+}
+
+class Board {
+  - globalPath : List<Square>
+  - playerFinalPaths : Map<Color, List<FinalPathSquare>>
+  - {static} NUM_SQUARES : final int
+  - {static} NUM_FINAL_SQUARES : final int
+  - startPostitions : Map<Color, Integer>
+  - shieldPositions : Set<Integer>
+  - initializeStartPositions()
+  - initializeShieldPositions()
+  - setUpGlobalPath()
+  - setUpPlayerFinalPaths()
+  + getNextSquare(currentSquare: Square, piece: Piece) : Square
+  + getPlayerStartSquare(color: Color) : Square
+  + getPlayerFinalPath(color: Color) : List<FinalPathSquare>
+}
+
+class Piece {
+  - square : Square
+  - color : Color
+  - atHome : boolean
+  - hasFinished : boolean
+  - id : int
+  - idCounter : static int
+  + getId() : int
+  + setAtHome(atHome: boolean)
+  + isAtHome() : boolean
+  + sendHome()
+  + enterGame(board: Board)
+  + getSquare() : Square
+  + setSquare(square: Square)
+  + hasFinished() : boolean
+  + setHasFinished(hasFinished: boolean)
+  + getColor() : Color
+  + toString() : String
+}
+
+class Player {
+  - name : String
+  - pieces : List<Piece>
+  - color : Color
+  - winner : boolean
+  - board : Board
+  - scanner : Scanner
+  + getPieces() : List<Piece>
+  + enterPieceIntoGame() : boolean
+  + movePiece(piece: Piece, moves: int, board: Board)
+  + isWinner() : boolean
+  + hasPiecesAtHome() : boolean
+  + hasPiecesOnBoard() : boolean
+  + choosePiece() : Piece
+  + chooseToEnterPiece() : boolean
+  + displayPieces()
+}
+
+class Square {
+  # position : int
+  # pieces : List<Piece>
+  + isBlocked(piece: Piece) : boolean
+  + landHere(piece: Piece)
+  # {abstract} handleLandingOnShieldSquare(piece : Piece)
+  # {abstract} handleLandingOnRegularSquare(piece : Piece)
+  + leave(piece: Piece)
+  + isOccupied() : boolean
+  + {abstract} isBlocked(piece : Piece)
+  + {abstract} isShieldSquare()
+}
+
+class RegularSquare extends Square {
+  + isBlocked(piece : Piece)
+  + isShieldSquare()
+  + handleLandingOnShieldSquare(piece : Piece)
+  + handleLandingOnRegularSquare(piece : Piece)
+}
+
+class FinalPathSquare extends Square {
+  + getIndex() : int
+  + isBlocked(piece : Piece)
+  + isShieldSquare()
+  + handleLandingOnShieldSquare(piece : Piece)
+  + handleLandingOnRegularSquare(piece : Piece)
+}
+
+class ShieldSquare extends Square {
+  + isBlocked(piece : Piece)
+  + isShieldSquare()
+  + handleLandingOnShieldSquare(piece : Piece)
+  + handleLandingOnRegularSquare(piece : Piece)
+}
+
+class Color {
+  + YELLOW
+  + BLUE
+  + RED
+  + GREEN
+}
+
+class Die {
+  - random : Random
+  + roll() : int
+}
+
+class GameView {
+  - scanner : Scanner
+  + showWelcomeMessage()
+  + getNumberOfPlayers() : int
+  + getPlayerName(playerNumber: int) : String
+  + showBoard(players: List<Player>)
+  + showPlayerTurn(player: Player)
+  + promptRollDie(player: Player)
+  + showDieRoll(player: Player, roll: int)
+  + showNoMovablePieces(player: Player)
+  + showWinner(player: Player)
+}
+
+Player "1" *-- "*" Piece : pieces
+GameController "1" *-- "*" Player : players
+Board "1" *-- "*" Square : globalPath
+Piece "1" *-- "1" Square : square
+GameController "1" *-- "1" Die : die
+GameController "1" *-- "1" GameView : view
+
+@enduml

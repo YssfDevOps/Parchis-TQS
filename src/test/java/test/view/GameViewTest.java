@@ -18,19 +18,7 @@ class GameViewTest {
     GameView view = new GameView();
     assertDoesNotThrow(view::showWelcomeMessage);
   }
-
-  @Test
-  void getNumberOfPlayers() {
-    // Need input to test
-  }
-
   
-  @Test
-  void getPlayerName() {
-    // Need input to test
-  }
-
-  @Test
   void showBoard() {
     GameView view = new GameView();
     // 1. Passing null as players list

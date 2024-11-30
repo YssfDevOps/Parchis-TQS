@@ -1,7 +1,10 @@
 package test.model.square;
 
+import main.model.Board;
 import main.model.Color;
 import main.model.Piece;
+import main.model.Player;
+import main.model.square.MockSquare;
 import main.model.square.RegularSquare;
 import main.model.square.ShieldSquare;
 import main.model.square.Square;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class SquareTest {
 
@@ -215,6 +219,245 @@ class SquareTest {
 
     assertTrue(shieldSquare.isOccupied());
     assertEquals(shieldSquare, piece7.getSquare());
+
+
+    // Decision coverage ----------------------------------------------------------------
+
+    MockSquare square_dc = new MockSquare(1);
+    Piece piece_dc = new Piece(Color.GREEN);
+    Piece piece2_dc = new Piece(Color.BLUE);
+    Piece piece3_dc = new Piece(Color.BLUE);
+
+    // Case 1: isOccupied() returns true
+    // Simulates that the square is occupied (piece 2 eat piece 1)
+    square_dc.landHere(piece_dc);
+    assertTrue(square_dc.getPieces().contains(piece_dc), "Case 1: The piece 1 must land in this square.");
+    square_dc.setOccupied(true); // The square is occupied
+    square_dc.landHere(piece2_dc);
+    assertFalse(square_dc.getPieces().contains(piece_dc), "Case 1: The piece 1 must be dead.");
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 1: The piece 2 must land in this square.");
+
+    // Leave the piece
+    square_dc.leave(piece2_dc);
+
+    // Case 2: isOccupied() returns false
+    // Simulates that the square is not occupied (can land here)
+    square_dc.setOccupied(false); // The square is not occupied
+    square_dc.landHere(piece_dc);
+    assertTrue(square_dc.getPieces().contains(piece_dc), "Case 2: The piece must be in this square.");
+
+    // Leave the piece
+    square_dc.leave(piece_dc);
+
+    // Case 3: isShieldSquare() returns false
+    // Simulates that the square is a ShieldSquare, and it is occupied by a piece from a differents color
+    square_dc.setShieldSquare(false);
+    square_dc.setOccupied(true);
+    square_dc.landHere(piece_dc);
+    square_dc.landHere(piece2_dc);
+    assertFalse(square_dc.getPieces().contains(piece_dc), "Case 3: The piece 1 must be dead.");
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 3: The piece 2 must land in this square.");
+
+    // Leave the piece
+    square_dc.leave(piece2_dc);
+
+    // Case 4: isShieldSquare() returns true
+    // Simulates that the square is a ShieldSquare, and it is occupied by a piece from a differents color
+    square_dc.setShieldSquare(true);
+    square_dc.landHere(piece2_dc);
+    square_dc.landHere(piece3_dc);
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 4: The piece 2 must be in this square.");
+    assertTrue(square_dc.getPieces().contains(piece3_dc), "Case 4: The piece 3 must be in this square.");
+
+
+    // Path coverage ------------------------------------------------------------------------------------------
+
+    // Set up
+    Board board_pc = mock(Board.class);
+    Piece piece1_pc = mock(Piece.class);
+    Piece piece2_pc = mock(Piece.class);
+    Piece piece3_pc = mock(Piece.class);
+    Piece piece4_pc = mock(Piece.class);
+    // colors
+    when(piece1_pc.getColor()).thenReturn(Color.RED);
+    when(piece2_pc.getColor()).thenReturn(Color.RED);
+    when(piece3_pc.getColor()).thenReturn(Color.RED);
+    when(piece4_pc.getColor()).thenReturn(Color.RED);
+
+    Player player_pc = new Player("Player1", Color.RED, board_pc);
+    player_pc.setPieces(List.of(piece1_pc, piece2_pc, piece3_pc, piece4_pc)); // with test method
+    MockSquare square_pc = new MockSquare(1);
+
+    // Case 1: Square is empty (piece lands here)
+    square_pc.setOccupied(false);
+
+    square_pc.landHere(piece1_pc);
+
+    // Verify that the piece is added to the square and its position is updated
+    verify(piece1_pc).setSquare(square_pc);
+
+    square_pc.leave(piece1_pc);
+
+    // Case 2: Square is occupied and is a shield square
+    square_pc.setOccupied(false);
+    square_pc.setShieldSquare(true);
+
+    square_pc.landHere(piece2_pc);
+
+    // Verify that the piece is added to the square and its position is updated
+    verify(piece2_pc).setSquare(square_pc);
+
+
+    // Case 3: Square is occupied and is a regular square
+    square_pc.setOccupied(true);
+    square_pc.setShieldSquare(false);
+
+    square_pc.landHere(piece3_pc);
+
+    // Verify that the piece is added to the square and its position is updated
+    verify(piece3_pc).setSquare(square_pc);
+
+    // Case 4: Null piece
+    assertThrows(AssertionError.class, () -> square_pc.landHere(null));
+  }
+
+  @Test
+  void landHere_pairwiseTesting() {
+    // Pairwise Testing for landHere method
+
+    // 1. RegularSquare, Empty
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Empty (E)
+
+    RegularSquare square1 = new RegularSquare(10);
+    Piece piece1 = new Piece(Color.RED);
+    assertFalse(square1.isOccupied());
+    square1.landHere(piece1);
+
+    assertTrue(square1.isOccupied());
+    assertEquals(1, square1.getPieces().size());
+    assertEquals(piece1, square1.getPieces().get(0));
+    assertEquals(square1, piece1.getSquare());
+
+    // 2. RegularSquare, Occupied by Own Piece
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Occupied by Own Piece (Own)
+
+    RegularSquare square2 = new RegularSquare(11);
+    Piece piece2_1 = new Piece(Color.RED);
+    Piece piece2_2 = new Piece(Color.RED);
+
+    square2.landHere(piece2_1);
+
+    assertTrue(square2.isOccupied());
+    assertEquals(1, square2.getPieces().size());
+
+    square2.landHere(piece2_2);
+
+    assertEquals(2, square2.getPieces().size());
+    assertTrue(square2.getPieces().contains(piece2_1));
+    assertTrue(square2.getPieces().contains(piece2_2));
+
+    // 3. RegularSquare, Occupied by Opponent's Piece
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Occupied by Opponent (Opponent)
+
+    RegularSquare square3 = new RegularSquare(12);
+    Piece opponentPiece3 = new Piece(Color.BLUE);
+    Piece movingPiece3 = new Piece(Color.RED);
+
+    square3.landHere(opponentPiece3);
+    assertTrue(square3.isOccupied());
+    assertEquals(1, square3.getPieces().size());
+    square3.landHere(movingPiece3);
+
+    assertTrue(opponentPiece3.isAtHome());
+    assertNull(opponentPiece3.getSquare());
+    assertEquals(1, square3.getPieces().size());
+    assertEquals(movingPiece3, square3.getPieces().get(0));
+
+    // 4. RegularSquare, Blockage
+    // Square Type (S): RegularSquare (RS)
+    // Occupancy Status (O): Blockage (Own Pieces)
+
+    RegularSquare square4 = new RegularSquare(13);
+    Piece piece4_1 = new Piece(Color.RED);
+    Piece piece4_2 = new Piece(Color.RED);
+    Piece movingPiece4 = new Piece(Color.RED);
+
+    square4.landHere(piece4_1);
+    square4.landHere(piece4_2);
+    assertFalse(square4.isBlocked(movingPiece4));
+
+    square4.landHere(movingPiece4);
+    assertEquals(2, square4.getPieces().size());
+    assertFalse(square4.getPieces().contains(movingPiece4));
+
+    // Test Case 5: ShieldSquare, Empty
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Empty (E)
+    ShieldSquare square5 = new ShieldSquare(14);
+    Piece piece5 = new Piece(Color.RED);
+    assertFalse(square5.isOccupied());
+    square5.landHere(piece5);
+    assertTrue(square5.isOccupied());
+
+    assertEquals(1, square5.getPieces().size());
+    assertEquals(piece5, square5.getPieces().get(0));
+    assertEquals(square5, piece5.getSquare());
+
+    // Test Case 6: ShieldSquare, Occupied by Own Piece
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Occupied by Own Piece (Own)
+
+    ShieldSquare square6 = new ShieldSquare(15);
+    Piece piece6_1 = new Piece(Color.RED);
+    Piece piece6_2 = new Piece(Color.RED);
+    square6.landHere(piece6_1);
+
+    assertTrue(square6.isOccupied());
+    assertEquals(1, square6.getPieces().size());
+
+    square6.landHere(piece6_2);
+
+    assertEquals(2, square6.getPieces().size());
+    assertTrue(square6.getPieces().contains(piece6_1));
+    assertTrue(square6.getPieces().contains(piece6_2));
+
+    // Test Case 7: ShieldSquare, Occupied by Opponent's Piece
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Occupied by Opponent (Opponent)
+
+    ShieldSquare square7 = new ShieldSquare(16);
+    Piece opponentPiece7 = new Piece(Color.BLUE);
+    Piece movingPiece7 = new Piece(Color.RED);
+    square7.landHere(opponentPiece7);
+
+    assertTrue(square7.isOccupied());
+    assertEquals(1, square7.getPieces().size());
+
+    square7.landHere(movingPiece7);
+
+    assertEquals(2, square7.getPieces().size());
+    assertTrue(square7.getPieces().contains(opponentPiece7));
+    assertTrue(square7.getPieces().contains(movingPiece7));
+
+    // Test Case 8: ShieldSquare, Blockage
+    // Square Type (S): ShieldSquare (SS)
+    // Occupancy Status (O): Blockage (Own Pieces)
+
+    ShieldSquare square8 = new ShieldSquare(17);
+    Piece piece8_1 = new Piece(Color.RED);
+    Piece piece8_2 = new Piece(Color.RED);
+    Piece movingPiece8 = new Piece(Color.RED);
+
+    square8.landHere(piece8_1);
+    square8.landHere(piece8_2);
+    assertTrue(square8.isBlocked(movingPiece8));
+    square8.landHere(movingPiece8);
+
+    assertEquals(2, square8.getPieces().size());
+    assertFalse(square8.getPieces().contains(movingPiece8));
   }
 
   @Test

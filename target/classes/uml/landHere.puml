@@ -1,0 +1,28 @@
+@startuml landHere
+
+start
+:Check Preconditions;
+if (piece is null) then (yes)
+  :ERROR "Piece cannot be null";
+  stop
+else
+  :Continue;
+endif
+
+if (square is occupied) then (yes)
+  if (square is shield) then (yes)
+    :Handle landing on shield square;
+    stop
+  else
+    :Handle landing on regular square;
+    stop
+  endif
+else
+  :Add piece to square;
+  :Update piece position;
+endif
+
+:Check Invariants;
+stop
+
+@enduml

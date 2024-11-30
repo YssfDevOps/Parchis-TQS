@@ -2,9 +2,11 @@ package test.model.square;
 
 import main.model.Color;
 import main.model.Piece;
+import main.model.square.MockSquare;
 import main.model.square.RegularSquare;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class RegularSquareTest {
 
@@ -81,43 +83,16 @@ class RegularSquareTest {
     opponentBlockedSquare.landHere(redPiece4);
     assertNull(redPiece4.getSquare());
 
-    // Statement coverage
-    // Subclass to override isOccupied() function to return empty
-    class TestRegularSquare extends RegularSquare {
-      public TestRegularSquare(int position) {
-        super(position);
-      }
-
-      @Override
-      public boolean isOccupied() {
-        return true; // Force to return true
-      }
-
-      // Expose the protected method for testing
-      @Override
-      public void handleLandingOnRegularSquare(Piece piece) {
-        super.handleLandingOnRegularSquare(piece);
-      }
-    }
+    // Statement coverage -------------------------------------------------------------------------
 
     // 1. Empty pieces
-    TestRegularSquare testSquare = new TestRegularSquare(10);
+    MockSquare testSquare = new MockSquare(10);
     Piece testPiece = new Piece(Color.RED);
     testSquare.landHere(testPiece);
+    testSquare.setOccupied(true);
     assertTrue(testSquare.isOccupied());
 
-    // Subclass to access and manipulate pieces
-    class TestRegularSquare2 extends RegularSquare {
-      public TestRegularSquare2(int position) {
-        super(position);
-      }
-
-      public void addPieceDirectly(Piece piece) {
-        this.pieces.add(piece);
-      }
-    }
-
-    TestRegularSquare2 testSquare2 = new TestRegularSquare2(10);
+    MockSquare testSquare2 = new MockSquare(10);
     Piece piece7 = new Piece(Color.RED);
     Piece piece8 = new Piece(Color.BLUE);
     Piece piece9 = new Piece(Color.GREEN);
@@ -145,6 +120,36 @@ class RegularSquareTest {
     testSquare3.landHere(new Piece(Color.RED));
 
     assertThrows(UnsupportedOperationException.class, () -> testSquare3.landHere(testPiece2));
+
+    // Decision coverage ------------------------------------------------------------------------------
+
+    // Case 1: pieces.isEmpty() returns true
+    RegularSquare square_dc = new RegularSquare(1);
+    Piece piece_dc = new Piece(Color.RED);
+    square_dc.landHere(piece_dc);
+    assertTrue(square_dc.getPieces().contains(piece_dc), "Case 1: The piece must be in this square.");
+
+    // Case 2 and 3: pieces.isEmpty() returns false and pieces.size() == 1
+    Piece piece2_dc = new Piece(Color.RED);
+    square_dc.landHere(piece2_dc);
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 2-3: The piece must be in this square.");
+
+    // Case 4: pieces.size() != 1
+    Piece piece3_dc = new Piece(Color.RED);
+    square_dc.landHere(piece3_dc);
+    assertFalse(square_dc.getPieces().contains(piece3_dc), "Case 4: The square is full.");
+
+    // Case 5: occupant.getColor().equals(piece.getColor()) returns true
+    square_dc.leave(piece2_dc);
+    square_dc.landHere(piece2_dc);
+    assertTrue(square_dc.getPieces().contains(piece2_dc), "Case 5: The piece must be in this square.");
+
+    // Case 6: occupant.getColor().equals(piece.getColor()) returns false
+    square_dc.leave(piece2_dc);
+    Piece piece4_dc = new Piece(Color.GREEN);
+    square_dc.landHere(piece4_dc);
+    assertTrue(square_dc.getPieces().contains(piece4_dc), "Case 6: The piece must be in this square.");
+    assertFalse(square_dc.getPieces().contains(piece_dc), "Case 6: The piece must be died.");
   }
 
   @Test
@@ -251,6 +256,45 @@ class RegularSquareTest {
     assertFalse(testSquare.isBlocked(greenPiece));
     assertFalse(testSquare.isBlocked(redPiece7));
     assertFalse(testSquare.isBlocked(bluePiece7));
+
+    // Condition coverage ------------------------------------------------------------------
+    // Setup: A square with no pieces
+    RegularSquare square = new RegularSquare(0);
+    assertFalse(square.isBlocked(new Piece(Color.RED)));
+
+    // Case 1: One piece on the square
+    Piece piece1_cc = new Piece(Color.RED);
+    square.landHere(piece1_cc); // Add a single piece to the square
+    assertFalse(square.isBlocked(new Piece(Color.RED)));
+    assertFalse(square.isBlocked(new Piece(Color.BLUE)));
+
+    // Reset the square
+    square.leave(piece1_cc);
+
+    // Case 2: Two pieces of the same color
+    Piece piece2_cc = new Piece(Color.YELLOW);
+    Piece piece3_cc = new Piece(Color.YELLOW);
+    square.landHere(piece2_cc);
+    square.landHere(piece3_cc);
+    assertTrue(square.isBlocked(new Piece(Color.RED)));
+    assertFalse(square.isBlocked(new Piece(Color.YELLOW)));
+
+    // Reset the square
+    square.leave(piece2_cc);
+    square.leave(piece3_cc);
+
+    // Case 3: Two pieces of different colors
+    Piece piece4_cc = new Piece(Color.GREEN);
+    Piece piece5_cc = new Piece(Color.BLUE);
+    square.landHere(piece4_cc);
+    square.landHere(piece5_cc);
+    assertFalse(square.isBlocked(new Piece(Color.RED)));
+
+    // Reset the square
+    square.leave(piece5_cc);
+
+    // Case 4: Empty square, null piece passed in
+    assertThrows(AssertionError.class, () -> square.isBlocked(null));
   }
 
   @Test

@@ -12,6 +12,9 @@ public class Die {
   }
 
   public int roll() {
+    // Pre-condition:
+    assert random != null : "Random instance should not be null";
+
     return random.nextInt(MAX_VALUE - MIN_VALUE + 1) + MIN_VALUE;
   }
 }

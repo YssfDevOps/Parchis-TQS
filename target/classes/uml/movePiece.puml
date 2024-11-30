@@ -1,0 +1,53 @@
+@startuml movePiece
+
+start
+:Check Preconditions;
+if (piece is null) then (yes)
+  :ERROR "Piece cannot be null";
+  stop
+else
+  :Continue;
+endif
+
+if (moves <= 0 or moves > 6) then (yes)
+  :ERROR "Moves must be positive and <= 6";
+  stop
+else
+  :Continue;
+endif
+
+if (board is null) then (yes)
+  :ERROR "Board cannot be null";
+  stop
+else
+  :Continue;
+endif
+
+:Initialize currentSquare and lastAccessibleSquare;
+repeat
+  :Get nextSquare;
+  if (nextSquare is null) then (yes)
+    :Mark piece as finished;
+    :Clear current position;
+    stop
+  else
+    :Continue;
+  endif
+  if (nextSquare is blocked) then (yes)
+    :Break loop;
+    stop
+  else
+    :Update lastAccessibleSquare;
+  endif
+repeat while (i < moves)
+
+if (lastAccessibleSquare != currentSquare) then (yes)
+  :Move piece to lastAccessibleSquare;
+else
+  :Piece is blocked;
+endif
+
+:Check Invariants;
+stop
+
+@enduml
