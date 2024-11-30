@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uml/finalDiagramClass.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uml/finalDiagramClass.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +69,7 @@
     "JUnit.FinalPathSquareTest.executor": "Coverage",
     "JUnit.FinalPathSquareTest.getColor.executor": "Run",
     "JUnit.FinalPathSquareTest.handleLandingOnShieldSquare.executor": "Run",
-    "JUnit.GameControllerTest.executor": "Coverage",
+    "JUnit.GameControllerTest.executor": "Run",
     "JUnit.GameControllerTest.initializePlayers_loopTesting.executor": "Run",
     "JUnit.GameControllerTest.playerRollDie.executor": "Run",
     "JUnit.GameControllerTest.testCoveringOtherCases.executor": "Run",
@@ -156,7 +152,7 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.GameControllerTest">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
@@ -262,11 +258,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameControllerTest" />
         <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
         <item itemvalue="JUnit.RegularSquareTest.isBlocked" />
         <item itemvalue="JUnit.SquareTest.landHere" />
         <item itemvalue="JUnit.RegularSquareTest.handleLandingOnRegularSquare" />
-        <item itemvalue="JUnit.GameControllerTest" />
       </list>
     </recent_temporary>
   </component>
