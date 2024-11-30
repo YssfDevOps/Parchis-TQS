@@ -420,7 +420,39 @@ class PlayerTest {
     }
     // Check if all pieces are no longer at home
     assertFalse(player.hasPiecesAtHome());
-  }
+
+    // Condition coverage ---------------------------------------------------------
+
+    Board board_cc = new Board();
+
+    // Case 1: The player has at least one piece at home
+    Player player_cc = new Player("Player 1", Color.RED, board_cc);
+    Piece pieceAtHome = player_cc.getPieces().get(0);
+    assertTrue(pieceAtHome.isAtHome());
+
+    // Check that the player has pieces at home
+    assertTrue(player_cc.hasPiecesAtHome());
+
+    // Case 2: The player has no pieces at home (all pieces are on the board)
+    // Move all pieces out of home (simulate all pieces have moved)
+    Piece piece1 = player_cc.getPieces().get(0);
+    piece1.enterGame(board);
+    player_cc.movePiece(piece1, 6, board);
+
+    Piece piece2 = player_cc.getPieces().get(1);
+    piece2.enterGame(board);
+    player_cc.movePiece(piece2, 6, board);
+
+    Piece piece3 = player_cc.getPieces().get(2);
+    piece3.enterGame(board);
+    player_cc.movePiece(piece3, 4, board);
+
+    Piece piece4 = player_cc.getPieces().get(3);
+    piece4.enterGame(board);
+    player_cc.movePiece(piece4, 4, board);
+
+    assertFalse(player_cc.hasPiecesAtHome());
+ }
 
   @Test
   void hasPiecesOnBoard() {

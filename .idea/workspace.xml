@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e13ba2a-f816-4714-987c-9fce7d1b8b58" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/uml/finalDiagramClass.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/square/RegularSquareTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/square/MockSquare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test/model/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uml/finalDiagramClass.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uml/finalDiagramClass.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test/model/square/RegularSquareTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,11 +22,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="UML Class" />
         <option value="Interface" />
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="UML Class" />
       </list>
     </option>
   </component>
@@ -154,30 +156,10 @@
       <recent name="main.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RegularSquareTest.isBlocked">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Parchis-TQS" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FinalPathSquareTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Parchis-TQS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.model.square.*" />
-          <option name="ENABLED" value="false" />
-        </pattern>
-        <pattern>
-          <option name="PATTERN" value="main.model.square.FinalPathSquare" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test.model.square" />
-      <option name="MAIN_CLASS_NAME" value="test.model.square.FinalPathSquareTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -202,6 +184,22 @@
       <option name="MAIN_CLASS_NAME" value="test.controller.GameControllerTest" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlayerTest.hasPiecesAtHome" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Parchis-TQS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.model" />
+      <option name="MAIN_CLASS_NAME" value="test.model.PlayerTest" />
+      <option name="METHOD_NAME" value="hasPiecesAtHome" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -256,19 +254,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
       <item itemvalue="JUnit.RegularSquareTest.handleLandingOnRegularSquare" />
       <item itemvalue="JUnit.RegularSquareTest.isBlocked" />
       <item itemvalue="JUnit.SquareTest.landHere" />
-      <item itemvalue="JUnit.FinalPathSquareTest" />
       <item itemvalue="JUnit.GameControllerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlayerTest.hasPiecesAtHome" />
         <item itemvalue="JUnit.RegularSquareTest.isBlocked" />
         <item itemvalue="JUnit.SquareTest.landHere" />
         <item itemvalue="JUnit.RegularSquareTest.handleLandingOnRegularSquare" />
         <item itemvalue="JUnit.GameControllerTest" />
-        <item itemvalue="JUnit.FinalPathSquareTest" />
       </list>
     </recent_temporary>
   </component>
@@ -334,7 +332,7 @@
       <workItem from="1732447193665" duration="24795000" />
       <workItem from="1732547089580" duration="5033000" />
       <workItem from="1732963441806" duration="127000" />
-      <workItem from="1732963581882" duration="3145000" />
+      <workItem from="1732963581882" duration="9686000" />
     </task>
     <servers />
   </component>

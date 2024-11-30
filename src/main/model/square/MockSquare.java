@@ -7,9 +7,9 @@ import main.model.Piece;
 */
 
 public class MockSquare extends RegularSquare {
-  boolean blocked = false;
-  boolean occupied = false;
-  boolean shield = false;
+  private boolean blocked = false;
+  private boolean occupied = false;
+  private boolean shield = false;
 
   public MockSquare(int position) {
     super(position);
