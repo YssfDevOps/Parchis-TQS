@@ -278,21 +278,29 @@ class SquareTest {
     Piece piece2_pc = mock(Piece.class);
     Piece piece3_pc = mock(Piece.class);
     Piece piece4_pc = mock(Piece.class);
+    // colors
+    when(piece1_pc.getColor()).thenReturn(Color.RED);
+    when(piece2_pc.getColor()).thenReturn(Color.RED);
+    when(piece3_pc.getColor()).thenReturn(Color.RED);
+    when(piece4_pc.getColor()).thenReturn(Color.RED);
+
     Player player_pc = new Player("Player1", Color.RED, board_pc);
     player_pc.setPieces(List.of(piece1_pc, piece2_pc, piece3_pc, piece4_pc)); // with test method
-    Square square_pc = mock(Square.class);
+    MockSquare square_pc = new MockSquare(1);
 
     // Case 1: Square is empty (piece lands here)
-    when(square_pc.isOccupied()).thenReturn(false);
+    square_pc.setOccupied(false);
 
     square_pc.landHere(piece1_pc);
 
     // Verify that the piece is added to the square and its position is updated
     verify(piece1_pc).setSquare(square_pc);
 
+    square_pc.leave(piece1_pc);
+
     // Case 2: Square is occupied and is a shield square
-    when(square_pc.isOccupied()).thenReturn(true);
-    when(square_pc.isShieldSquare()).thenReturn(true);
+    square_pc.setOccupied(false);
+    square_pc.setShieldSquare(true);
 
     square_pc.landHere(piece2_pc);
 
@@ -301,10 +309,10 @@ class SquareTest {
 
 
     // Case 3: Square is occupied and is a regular square
-    when(square_pc.isOccupied()).thenReturn(true);
-    when(square_pc.isShieldSquare()).thenReturn(false);
+    square_pc.setOccupied(true);
+    square_pc.setShieldSquare(false);
 
-    square.landHere(piece3_pc);
+    square_pc.landHere(piece3_pc);
 
     // Verify that the piece is added to the square and its position is updated
     verify(piece3_pc).setSquare(square_pc);
