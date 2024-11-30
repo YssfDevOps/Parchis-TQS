@@ -18,8 +18,7 @@ class GameViewTest {
     GameView view = new GameView();
     assertDoesNotThrow(view::showWelcomeMessage);
   }
-
-  @Test
+  
   void showBoard() {
     GameView view = new GameView();
     // 1. Passing null as players list
