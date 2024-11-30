@@ -256,6 +256,45 @@ class RegularSquareTest {
     assertFalse(testSquare.isBlocked(greenPiece));
     assertFalse(testSquare.isBlocked(redPiece7));
     assertFalse(testSquare.isBlocked(bluePiece7));
+
+    // Condition coverage ------------------------------------------------------------------
+    // Setup: A square with no pieces
+    RegularSquare square = new RegularSquare(0);
+    assertFalse(square.isBlocked(new Piece(Color.RED)));
+
+    // Case 1: One piece on the square
+    Piece piece1_cc = new Piece(Color.RED);
+    square.landHere(piece1_cc); // Add a single piece to the square
+    assertFalse(square.isBlocked(new Piece(Color.RED)));
+    assertFalse(square.isBlocked(new Piece(Color.BLUE)));
+
+    // Reset the square
+    square.leave(piece1_cc);
+
+    // Case 2: Two pieces of the same color
+    Piece piece2_cc = new Piece(Color.YELLOW);
+    Piece piece3_cc = new Piece(Color.YELLOW);
+    square.landHere(piece2_cc);
+    square.landHere(piece3_cc);
+    assertTrue(square.isBlocked(new Piece(Color.RED)));
+    assertFalse(square.isBlocked(new Piece(Color.YELLOW)));
+
+    // Reset the square
+    square.leave(piece2_cc);
+    square.leave(piece3_cc);
+
+    // Case 3: Two pieces of different colors
+    Piece piece4_cc = new Piece(Color.GREEN);
+    Piece piece5_cc = new Piece(Color.BLUE);
+    square.landHere(piece4_cc);
+    square.landHere(piece5_cc);
+    assertFalse(square.isBlocked(new Piece(Color.RED)));
+
+    // Reset the square
+    square.leave(piece5_cc);
+
+    // Case 4: Empty square, null piece passed in
+    assertThrows(AssertionError.class, () -> square.isBlocked(null));
   }
 
   @Test

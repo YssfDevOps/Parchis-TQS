@@ -1,0 +1,146 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class GameController {
+  -Board board
+  -List<Player> players
+  -Die die
+  -GameView view
+  -Scanner scanner
+  +List<Player> getPlayers()
+  +Die getDie()
+  +Board getBoard()
+  +void startGame()
+  +void initializePlayers(int numPlayers, List<String> playerNames)
+  +void playGame()
+  +int playerRollDie(Player player)
+}
+
+class Board {
+  +Square getNextSquare(Square currentSquare, Piece piece)
+  +Square getPlayerStartSquare(Color color)
+}
+
+class Piece {
+  -Square square
+  -Color color
+  -boolean atHome
+  -boolean hasFinished
+  -int id
+  -static int idCounter
+  +int getId()
+  +void setAtHome(boolean atHome)
+  +boolean isAtHome()
+  +void sendHome()
+  +void enterGame(Board board)
+  +Square getSquare()
+  +void setSquare(Square square)
+  +boolean hasFinished()
+  +void setHasFinished(boolean hasFinished)
+  +Color getColor()
+  +String toString()
+}
+
+class Player {
+  -String name
+  -List<Piece> pieces
+  -Color color
+  -boolean winner
+  -Board board
+  -Scanner scanner
+  +List<Piece> getPieces()
+  +boolean enterPieceIntoGame()
+  +void movePiece(Piece piece, int moves, Board board)
+  +boolean isWinner()
+  +boolean hasPiecesAtHome()
+  +boolean hasPiecesOnBoard()
+  +Piece choosePiece()
+  +boolean chooseToEnterPiece()
+  +void displayPieces()
+}
+
+class Square {
+  +boolean isBlocked(Piece piece)
+  +void landHere(Piece piece)
+  +void leave(Piece piece)
+}
+
+class RegularSquare extends Square {
+}
+
+class FinalPathSquare extends Square {
+  +int getIndex()
+}
+
+class ShieldSquare extends Square {
+}
+
+class Color {
+  YELLOW
+  BLUE
+  RED
+  GREEN
+}
+
+class Die {
+  -Random random
+  +int roll()
+}
+
+class GameView {
+  -Scanner scanner
+  +void showWelcomeMessage()
+  +int getNumberOfPlayers()
+  +String getPlayerName(int playerNumber)
+  +void showBoard(List<Player> players)
+  +void showPlayerTurn(Player player)
+  +void promptRollDie(Player player)
+  +void showDieRoll(Player player, int roll)
+  +void showNoMovablePieces(Player player)
+  +void showWinner(Player player)
+}
+
+class MockGameController extends GameController {
+  -int maxTurns
+  -int actualTurns
+  -int totalPlayerActions
+  +void playGame()
+}
+
+class MockDie extends Die {
+  -List<Integer> predefinedRolls
+  -int index
+  +int roll()
+}
+
+class MockGameView extends GameView {
+  -int numberOfPlayers
+  -List<String> playerNames
+  +int getNumberOfPlayers()
+  +String getPlayerName(int playerNumber)
+}
+
+class MockBoard extends Board {
+  -MockSquare nextSquare
+  -MockSquare prevSquare
+  -boolean nextNext
+  +Square getNextSquare(Square currentSquare, Piece piece)
+  +void setNextSquare(MockSquare nextSquare, MockSquare prevSquare)
+}
+
+class MockSquare extends Square {
+}
+
+' Relaciones
+Player "1" *-- "*" Piece : has
+GameController "1" *-- "*" Player : manages
+Board "1" *-- "*" Square : contains
+Piece "1" *-- "1" Square : occupies
+GameController "1" *-- "1" Die : uses
+GameController "1" *-- "1" GameView : uses
+MockBoard "1" *-- "*" MockSquare : contains
+MockGameController "1" *-- "1" GameController : extends
+MockDie "1" *-- "1" Die : extends
+MockGameView "1" *-- "1" GameView : extends
+
+@enduml
