@@ -113,6 +113,11 @@ class GameControllerTest {
 
     Player lucia = gameController.getPlayers().get(0);
     Player youssef = gameController.getPlayers().get(1);
+    int i = 1;
+    for (Piece piece : lucia.getPieces()) {
+      piece.setId(i);
+      i++;
+    }
 
     UserInput.setGameControllerView(gameController, mockView);
 
@@ -120,7 +125,7 @@ class GameControllerTest {
     List<String> luciaInputsList = new ArrayList<>();
     List<String> youssefInputsList = new ArrayList<>();
 
-    int[] luciaPieceIds = {287, 288, 289, 290};
+    int[] luciaPieceIds = {1, 2, 3, 4};
 
     Map<Integer, Integer> luciaPieceSteps = new HashMap<>();
     for (int pieceId : luciaPieceIds) {

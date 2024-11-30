@@ -47,6 +47,10 @@ public class Piece {
         return atHome;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void sendHome() {
         // Precondition
         assert square == null || square.getPieces().contains(this) :
