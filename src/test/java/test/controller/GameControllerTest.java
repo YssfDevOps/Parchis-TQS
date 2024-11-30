@@ -105,6 +105,9 @@ class GameControllerTest {
 
   @Test
   void testPlayGameUntilYellowWins() throws Exception {
+    // Set default locale to ensure consistent input parsing
+    Locale.setDefault(Locale.ENGLISH);
+
     List<String> playerNames = Arrays.asList("Lucia", "Youssef");
     MockGameView mockView = new MockGameView(2, playerNames);
     GameController gameController = new GameController();
@@ -136,10 +139,10 @@ class GameControllerTest {
     int turn = 0;
 
     while (currentPieceIndex < luciaPieceIds.length && turn < maxTurns) {
-      // Lucia (YELLOW) turn
+      // Lucia's turn
       if (pieceAtHome) {
         dieRolls.add(5);
-        luciaInputsList.add("yes"); // chooseToEnterPiece()
+        luciaInputsList.add("yes"); // Use "1" for "yes" if code expects integer
         pieceAtHome = false;
       } else {
         dieRolls.add(6);
@@ -159,10 +162,10 @@ class GameControllerTest {
         }
       }
 
-      // Youssef turn
+      // Youssef's turn
       dieRolls.add(1);
-      youssefInputsList.add("no");
-      youssefInputsList.add("5");
+      youssefInputsList.add("no"); // Use "2" for "no" if code expects integer
+      youssefInputsList.add("1"); // Choosing piece 1
 
       turn++;
     }
@@ -172,23 +175,29 @@ class GameControllerTest {
     UserInput.setGameControllerDie(gameController, mockDie);
 
     // Inputs of Lucia
-    String luciaInputs = String.join("\n", luciaInputsList) + "\n";
+    String lineSeparator = System.lineSeparator();
+    String luciaInputs = String.join(lineSeparator, luciaInputsList) + lineSeparator;
     InputStream luciaInputStream = new ByteArrayInputStream(luciaInputs.getBytes());
     UserInput.setPlayerScanner(lucia, luciaInputStream);
 
     // Inputs of Youssef
-    String youssefInputs = String.join("\n", youssefInputsList) + "\n";
+    String youssefInputs = String.join(lineSeparator, youssefInputsList) + lineSeparator;
     InputStream youssefInputStream = new ByteArrayInputStream(youssefInputs.getBytes());
     UserInput.setPlayerScanner(youssef, youssefInputStream);
 
     // Set up scanner
-    String gameControllerInputs = "\n".repeat(dieRolls.size());
+    String gameControllerInputs = lineSeparator.repeat(dieRolls.size());
     InputStream gameControllerInputStream = new ByteArrayInputStream(gameControllerInputs.getBytes());
     UserInput.setGameControllerScanner(gameController, gameControllerInputStream);
 
     // Start the game
     gameController.playGame();
+
+    // Assertions to verify the game state
+    assertTrue(lucia.isWinner());
+    assertFalse(youssef.isWinner());
   }
+
 
   @Test
   void testPlayerHasNoMovablePieces() throws Exception {
